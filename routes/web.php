@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Data\RoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
     Route::get('/divisi', [AdminController::class, 'divisi']);
     Route::get('/daftar-panitia', [AdminController::class, 'daftarPanitia']);
     Route::get('/pengaturan-akun', [AdminController::class, 'pengaturanAkun']);
+});
+
+// data
+Route::group(['prefix' => 'data'], function() {
+    Route::get('/divisi', [RoleController::class, 'getAll']);
+
+    Route::group(['prefix' => 'add'], function() {
+        Route::post('/divisi', [RoleController::class, 'store']);
+    });
 });
 
 // Auth::routes();

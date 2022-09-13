@@ -13,7 +13,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') - Fasilkom Fest</title>
 
     <meta name="description" content="" />
@@ -84,6 +84,22 @@
 
           <!-- Content wrapper -->
           <div class="content-wrapper">
+            <!-- Toast with Placements -->
+            <div
+              class="bs-toast toast toast-placement-ex m-2 top-0 end-0"
+              role="alert"
+              aria-live="assertive"
+              aria-atomic="true"
+              data-delay="2000"
+            >
+              <div class="toast-header">
+                <i class="bx bx-bell me-2"></i>
+                <div class="me-auto fw-semibold toast-header-text"></div>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body"></div>
+            </div>
+            <!-- Toast with Placements -->
             <!-- Content -->
 
             @yield('content')
@@ -122,7 +138,23 @@
     <!-- Main JS -->
     <script src="{{ asset('dashboard') }}/js/main.js"></script>
 
+    <!-- Validation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js" integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.min.js" integrity="sha512-6Uv+497AWTmj/6V14BsQioPrm3kgwmK9HYIyWP+vClykX52b0zrDGP7lajZoIY1nNlX4oQuh7zsGjmF7D0VZYA==" crossorigin="anonymous"></script>
+    
+    {{-- My Script --}}
+    <script>
+      const BASE_URL = '{{ url("/") }}'
+      const ASSET = '{{ asset("dashboard") }}'
+      const URL_DATA = '{{ url("data") }}'
+      const email = '{{ auth()->user()->email }}'
+      const user_id = '{{ auth()->user()->id }}'
+    </script>
+    <script src="{{ asset('dashboard') }}/js/functions.js"></script>
+
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    @yield('js')
   </body>
 </html>

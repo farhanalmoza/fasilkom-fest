@@ -11,7 +11,7 @@
 				<h5 class="card-header">Tambah Divisi</h5>
 				<!-- Tambah Divisi -->
 				<div class="card-body">
-					<form id="tambahDivisi" method="post"></form>
+					<form id="tambahDivisi">
 						<div class="mb-3">
 							<label for="name" class="form-label">Nama Divisi</label>
 							<input type="text" class="form-control" id="name" name="name" placeholder="Masukkan nama divisi" />
@@ -20,6 +20,7 @@
 							<label for="desc" class="form-label">Deskripsi</label>
 							<textarea class="form-control" id="desc" name="desc" rows="2"></textarea>
 						</div>
+						<button type="submit" class="btn btn-primary">Tambah</button>
 					</form>
 				</div>
 				<!-- /Tambah Divisi -->
@@ -28,27 +29,21 @@
 		<div class="col-md-6">
 			<div class="card mb-4">
 				<h5 class="card-header">Daftar Divisi</h5>
-				<!-- Tambah Divisi -->
+				<!-- Daftar Divisi -->
 				<div class="table-responsive text-nowrap">
 					<table class="table">
 					  <thead>
-						<tr>
-						  <th>Divisi</th>
-						  <th>Actions</th>
-						</tr>
+							<tr>
+								<th>Divisi</th>
+								<th>Actions</th>
+							</tr>
 					  </thead>
-					  <tbody class="table-border-bottom-0">
-						<tr>
-						  <td><strong>Angular Project</strong></td>
-						  <td>
-								<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
-								<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal">Hapus</button>
-							</td>
-						</tr>
+					  <tbody class="table-border-bottom-0" id="divisi-table">
+							
 					  </tbody>
 					</table>
 				</div>
-				<!-- /Tambah Divisi -->
+				<!-- /Daftar Divisi -->
 			</div>
 		</div>
 	</div>
@@ -115,4 +110,13 @@
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('js')
+	<script>
+		$(document).ready(function() {
+				getDivisi.loadData = "/divisi"
+		})
+	</script>
+	<script src="{{ asset('dashboard') }}/js/role/index.js"></script>
 @endsection
