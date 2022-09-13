@@ -41,4 +41,8 @@ class RoleController extends Controller
         ];
         return $this->divisi->update($id, $data);
     }
+
+    public function destroy($id) {
+        return $this->divisi->delete($id);
+    }
 }

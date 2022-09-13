@@ -30,4 +30,12 @@ class RoleService
         $role->update($data);
         return response()->json(['message' => 'Berhasil mengubah divisi'], 200);
     }
+
+    public function delete($id)
+    {
+        $role = Role::find($id);
+        if (!$role) return response()->json(['message' => 'Divisi tidak ditemukan'], 404);
+        $role->delete();
+        return response()->json(['message' => 'Berhasil menghapus divisi'], 200);
+    }
 }

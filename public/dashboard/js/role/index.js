@@ -1,7 +1,7 @@
 $(document).ready(function () {
     // CRUD
     addRole() // tambah role/divisi
-    // deletePlace()
+    deleteRole()
     updateRole()
 })
 
@@ -25,7 +25,7 @@ const getDivisi = {
                         <td><strong>${divisi[i].name}</strong></td>
                         <td>
                             <button type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#editModal" data-bs-id="${divisi[i].id}">Edit</button>
-                            <button type="button" class="btn btn-sm btn-danger delete" data-bs-toggle="modal" data-bs-target="#hapusModal">Hapus</button>
+                            <button type="button" class="btn btn-sm btn-danger delete" data-bs-toggle="modal" data-bs-target="#hapusModal" data-bs-id="${divisi[i].id}">Hapus</button>
                         </td>
                     </tr>
                     `;
@@ -203,4 +203,19 @@ function updateRole() {
             $('#descEdit').removeClass('is-valid')
         },
     }
+}
+
+function deleteRole() {
+    $(document).on('click', '.delete', function(e) {
+        const id = $(this).data('bs-id')
+        const urlDelete = URL_DATA + "/delete/divisi/" + id
+        
+        // submit-hapus diklik
+        $('.submit-hapus').on('click', function(e) {
+            e.preventDefault()
+            Functions.prototype.deleteData(urlDelete)
+            $('#hapusModal').modal('hide')
+            getDivisi.loadData = "/divisi"
+        })
+    })
 }

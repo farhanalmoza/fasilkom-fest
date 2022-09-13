@@ -106,7 +106,7 @@
 					<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
 						Batal
 					</button>
-					<button type="button" class="btn btn-danger">hapus</button>
+					<button type="button" class="btn btn-danger submit-hapus">hapus</button>
 				</div>
 			</div>
 		</div>

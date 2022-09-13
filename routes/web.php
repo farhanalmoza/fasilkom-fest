@@ -46,6 +46,12 @@ Route::group(['prefix' => 'data'], function() {
         Route::put('/divisi/{id}', [RoleController::class, 'update']);
     });
 
+    // delete
+    Route::group(['prefix' => 'delete'], function() {
+        Route::delete('/divisi/{id}', [RoleController::class, 'destroy']);
+    });
+
+    // add
     Route::group(['prefix' => 'add'], function() {
         Route::post('/divisi', [RoleController::class, 'store']);
     });
