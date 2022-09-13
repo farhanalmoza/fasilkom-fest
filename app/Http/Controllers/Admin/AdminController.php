@@ -16,4 +16,19 @@ class AdminController extends Controller
     {
         return view('admin.index');
     }
+
+    public function pengaturanAkun()
+    {
+        return view('admin.pengaturan-akun');
+    }
+
+    public function divisi()
+    {
+        return view('admin.panitia.divisi');
+    }
+
+    public function daftarPanitia()
+    {
+        return view('admin.panitia.daftar-panitia');
+    }
 }

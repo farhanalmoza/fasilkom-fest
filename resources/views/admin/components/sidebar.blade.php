@@ -17,12 +17,12 @@
 		</a>
 		<ul class="menu-sub">
 			<li class="menu-item">
-				<a href="daftar-acara.html" class="menu-link">
+				<a href="{{ url('admin/divisi') }}" class="menu-link">
 					<div data-i18n="Hari">Divisi</div>
 				</a>
 			</li>
 			<li class="menu-item">
-				<a href="hari.html" class="menu-link">
+				<a href="{{ url('admin/daftar-panitia') }}" class="menu-link">
 					<div data-i18n="Hari">Daftar Panitia</div>
 				</a>
 			</li>
@@ -39,7 +39,7 @@
 		</a>
 		<ul class="menu-sub">
 			<li class="menu-item">
-				<a href="pengaturan-akun.html" class="menu-link">
+				<a href="{{ url('admin/pengaturan-akun') }}" class="menu-link">
 					<div data-i18n="Account">Account</div>
 				</a>
 			</li>
