@@ -17,4 +17,17 @@ class RoleService
         if (!$role) return response()->json(['message' => 'Gagal menambahkan divisi'], 500);
         return response()->json(['message' => 'Berhasil menambahkan divisi'], 200);
     }
+
+    public function getDetail($id)
+    {
+        return Role::find($id);
+    }
+
+    public function update($id, $data)
+    {
+        $role = Role::find($id);
+        if (!$role) return response()->json(['message' => 'Divisi tidak ditemukan'], 404);
+        $role->update($data);
+        return response()->json(['message' => 'Berhasil mengubah divisi'], 200);
+    }
 }

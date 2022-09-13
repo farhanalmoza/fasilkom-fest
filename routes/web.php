@@ -35,7 +35,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
 
 // data
 Route::group(['prefix' => 'data'], function() {
+    // get All
     Route::get('/divisi', [RoleController::class, 'getAll']);
+
+    // get detail
+    Route::get('/divisi/{id}', [RoleController::class, 'show']);
+
+    // update
+    Route::group(['prefix' => 'update'], function() {
+        Route::put('/divisi/{id}', [RoleController::class, 'update']);
+    });
 
     Route::group(['prefix' => 'add'], function() {
         Route::post('/divisi', [RoleController::class, 'store']);

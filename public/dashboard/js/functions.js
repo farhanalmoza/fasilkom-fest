@@ -367,7 +367,7 @@ class Functions
                 }
         
                 toastPlacementExample.classList.add('bg-success');
-                header.innerHTML = `Error`
+                header.innerHTML = `Success`
                 body.innerHTML = response.message
                 toastPlacement = new bootstrap.Toast(toastPlacementExample);
                 toastPlacement.show();
@@ -386,7 +386,20 @@ class Functions
             beforeSend: function() {
             },
             success: function (response) {
-                process.successData = response;
+                const toastPlacementExample = document.querySelector('.toast-placement-ex') 
+                const header = document.querySelector('.toast-header-text')
+                const body = document.querySelector('.toast-body')
+                let toastPlacement;
+
+                if (toastPlacement) {
+                    toastDispose(toastPlacement);
+                }
+        
+                toastPlacementExample.classList.add('bg-success');
+                header.innerHTML = `Success`
+                body.innerHTML = response.message
+                toastPlacement = new bootstrap.Toast(toastPlacementExample);
+                toastPlacement.show();
             },
             error: function(err) {
                 process.errorData = err

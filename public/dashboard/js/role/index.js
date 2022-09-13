@@ -2,7 +2,7 @@ $(document).ready(function () {
     // CRUD
     addRole() // tambah role/divisi
     // deletePlace()
-    // updatePlace()
+    updateRole()
 })
 
 const getDivisi = {
@@ -24,8 +24,8 @@ const getDivisi = {
                     <tr>
                         <td><strong>${divisi[i].name}</strong></td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
-                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal">Hapus</button>
+                            <button type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#editModal" data-bs-id="${divisi[i].id}">Edit</button>
+                            <button type="button" class="btn btn-sm btn-danger delete" data-bs-toggle="modal" data-bs-target="#hapusModal">Hapus</button>
                         </td>
                     </tr>
                     `;
@@ -56,6 +56,28 @@ const getDivisi = {
             delay: 10000,
         });
     },
+}
+
+// ketika tombol .edit ditekan
+$(document).on('click', '.edit', function () {
+    const id = $(this).data('bs-id')
+    getDetail.loadData = id
+})
+
+const getDetail = {
+    set loadData(data) {
+        const urlDetail = URL_DATA + "/divisi/" + data
+        Functions.prototype.requestDetail(getDetail, urlDetail)
+    },
+    set successData(response) {
+        // for preview detail
+        $('#id').val(response.id)
+        $('#nameEdit').val(response.name)
+        $('#descEdit').text(response.description)
+    },
+    set errorData(err) {
+        console.log(err);
+    }
 }
 
 
@@ -131,5 +153,54 @@ function addRole() {
             toastPlacement = new bootstrap.Toast(toastPlacementExample);
             toastPlacement.show();
         }
+    }
+}
+
+function updateRole() {
+    $('#editDivisi').validate({
+        rules: {
+            nameEdit: {
+                required: true
+            },
+            descEdit: {
+                required: true
+            },
+        },
+        errorClass: "is-invalid",
+        validClass: "is-valid",
+        errorElement: "small",
+        errorPlacement: function errorPlacement(error, element) {
+            error.addClass('invalid-feedback');
+            error.insertAfter(element);
+        },
+        // eslint-disable-next-line object-shorthand
+        highlight: function highlight(element) {
+            $(element).addClass('is-invalid').removeClass('is-valid');
+        },
+        // eslint-disable-next-line object-shorthand
+        unhighlight: function unhighlight(element) {
+            $(element).addClass('is-valid').removeClass('is-invalid');
+        },
+        submitHandler: function(form, e) {
+            e.preventDefault()
+            const urlPut = URL_DATA + "/update/divisi/" + $('#id').val()
+            const formData = new FormData()
+            const data = {
+                name:      $('#nameEdit').val(),
+                desc:      $('#descEdit').val(),
+            }
+            formData.append('name', data.name)
+            formData.append('desc', data.desc)
+            // console.log($('#old_thumb').val())
+            Functions.prototype.putRequest(putDataRole, urlPut, data)
+            $('#editModal').modal('hide')
+            getDivisi.loadData = "/divisi"
+        }
+    })
+    const putDataRole = {
+        set successData(response) {
+            $('#nameEdit').removeClass('is-valid')
+            $('#descEdit').removeClass('is-valid')
+        },
     }
 }

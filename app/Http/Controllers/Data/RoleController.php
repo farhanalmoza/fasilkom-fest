@@ -28,4 +28,17 @@ class RoleController extends Controller
         ];
         return $this->divisi->add($data);
     }
+
+    public function show($id) {
+        return $this->divisi->getDetail($id);
+    }
+
+    public function update(Request $request, $id) {
+        $data = [
+            'name' => $request->input('name'),
+            'slug' => strtolower($request->input('name')),
+            'description' => $request->input('desc'),
+        ];
+        return $this->divisi->update($id, $data);
+    }
 }

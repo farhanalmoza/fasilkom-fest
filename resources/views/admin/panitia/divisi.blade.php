@@ -64,8 +64,9 @@
 						aria-label="Close"
 					></button>
 				</div>
-				<div class="modal-body">
-					<form id="editDivisi" method="post"></form>
+				<form id="editDivisi">
+					<input type="hidden" id="id" name="id" />
+					<div class="modal-body">
 						<div class="col mb-3">
 							<label for="nameEdit" class="form-label">Nama Divisi</label>
 							<input type="text" id="nameEdit" name="nameEdit" class="form-control" />
@@ -74,14 +75,14 @@
 							<label for="descEdit" class="form-label">Deskripsi</label>
 							<textarea class="form-control" id="descEdit" name="descEdit" rows="2"></textarea>
 						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-						Close
-					</button>
-					<button type="button" class="btn btn-primary">Simpan</button>
-				</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+							Close
+						</button>
+						<button type="submit" class="btn btn-primary">Simpan</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
