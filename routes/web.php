@@ -27,7 +27,7 @@ Route::get('/', function () {
 });
 
 // view admin
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/divisi', [AdminController::class, 'divisi']);
     Route::get('/daftar-panitia', [AdminController::class, 'daftarPanitia']);
