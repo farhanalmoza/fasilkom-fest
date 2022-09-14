@@ -43,7 +43,7 @@ class PanitiaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->panitia->store($request);
     }
 
     /**

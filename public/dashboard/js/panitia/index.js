@@ -1,8 +1,5 @@
 $(document).ready(function () {
-    // CRUD
-    addRole() // tambah role/divisi
-    deleteRole()
-    updateRole()
+    addPanitia();
 })
 
 const getPanitia = {
@@ -14,7 +11,6 @@ const getPanitia = {
         const container = document.getElementById('panitia-table')
 
         const panitia = response
-        console.log(panitia)
 
         if (container) {
             container.innerHTML = '';
@@ -60,39 +56,52 @@ const getPanitia = {
     },
 }
 
-// ketika tombol .edit ditekan
-$(document).on('click', '.edit', function () {
-    const id = $(this).data('bs-id')
-    getDetail.loadData = id
-})
-
-const getDetail = {
+const getDivisi = {
     set loadData(data) {
-        const urlDetail = URL_DATA + "/divisi/" + data
-        Functions.prototype.requestDetail(getDetail, urlDetail)
+        const URL = URL_DATA + data
+        Functions.prototype.getRequest(getDivisi, URL);
     },
     set successData(response) {
-        // for preview detail
-        $('#id').val(response.id)
-        $('#nameEdit').val(response.name)
-        $('#descEdit').text(response.description)
+        const container = document.getElementById('divisi')
+
+        const divisi = response
+
+        if (container) {    
+            for (i = divisi.length-1; i >= 0; i--) {
+                if (divisi[i].id !== 1 && divisi[i].id !== 2 && divisi[i].id !== 3 && divisi[i].id !== 4) {
+                    container.innerHTML += `
+                        <option value="${divisi[i].id}">${divisi[i].name}</option>
+                    `;
+                }
+            }
+        }
     },
     set errorData(err) {
-        console.log(err);
-    }
+        const toastPlacementExample = document.querySelector('.toast-placement-ex') 
+        const header = document.querySelector('.toast-header-text')
+        const body = document.querySelector('.toast-body')
+        let toastPlacement;
+
+        if (toastPlacement) {
+            toastDispose(toastPlacement);
+        }
+
+        toastPlacementExample.classList.add('bg-danger');
+        header.innerHTML = `Error`
+        body.innerHTML = err.message
+        toastPlacement = new bootstrap.Toast(toastPlacementExample);
+        toastPlacement.show();
+    },
 }
 
-
-// CRUD
-function addRole() {
-    $('#tambahDivisi').validate({
+function addPanitia() {
+    $('#formTambahPanitia').validate({
         rules: {
-            name: {
-                required: true
-            },
-            desc: {
-                required: true
-            },
+            name: { required: true },
+            email: { required: true },
+            divisi: { required: true },
+            password: { required: true },
+            confirmPassword: { required: true },
         },
         errorClass: "is-invalid",
         validClass: "is-valid",
@@ -111,20 +120,20 @@ function addRole() {
         },
         submitHandler: function(form, e) {
             e.preventDefault()
-            const urlPost = URL_DATA + "/add/divisi"
-            const formData = new FormData()
+            const urlPost = BASE_URL + "/register-panitia"
             const data = {
                 name: $('#name').val(),
-                desc: $('#desc').val(),
+                email: $('#email').val(),
+                role_id: $('#divisi').find(":selected").val(),
+                password: $('#password').val(),
+                password_confirmation: $('#confirmPassword').val(),
             }
-            formData.append('name', data.name)
-            formData.append('desc', data.desc)
-            Functions.prototype.postRequest(postRole, urlPost, data)
-            getDivisi.loadData = "/divisi"
+            Functions.prototype.postRequest(postPanitia, urlPost, data)
+            getPanitia.loadData = "/panitia"
         }
     })
 
-    const postRole = {
+    const postPanitia = {
         set successData(response) {
             if(window.location.search != "") {
                 const urlParams = new URLSearchParams(window.location.search)
@@ -134,9 +143,13 @@ function addRole() {
                     }, 1500);
                 }
             } else {
-                $('#tambahDivisi')[0].reset()
+                $('#tambahPanitiaModal').modal('hide')
+                $('#formTambahPanitia')[0].reset()
                 $('#name').removeClass('is-valid')
-                $('#desc').removeClass('is-valid')
+                $('#email').removeClass('is-valid')
+                $('#divisi').removeClass('is-valid')
+                $('#password').removeClass('is-valid')
+                $('#confirmPassword').removeClass('is-valid')
             }
         },
         set errorData(err) {
@@ -156,68 +169,4 @@ function addRole() {
             toastPlacement.show();
         }
     }
-}
-
-function updateRole() {
-    $('#editDivisi').validate({
-        rules: {
-            nameEdit: {
-                required: true
-            },
-            descEdit: {
-                required: true
-            },
-        },
-        errorClass: "is-invalid",
-        validClass: "is-valid",
-        errorElement: "small",
-        errorPlacement: function errorPlacement(error, element) {
-            error.addClass('invalid-feedback');
-            error.insertAfter(element);
-        },
-        // eslint-disable-next-line object-shorthand
-        highlight: function highlight(element) {
-            $(element).addClass('is-invalid').removeClass('is-valid');
-        },
-        // eslint-disable-next-line object-shorthand
-        unhighlight: function unhighlight(element) {
-            $(element).addClass('is-valid').removeClass('is-invalid');
-        },
-        submitHandler: function(form, e) {
-            e.preventDefault()
-            const urlPut = URL_DATA + "/update/divisi/" + $('#id').val()
-            const formData = new FormData()
-            const data = {
-                name:      $('#nameEdit').val(),
-                desc:      $('#descEdit').val(),
-            }
-            formData.append('name', data.name)
-            formData.append('desc', data.desc)
-            // console.log($('#old_thumb').val())
-            Functions.prototype.putRequest(putDataRole, urlPut, data)
-            $('#editModal').modal('hide')
-            getDivisi.loadData = "/divisi"
-        }
-    })
-    const putDataRole = {
-        set successData(response) {
-            $('#nameEdit').removeClass('is-valid')
-            $('#descEdit').removeClass('is-valid')
-        },
-    }
-}
-
-function deleteRole() {
-    $(document).on('click', '.delete', function(e) {
-        const id = $(this).data('bs-id')
-        const urlDelete = URL_DATA + "/delete/divisi/" + id
-        
-        // submit-hapus diklik
-        $('.submit-hapus').on('click', function(e) {
-            e.preventDefault()
-            Functions.prototype.deleteData(urlDelete)
-            $('#hapusModal').modal('hide')
-            getDivisi.loadData = "/divisi"
-        })
-    })
 }

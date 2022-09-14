@@ -73,4 +73,7 @@ Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showRese
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
+// register panitia
+Route::post('/register-panitia', [PanitiaController::class, 'store']);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -5,7 +5,7 @@
 <div class="container-xxl flex-grow-1 container-p-y">
 	<h4 class="fw-bold py-3 mb-3"><span class="text-muted fw-light">Panitia /</span> Daftar Panitia</h4>
 
-	<button type="button" class="btn btn-primary mb-3">Tambah Panitia</button>
+	<button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#tambahPanitiaModal">Tambah Panitia</button>
 
 	<div class="card">
 		<h5 class="card-header">Table Basic</h5>
@@ -30,11 +30,11 @@
 
 @section('modal')
 	<!-- Modal -->
-	<div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+	<div class="modal fade" id="tambahPanitiaModal" tabindex="-1" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel1">Edit Divisi</h5>
+					<h5 class="modal-title" id="exampleModalLabel1">Tambah Panitia</h5>
 					<button
 						type="button"
 						class="btn-close"
@@ -42,23 +42,37 @@
 						aria-label="Close"
 					></button>
 				</div>
-				<form id="editDivisi">
+				<form id="formTambahPanitia">
 					<input type="hidden" id="id" name="id" />
 					<div class="modal-body">
 						<div class="col mb-3">
-							<label for="nameEdit" class="form-label">Nama Divisi</label>
-							<input type="text" id="nameEdit" name="nameEdit" class="form-control" />
+							<label for="name" class="form-label">Nama</label>
+							<input type="text" id="name" name="name" class="form-control" placeholder="masukkan nama panitia" />
 						</div>
-						<div class="mb-3">
-							<label for="descEdit" class="form-label">Deskripsi</label>
-							<textarea class="form-control" id="descEdit" name="descEdit" rows="2"></textarea>
+						<div class="col mb-3">
+							<label for="divisi" class="form-label">Example select</label>
+							<select class="form-select" id="divisi" name="divisi" aria-label="Default select example">
+							  <option selected="">Pilih divisi</option>
+							</select>
+						</div>
+						<div class="col mb-3">
+							<label for="email" class="form-label">Email</label>
+							<input type="email" id="email" name="email" class="form-control" placeholder="masukkan email panitia" />
+						</div>
+						<div class="col mb-3">
+							<label for="password" class="form-label">Password</label>
+							<input type="password" id="password" name="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+						</div>
+						<div class="col mb-3">
+							<label for="confirmPassword" class="form-label">Konfirmasi Password</label>
+							<input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
 						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
 							Close
 						</button>
-						<button type="submit" class="btn btn-primary">Simpan</button>
+						<button type="submit" class="btn btn-primary">Tambah</button>
 					</div>
 				</form>
 			</div>
@@ -95,6 +109,7 @@
 	<script>
 		$(document).ready(function() {
 			getPanitia.loadData = "/panitia"
+			getDivisi.loadData = "/divisi"
 		})
 	</script>
 	<script src="{{ asset('dashboard') }}/js/panitia/index.js"></script>

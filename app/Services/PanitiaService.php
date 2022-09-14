@@ -16,4 +16,13 @@ class PanitiaService
                     ->where('role_id', '!=', 4)
                     ->get();
     }
+
+    public function store($request)
+    {
+        $data = $request->all();
+        $data['password'] = bcrypt($data['password']);
+        $user = User::create($data);
+        if (!$user) return response()->json(['message' => 'Gagal menambahkan panitia'], 500);
+        return response()->json(['message' => 'Berhasil menambahkan panitia'], 200);
+    }
 }
