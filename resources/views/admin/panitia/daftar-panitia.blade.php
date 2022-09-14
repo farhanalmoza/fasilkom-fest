@@ -83,7 +83,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel1">Hapus Divisi</h5>
+					<h5 class="modal-title" id="exampleModalLabel1">Hapus Panitia</h5>
 					<button
 						type="button"
 						class="btn-close"
@@ -92,7 +92,7 @@
 					></button>
 				</div>
 				<div class="modal-body">
-					Apakah Anda yakin ingin menghapus divisi ini?
+					Apakah Anda yakin ingin menghapus panitia ini?
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">

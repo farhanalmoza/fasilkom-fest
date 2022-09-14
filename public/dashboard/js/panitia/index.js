@@ -1,5 +1,6 @@
 $(document).ready(function () {
     addPanitia();
+    deletePanitia();
 })
 
 const getPanitia = {
@@ -22,7 +23,6 @@ const getPanitia = {
                     <td>${panitia[i].email}</td>
                     <td><span class="badge bg-label-primary me-1">${panitia[0].role_name}</span></td>
                     <td>
-                        <button type="button" class="btn btn-sm btn-primary edit" data-bs-toggle="modal" data-bs-target="#editModal" data-bs-id="${panitia[i].id}">Edit</button>
                         <button type="button" class="btn btn-sm btn-danger delete" data-bs-toggle="modal" data-bs-target="#hapusModal" data-bs-id="${panitia[i].id}">Hapus</button>
                     </td>
                 </tr>
@@ -130,6 +130,7 @@ function addPanitia() {
             }
             Functions.prototype.postRequest(postPanitia, urlPost, data)
             getPanitia.loadData = "/panitia"
+            $('#tambahPanitiaModal').modal('hide')
         }
     })
 
@@ -143,7 +144,6 @@ function addPanitia() {
                     }, 1500);
                 }
             } else {
-                $('#tambahPanitiaModal').modal('hide')
                 $('#formTambahPanitia')[0].reset()
                 $('#name').removeClass('is-valid')
                 $('#email').removeClass('is-valid')
@@ -169,4 +169,19 @@ function addPanitia() {
             toastPlacement.show();
         }
     }
+}
+
+function deletePanitia() {
+    $(document).on('click', '.delete', function(e) {
+        const id = $(this).data('bs-id')
+        const urlDelete = URL_DATA + "/delete/panitia/" + id
+        
+        // submit-hapus diklik
+        $('.submit-hapus').on('click', function(e) {
+            e.preventDefault()
+            Functions.prototype.deleteData(urlDelete)
+            $('#hapusModal').modal('hide')
+            getPanitia.loadData = "/panitia"
+        })
+    })
 }

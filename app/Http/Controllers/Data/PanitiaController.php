@@ -88,6 +88,6 @@ class PanitiaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->panitia->destroy($id);
     }
 }

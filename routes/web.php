@@ -51,6 +51,7 @@ Route::group(['prefix' => 'data'], function() {
     // delete
     Route::group(['prefix' => 'delete'], function() {
         Route::delete('/divisi/{id}', [RoleController::class, 'destroy']);
+        Route::delete('/panitia/{id}', [PanitiaController::class, 'destroy']);
     });
 
     // add

@@ -25,4 +25,12 @@ class PanitiaService
         if (!$user) return response()->json(['message' => 'Gagal menambahkan panitia'], 500);
         return response()->json(['message' => 'Berhasil menambahkan panitia'], 200);
     }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        if (!$user) return response()->json(['message' => 'Panitia tidak ditemukan'], 404);
+        $user->delete();
+        return response()->json(['message' => 'Berhasil menghapus panitia'], 200);
+    }
 }
