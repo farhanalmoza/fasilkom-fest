@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Data\PanitiaController;
 use App\Http\Controllers\Data\RoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
 Route::group(['prefix' => 'data'], function() {
     // get All
     Route::get('/divisi', [RoleController::class, 'getAll']);
+    Route::get('/panitia', [PanitiaController::class, 'index']);
 
     // get detail
     Route::get('/divisi/{id}', [RoleController::class, 'show']);

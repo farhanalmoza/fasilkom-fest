@@ -1,6 +1,6 @@
 <ul class="menu-inner py-1">
 	<!-- Dashboard -->
-	<li class="menu-item active">
+	<li class="menu-item {{ 'admin' == request()->path() ? 'active' : '' }}">
 		<a href="{{ url('admin') }}" class="menu-link">
 			<i class="menu-icon tf-icons bx bx-home-circle"></i>
 			<div data-i18n="Dashboard">Dashboard</div>
@@ -10,18 +10,18 @@
 	<li class="menu-header small text-uppercase">
 		<span class="menu-header-text">Main</span>
 	</li>
-	<li class="menu-item">
+	<li class="menu-item {{ 'admin/divisi' || 'admin/daftar-panitia' == request()->path() ? 'open' : '' }}">
 		<a href="javascript:void(0);" class="menu-link menu-toggle">
 			<i class="menu-icon tf-icons bx bxs-user-account"></i>
 			<div data-i18n="Jadwal">Panitia</div>
 		</a>
 		<ul class="menu-sub">
-			<li class="menu-item">
+			<li class="menu-item {{ 'admin/divisi' == request()->path() ? 'active' : '' }}">
 				<a href="{{ url('admin/divisi') }}" class="menu-link">
 					<div data-i18n="Hari">Divisi</div>
 				</a>
 			</li>
-			<li class="menu-item">
+			<li class="menu-item {{ 'admin/daftar-panitia' == request()->path() ? 'active' : '' }}">
 				<a href="{{ url('admin/daftar-panitia') }}" class="menu-link">
 					<div data-i18n="Hari">Daftar Panitia</div>
 				</a>
