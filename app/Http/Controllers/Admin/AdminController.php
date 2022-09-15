@@ -23,6 +23,11 @@ class AdminController extends Controller
         return view('admin.pengaturan-akun');
     }
 
+    public function gantiPassword()
+    {
+        return view('admin.ganti-password');
+    }
+
     public function divisi()
     {
         return view('admin.panitia.divisi');

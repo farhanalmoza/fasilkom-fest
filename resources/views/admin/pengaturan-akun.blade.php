@@ -12,7 +12,7 @@
 					<a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i> Akun</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="pengaturan-password.html"
+					<a class="nav-link" href="{{ url('admin/ganti-password') }}"
 						><i class="bx bx-lock-alt me-1"></i> Password</a
 					>
 				</li>
