@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Data\InformationController;
 use App\Http\Controllers\Data\PanitiaController;
 use App\Http\Controllers\Data\RoleController;
 use App\Http\Controllers\Data\UserController;
@@ -30,6 +31,7 @@ Route::get('/', function () {
 // view admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/informasi', [AdminController::class, 'infromasi']);
     Route::get('/divisi', [AdminController::class, 'divisi']);
     Route::get('/daftar-panitia', [AdminController::class, 'daftarPanitia']);
     Route::get('/pengaturan-akun', [AdminController::class, 'pengaturanAkun']);
@@ -44,10 +46,12 @@ Route::group(['prefix' => 'data'], function() {
 
     // get detail
     Route::get('/divisi/{id}', [RoleController::class, 'show']);
+    Route::get('/informasi/{id}', [InformationController::class, 'show']);
 
     // update
     Route::group(['prefix' => 'update'], function() {
         Route::put('/divisi/{id}', [RoleController::class, 'update']);
+        Route::put('/informasi/{id}', [InformationController::class, 'update']);
     });
 
     // delete

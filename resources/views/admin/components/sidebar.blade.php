@@ -10,6 +10,12 @@
 	<li class="menu-header small text-uppercase">
 		<span class="menu-header-text">Main</span>
 	</li>
+	<li class="menu-item {{ 'admin/informasi' == request()->path() ? 'active' : '' }}">
+		<a href="{{ url('admin/informasi') }}" class="menu-link">
+			<i class="menu-icon tf-icons bx bx-notepad"></i>
+			<div data-i18n="Informasi">Informasi</div>
+		</a>
+	</li>
 	<li class="menu-item {{ request()->path() == 'admin/divisi'
 							|| request()->path() == 'admin/daftar-panitia' ? 'open' : '' }}">
 		<a href="javascript:void(0);" class="menu-link menu-toggle">
