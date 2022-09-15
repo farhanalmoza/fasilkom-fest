@@ -13,33 +13,36 @@ class AdminController extends Controller
         $this->middleware('is_admin');
     }
 
-    public function index()
-    {
-        return view('admin.index');
-    }
+    public function index() { return view('admin.index'); }
 
-    public function infromasi()
-    {
-        return view('admin.informasi-umum');
-    }
+    // informasi umum fasilkom fest
+    public function infromasi() { return view('admin.informasi-umum'); }
+    // end informasi umum fasilkom fest
 
-    public function pengaturanAkun()
-    {
-        return view('admin.pengaturan-akun');
-    }
+    // akun panitia
+    public function divisi() { return view('admin.panitia.divisi'); }
 
-    public function gantiPassword()
-    {
-        return view('admin.ganti-password');
-    }
+    public function daftarPanitia() { return view('admin.panitia.daftar-panitia'); }
+    // end akun panitia
 
-    public function divisi()
-    {
-        return view('admin.panitia.divisi');
-    }
+    // perlombaan
+    public function bidangLomba() { return view('admin.lomba.bidang-lomba'); }
 
-    public function daftarPanitia()
+    public function mataLomba()
     {
-        return view('admin.panitia.daftar-panitia');
+        # code...
     }
+    public function tambahLomba()
+    {
+        # code...
+    }
+    // end perlombaan
+
+    // pengaturan akun
+    public function pengaturanAkun() { return view('admin.pengaturan-akun'); }
+
+    public function gantiPassword() { return view('admin.ganti-password'); }
+    // end pengaturan akun
+
+    
 }

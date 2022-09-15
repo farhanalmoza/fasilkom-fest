@@ -35,6 +35,31 @@
 			</li>
 		</ul>
 	</li>
+	<li class="menu-item {{ request()->path() == 'admin/bidang-lomba'
+							|| request()->path() == 'admin/mata-lomba'
+							|| request()->path() == 'admin/tambah-lomba' ? 'open' : '' }}">
+		<a href="javascript:void(0);" class="menu-link menu-toggle">
+			<i class="menu-icon tf-icons bx bx-trophy"></i>
+			<div data-i18n="Jadwal">Lomba</div>
+		</a>
+		<ul class="menu-sub">
+			<li class="menu-item {{ 'admin/bidang-lomba' == request()->path() ? 'active' : '' }}">
+				<a href="{{ url('admin/bidang-lomba') }}" class="menu-link">
+					<div data-i18n="Hari">Bidang Lomba</div>
+				</a>
+			</li>
+			<li class="menu-item {{ 'admin/mata-lomba' == request()->path() ? 'active' : '' }}">
+				<a href="{{ url('admin/mata-lomba') }}" class="menu-link">
+					<div data-i18n="Hari">Mata Lomba</div>
+				</a>
+			</li>
+			<li class="menu-item {{ 'admin/tambah-lomba' == request()->path() ? 'active' : '' }}">
+				<a href="{{ url('admin/tambah-lomba') }}" class="menu-link">
+					<div data-i18n="Hari">Tambah Mata Lomba</div>
+				</a>
+			</li>
+		</ul>
+	</li>
 
 	<li class="menu-header small text-uppercase">
 		<span class="menu-header-text">Pages</span>

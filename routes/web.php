@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Data\CategoryController;
 use App\Http\Controllers\Data\InformationController;
 use App\Http\Controllers\Data\PanitiaController;
 use App\Http\Controllers\Data\RoleController;
@@ -34,6 +35,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/informasi', [AdminController::class, 'infromasi']);
     Route::get('/divisi', [AdminController::class, 'divisi']);
     Route::get('/daftar-panitia', [AdminController::class, 'daftarPanitia']);
+    Route::get('/bidang-lomba', [AdminController::class, 'bidangLomba']);
+    Route::get('/mata-lomba', [AdminController::class, 'mataLomba']);
+    Route::get('/tambah-lomba', [AdminController::class, 'tambahLomba']);
+
     Route::get('/pengaturan-akun', [AdminController::class, 'pengaturanAkun']);
     Route::get('/ganti-password', [AdminController::class, 'gantiPassword']);
 });
@@ -43,6 +48,7 @@ Route::group(['prefix' => 'data'], function() {
     // get All
     Route::get('/divisi', [RoleController::class, 'getAll']);
     Route::get('/panitia', [PanitiaController::class, 'index']);
+    Route::get('/bidang-lomba', [CategoryController::class, 'getAll']);
 
     // get detail
     Route::get('/divisi/{id}', [RoleController::class, 'show']);
@@ -58,11 +64,13 @@ Route::group(['prefix' => 'data'], function() {
     Route::group(['prefix' => 'delete'], function() {
         Route::delete('/divisi/{id}', [RoleController::class, 'destroy']);
         Route::delete('/panitia/{id}', [PanitiaController::class, 'destroy']);
+        Route::delete('/bidang-lomba/{id}', [CategoryController::class, 'destroy']);
     });
 
     // add
     Route::group(['prefix' => 'add'], function() {
         Route::post('/divisi', [RoleController::class, 'store']);
+        Route::post('/bidang-lomba', [CategoryController::class, 'store']);
     });
 
     // pengaturan
