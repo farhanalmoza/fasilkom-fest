@@ -636,3 +636,39 @@
 
 <!--====== PRICING PART ENDS ======-->
 @endsection
+
+@section('js')
+    <script src="http://www.datejs.com/build/date.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function() {
+            getDetail.loadData = "1"
+        })
+
+        const getDetail = {
+            set loadData(data) {
+                const urlDetail = URL_DATA + "/informasi/" + data
+                Functions.prototype.requestDetail(getDetail, urlDetail)
+            },
+            set successData(response) {
+                let closing_date = response.closing_date
+                // replace "-" with "/"
+                closing_date = closing_date.replace(/-/g, "/")
+                $('#cuntdown').countdown(closing_date, function(event) {
+                    $(this).html(event.strftime('<div class="countdown-item"><span class="countdown-time">%D</span><span class="countdown-text">Days</span></div><div class="countdown-item"><span class="countdown-time">%H</span><span class="countdown-text">Hours</span></div><div class="countdown-item"><span class="countdown-time">%M</span><span class="countdown-text">Minutes</span></div><div class="countdown-item"><span class="countdown-time">%S</span><span class="countdown-text">Seconds</span></div>'));
+                });
+
+                let date = new Date(response.closing_date)
+                var getDate = date.getDate()
+                var monthNames = [ "January", "February", "March", "April", "May", "June",
+                                "July", "August", "September", "October", "November", "December" ];
+                var getMonth = date.getMonth()
+                getMonth = monthNames[getMonth-1]
+                var getYear = date.getFullYear()
+                $('#sub-title').html(getDate + ", " + getMonth + " " + getYear + " in " + response.venue)
+            },
+            set errorData(err) {
+                console.log(err);
+            }
+        }
+    </script>
+@endsection

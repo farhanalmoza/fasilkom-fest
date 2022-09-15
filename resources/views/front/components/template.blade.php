@@ -145,6 +145,16 @@
     <!--====== Main js ======-->
     <script src="{{ asset('front') }}/js/main.js"></script>
 
+    <!--====== My js ======-->
+    <script>
+        const BASE_URL = '{{ url("/") }}'
+        const ASSET = '{{ asset("dashboard") }}'
+        const URL_DATA = '{{ url("data") }}'
+        const email = '{{ auth()->user()->email }}'
+        const user_id = '{{ auth()->user()->id }}'
+    </script>
+    <script src="{{ asset('dashboard') }}/js/functions.js"></script>
+    @yield('js')
 </body>
 
 </html>
