@@ -15,11 +15,11 @@
             <div class="col-lg-6">
                 <div class="about-content mt-45 wow fadeInRight" data-wow-duration="1s">
                     <div class="section-title">
-                        <h2 class="title">About Our Meetups</h2>
+                        <h2 class="title">About Fasilkom Fest</h2>
                     </div> <!-- section title -->
 
-                    <p class="text mt-30">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. <br> <br> Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                    <p class="date"><span>25<sup>th</sup></span> December’ 19</p>
+                    <p class="text mt-30" id="deskripsi"></p>
+                    <p class="date" id="date"></p>
                 </div> <!-- about content -->
             </div>
         </div> <!-- row -->
@@ -62,7 +62,7 @@
                     </div>
                     <div class="counter-content">
                         <span class="count counter">29</span>
-                        <p class="text">Sonsors</p>
+                        <p class="text">Sponsors</p>
                     </div>
                 </div> <!-- single counter -->
             </div>
@@ -665,6 +665,16 @@
                 getMonth = monthNames[getMonth-1]
                 var getYear = date.getFullYear()
                 $('#sub-title').html(getDate + ", " + getMonth + " " + getYear + " in " + response.venue)
+
+                $('#deskripsi').html(response.description)
+                getYear = date.getFullYear().toString().slice(-2);
+                $('#date').html('<span id="date">'+getDate+'<sup>th</sup></span> '+getMonth+'’ ' + getYear)
+
+                $('#email').html(response.email)
+                $('#instagram').html('@'+response.instagram)
+
+                $('#link-email').attr('href', 'mailto:'+response.email)
+                $('#link-instagram').attr('href', 'https://www.instagram.com/'+response.instagram)
             },
             set errorData(err) {
                 console.log(err);

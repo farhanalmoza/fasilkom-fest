@@ -60,18 +60,18 @@
                                 </div>
                                 <div class="info-content media-body">
                                     <h6 class="info-title">Email address</h6>
-                                    <p class="text">event@fasilkom-fest.com</p>
+                                    <p class="text" id="email"></p>
                                 </div>
                             </div> <!-- single info -->
                         </li>
                         <li>
                             <div class="single-info d-flex mt-25">
                                 <div class="info-icon">
-                                    <i class="lni-phone-handset"></i>
+                                    <i class="lni-instagram-original"></i>
                                 </div>
                                 <div class="info-content media-body">
-                                    <h6 class="info-title">Phone Number</h6>
-                                    <p class="text">+831 546 547</p>
+                                    <h6 class="info-title">Instagram</h6>
+                                    <p class="text" id="instagram"></p>
                                 </div>
                             </div> <!-- single info -->
                         </li>
@@ -150,18 +150,16 @@
                         <div class="footer-address mt-40">
                             <h5 class="f-title">Venue Location</h5>
                             <p class="text">18 - 21 DECEMBER, 2022 <br> 51 Francis Street, Cesare Rosaroll, 118 80139 Eventine</p>
-                            <a class="contact-link" href="#">Contact Our Authority</a>
                         </div> <!-- footer address -->
                     </div>
                     <div class="col-lg-6">
                         <div class="footer-contact mt-40">
                             <h5 class="f-title">Social Connection</h5>
-                            <p class="text">Jangan lewatkan apa pun! Ikuti akun media sosial kami untuk mendapatkan informasi yang cepat dan akurat di manapun Anda berada.</p>
+                            <p class="text">Don't miss anything! Follow our social media accounts for fast and accurate information wherever you are.</p>
                             <ul class="social">
                                 <!-- <li><a href="#"><i class="lni-facebook-filled"></i></a></li> -->
-                                <li><a href="#"><i class="lni-envelope"></i></a></li>
-                                <li><a href="#"><i class="lni-linkedin-original"></i></a></li>
-                                <li><a href="#"><i class="lni-instagram-original"></i></a></li>
+                                <li><a href="#" id="link-email"><i class="lni-envelope"></i></a></li>
+                                <li><a href="#" id="link-instagram"><i class="lni-instagram-original"></i></a></li>
                             </ul>
                         </div>
                     </div>
