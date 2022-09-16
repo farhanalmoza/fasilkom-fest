@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Data\CategoryController;
+use App\Http\Controllers\Data\CompetitionController;
 use App\Http\Controllers\Data\InformationController;
 use App\Http\Controllers\Data\PanitiaController;
 use App\Http\Controllers\Data\RoleController;
@@ -71,6 +72,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::group(['prefix' => 'add'], function() {
         Route::post('/divisi', [RoleController::class, 'store']);
         Route::post('/bidang-lomba', [CategoryController::class, 'store']);
+        Route::post('/mata-lomba', [CompetitionController::class, 'store']);
     });
 
     // pengaturan

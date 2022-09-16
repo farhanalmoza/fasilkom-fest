@@ -53,36 +53,36 @@ class Functions
             beforeSend: function() {
             },
             success: function (response) {
-                var content = {}
-                content.title = 'Success'
-                content.message = response.message
-                content.icon = 'fa fa-check'
-                $.notify(content,{
-                    type: 'success',
-                    placement: {
-                        from: 'top',
-                        align: 'right'
-                    },
-                    time: 1000,
-                    delay: 3000,
-                })
-                process.successData = response;
+                const toastPlacementExample = document.querySelector('.toast-placement-ex') 
+                const header = document.querySelector('.toast-header-text')
+                const body = document.querySelector('.toast-body')
+                let toastPlacement;
+
+                if (toastPlacement) {
+                    toastDispose(toastPlacement);
+                }
+        
+                toastPlacementExample.classList.add('bg-success');
+                header.innerHTML = `Success`
+                body.innerHTML = response.message
+                toastPlacement = new bootstrap.Toast(toastPlacementExample);
+                toastPlacement.show();
             },
             error: function(err) {
-                var content = {}
-                content.title = 'Error'
-                console.log(err.responseJSON)
-                content.message = err.responseJSON.message
-                content.icon = 'fa fa-times'
-                $.notify(content,{
-                    type: 'danger',
-                    placement: {
-                        from: 'top',
-                        align: 'right'
-                    },
-                    time: 1000,
-                    delay: 10000,
-                })
+                const toastPlacementExample = document.querySelector('.toast-placement-ex') 
+                const header = document.querySelector('.toast-header-text')
+                const body = document.querySelector('.toast-body')
+                let toastPlacement;
+
+                if (toastPlacement) {
+                    toastDispose(toastPlacement);
+                }
+        
+                toastPlacementExample.classList.add('bg-danger');
+                header.innerHTML = `Error`
+                body.innerHTML = err.responseJSON.message;
+                toastPlacement = new bootstrap.Toast(toastPlacementExample);
+                toastPlacement.show();
             }
         });
     }
@@ -320,7 +320,7 @@ class Functions
         
                 toastPlacementExample.classList.add('bg-danger');
                 header.innerHTML = `Error`
-                body.innerHTML = err.message
+                body.innerHTML = err.responseJSON.message;
                 toastPlacement = new bootstrap.Toast(toastPlacementExample);
                 toastPlacement.show();
             }
@@ -396,7 +396,20 @@ class Functions
                 toastPlacement.show();
             },
             error: function(err) {
-                process.errorData = err
+                const toastPlacementExample = document.querySelector('.toast-placement-ex') 
+                const header = document.querySelector('.toast-header-text')
+                const body = document.querySelector('.toast-body')
+                let toastPlacement;
+
+                if (toastPlacement) {
+                    toastDispose(toastPlacement);
+                }
+        
+                toastPlacementExample.classList.add('bg-danger');
+                header.innerHTML = `Error`
+                body.innerHTML = err.responseJSON.message;
+                toastPlacement = new bootstrap.Toast(toastPlacementExample);
+                toastPlacement.show();
             }
         });
     }

@@ -32,10 +32,7 @@ class AdminController extends Controller
     {
         # code...
     }
-    public function tambahLomba()
-    {
-        # code...
-    }
+    public function tambahLomba() { return view('admin.lomba.tambah-lomba'); }
     // end perlombaan
 
     // pengaturan akun

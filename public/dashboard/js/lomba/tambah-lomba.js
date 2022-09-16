@@ -1,59 +1,29 @@
 $(document).ready(function() {
     // Datatable
-    addCategory();
-    deleteCategory();
+    addCompetition();
 });
 
-const getBidangLomba = {
-    set loadData(data) {
-        const URL = URL_DATA + data
-        Functions.prototype.getRequest(getBidangLomba, URL);
-    },
-    set successData(response) {
-        const container = document.getElementById('bidang-lomba-table')
-        const selectBidang = document.getElementById('bidangLomba')
+function addCompetition() {
+    $("#picture").on("change", function (e) {
+        e.preventDefault();
 
-        const bidangLomba = response
-
-        if (container) {
-            container.innerHTML = '';
-
-            for (i = bidangLomba.length-1; i >= 0; i--) {
-                container.innerHTML += `
-                <tr>
-                    <td><strong>${bidangLomba[i].name}</strong></td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-danger delete" data-bs-toggle="modal" data-bs-target="#hapusModal" data-bs-id="${bidangLomba[i].id}">Hapus</button>
-                    </td>
-                </tr>
-                `;
-            }
-
-            if (container.innerHTML == '') {
-                container.innerHTML += `
-                    <tr>
-                        <td>Belum ada data yang ditambahkan</td>
-                    </tr>
-                `;
-            }
+        if (Functions.prototype.validateFile($(this))) {
+            const data = new FormData()
+            const file = $(this)[0].files
+            Functions.prototype.prevImage(file[0], $('#uploadedPicture'))
+            data.append('picture', file[0])
         }
+    })
 
-        if(selectBidang) {
-            for (i = 0; i < bidangLomba.length; i++) {
-                selectBidang.innerHTML += `
-                    <option value="${bidangLomba[i].id}">${bidangLomba[i].name}</option>
-                `;
-            }
-        }
-    }
-}
-
-function addCategory() {
-    $('#tambahBidangLomba').validate({
+    $('#formTambahLomba').validate({
         rules: {
-            name: {
-                required: true
-            },
+            picture: { required: true },
+            name: { required: true },
+            bidangLomba: { required: true },
+            tgl_mulai: { required: true },
+            tgl_selesai: { required: true },
+            deskripsi: { required: true },
+            lokasi: { required: true },
         },
         errorClass: "is-invalid",
         validClass: "is-valid",
@@ -72,17 +42,33 @@ function addCategory() {
         },
         submitHandler: function(form, e) {
             e.preventDefault()
-            const urlPost = URL_DATA + "/add/bidang-lomba"
+            const urlPost = URL_DATA + "/add/mata-lomba"
+            const formData = new FormData()
             const data = {
                 name: $('#name').val(),
+                bidang_lomba_id: $('#bidangLomba').val(),
+                tgl_mulai: $('#tgl_mulai').val(),
+                tgl_selesai: $('#tgl_selesai').val(),
+                deskripsi: $('#deskripsi').val(),
+                lokasi: $('#lokasi').val(),
             }
-            Functions.prototype.postRequest(postRole, urlPost, data)
-            getBidangLomba.loadData = "/bidang-lomba"
-            $('#tambahBidangLomba')[0].reset()
+            const files = $("#picture")[0].files
+            formData.append('name', data.name)
+            formData.append('id_category', data.bidang_lomba_id)
+            formData.append('start_date', data.tgl_mulai)
+            formData.append('end_date', data.tgl_selesai)
+            formData.append('description', data.deskripsi)
+            formData.append('location', data.lokasi)
+            for (let i = 0; i < files.length; i++) {
+                const element = files[i];
+                formData.append('files[]', element)
+            }
+            Functions.prototype.uploadFile(urlPost, formData, 'post', postCompetition)
+            $('#formTambahLomba')[0].reset()
         }
     })
 
-    const postRole = {
+    const postCompetition = {
         set successData(response) {
             if(window.location.search != "") {
                 const urlParams = new URLSearchParams(window.location.search)
@@ -92,7 +78,14 @@ function addCategory() {
                     }, 1500);
                 }
             } else {
+                $('#uploadedPicture').attr('hidden', true)
+                $('#picture').removeClass('is-valid')
                 $('#name').removeClass('is-valid')
+                $('#bidangLomba').removeClass('is-valid')
+                $('#tgl_mulai').removeClass('is-valid')
+                $('#tgl_selesai').removeClass('is-valid')
+                $('#deskripsi').removeClass('is-valid')
+                $('#lokasi').removeClass('is-valid')
             }
         },
         set errorData(err) {
