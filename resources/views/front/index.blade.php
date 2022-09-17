@@ -83,14 +83,14 @@
 
 <!--====== COUNTER PART ENDS ======-->
 
-<!--====== EVENT SCHEDULE PART START ======-->
+<!--====== COMPETITIONS PART START ======-->
 
-<section id="event" class="event-schedule pt-115 pb-130">
+<section id="competition" class="event-schedule pt-115 pb-130">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-title text-center">
-                    <h2 class="title">EVENT SCHEDULE</h2>
+                    <h2 class="title">COMPETITIONS</h2>
                     <p class="text">Lorem ipsum dolor sit amet, in quodsi vulputate pro. Ius illum vocent mediocritatem reiciendis odit sed, vero amet blanditiis cule dicta iriure at phaedrum.</p>
                 </div> <!-- section title -->
             </div>
@@ -98,9 +98,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="event-tab mt-60">
-                    <ul class="nav justify-content-between align-items-center" id="myTab" role="tablist">
+                    <ul class="nav justify-content-between align-items-center" id="categoryTab" role="tablist">
                         <li class="nav-item">
-                            <a class="active" id="day-1-tab" data-toggle="tab" href="#day-1" role="tab" aria-controls="day-1" aria-selected="true">
+                            <a id="day-1-tab" data-toggle="tab" href="#day-1" role="tab" aria-controls="day-1" aria-selected="true">
                                 <h4 class="nav-title">Day 1</h4>
                                 <span>28 July, 2022</span>
                             </a>
@@ -124,8 +124,8 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="day-1" role="tabpanel" aria-labelledby="day-1-tab">
+                    <div class="tab-content" id="categoryContent">
+                        <div class="tab-pane fade" id="day-1" role="tabpanel" aria-labelledby="day-1-tab">
                             <div class="event-content pt-40">
                                 <div class="single-event d-md-flex mt-30">
                                     <div class="event-image">
@@ -324,7 +324,7 @@
     </div> <!-- container -->
 </section>
 
-<!--====== EVENT SCHEDULE PART ENDS ======-->
+<!--====== COMPETITIONS PART ENDS ======-->
 
 <!--====== FEATURES PART START ======-->
 
@@ -681,4 +681,5 @@
             }
         }
     </script>
+    <script src="{{ asset('front') }}/js/lomba/index.js"></script>
 @endsection

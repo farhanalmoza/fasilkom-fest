@@ -15,7 +15,7 @@
                 <a class="page-scroll" href="#home">Home</a>
             </li>
             <li class="nav-item">
-                <a class="page-scroll" href="#event">Schedules</a>
+                <a class="page-scroll" href="#competition">Competitions</a>
             </li>
             <li class="nav-item">
                 <a class="page-scroll" href="#team">Speakers</a>

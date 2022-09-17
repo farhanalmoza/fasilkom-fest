@@ -148,7 +148,8 @@
     <!--====== My js ======-->
     <script>
         const BASE_URL = '{{ url("/") }}'
-        const ASSET = '{{ asset("dashboard") }}'
+        // const ASSET = '{{ asset("dashboard") }}'
+        const ASSET_PICT = '{{ asset("storage") }}'
         const URL_DATA = '{{ url("data") }}'
         const email = '{{ auth()->user()->email }}'
         const user_id = '{{ auth()->user()->id }}'
