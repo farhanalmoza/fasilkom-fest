@@ -17,9 +17,9 @@ class CompetitionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getAll()
     {
-        //
+        return $this->lomba->getAll();
     }
 
     /**
@@ -62,18 +62,7 @@ class CompetitionController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return $this->lomba->getById($id);
     }
 
     /**
@@ -85,7 +74,21 @@ class CompetitionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // variabel
+        $files = $request->file('files');
+        
+        $data = [
+            'id_category' => $request->input('id_category'),
+            'name'        => $request->input('name'),
+            'description' => $request->input('description'),
+            'start_date'  => $request->input('start_date'),
+            'end_date'    => $request->input('end_date'),
+            'location'    => $request->input('location'),
+        ];
+        if (!$files) {
+            $data['pict'] = $request->input('files');
+        }
+        return $this->lomba->update($data, $files, $id);
     }
 
     /**

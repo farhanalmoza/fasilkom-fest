@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Models\Category;
 use App\Models\Competition;
 use Spatie\ImageOptimizer\OptimizerChainFactory;
 use Illuminate\Support\Str;
@@ -9,6 +10,15 @@ use Intervention\Image\Facades\Image;
 
 class LombaService
 {
+    public function getAll()
+    {
+        // join category table to get category name
+        $lomba = Competition::join('categories', 'competitions.id_category', '=', 'categories.id')
+            ->select('competitions.*', 'categories.name as category_name')
+            ->get();
+        return $lomba;
+    }
+
     public function add($data, $files)
     {
         $competition = new Competition();
@@ -34,7 +44,7 @@ class LombaService
 
     public function uploadImage($files)
     {
-        $path = 'public/thumbnail_lomba/';
+        $path = 'thumbnail_lomba/';
         foreach($files as $file) {
             $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
             $image = Image::make($file->getRealPath());
@@ -42,10 +52,56 @@ class LombaService
                 $constraint->aspectRatio();
             });
             $image->stream();
-            Storage::put($path . $filename, $image);
+            Storage::put('public/'.$path . $filename, $image);
         }
         $optimizerChain = OptimizerChainFactory::create();
-        $optimizerChain->optimize(Storage::path($path . $filename));
+        $optimizerChain->optimize(Storage::path('public/'.$path . $filename));
         return $path . $filename;
+    }
+
+    public function getById($id)
+    {
+        $lomba = Competition::join('categories', 'competitions.id_category', '=', 'categories.id')
+            ->select('competitions.*', 'categories.name as category_name')
+            ->where('competitions.id', $id)
+            ->first();
+        
+        $kategori = Category::all();
+        $data = [
+            'lomba' => $lomba,
+            'kategori' => $kategori
+        ];
+        return $data;
+    }
+
+    public function update($data, $files, $id)
+    {
+        $competition = Competition::find($id);
+        $competition->name = $data['name'];
+        $competition->description = $data['description'];
+        $competition->id_category = $data['id_category'];
+        $competition->start_date = $data['start_date'];
+        $competition->end_date = $data['end_date'];
+        $competition->location = $data['location'];
+        
+        // upload image to storage and get the path to store in database 
+        // delete old picture if exists
+        if($files) {
+            if($competition->pict) {
+                Storage::delete('public/'.$competition->pict);
+            }
+            $path = $this->uploadImage($files);
+            $competition->pict = $path;
+        } else {
+            $competition->pict = $data['pict'];
+        }
+
+        $update = $competition->save();
+
+        if($update) {
+            return response(['message' => 'Lomba berhasil diupdate!']);
+        } else {
+            return response(['message' => 'Gagal mengupdate lomba!'], 500);
+        }
     }
 }

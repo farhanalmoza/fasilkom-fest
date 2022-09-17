@@ -39,6 +39,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/bidang-lomba', [AdminController::class, 'bidangLomba']);
     Route::get('/mata-lomba', [AdminController::class, 'mataLomba']);
     Route::get('/tambah-lomba', [AdminController::class, 'tambahLomba']);
+    Route::get('/edit-lomba/{id}', [AdminController::class, 'editLomba']);
 
     Route::get('/pengaturan-akun', [AdminController::class, 'pengaturanAkun']);
     Route::get('/ganti-password', [AdminController::class, 'gantiPassword']);
@@ -50,15 +51,18 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/divisi', [RoleController::class, 'getAll']);
     Route::get('/panitia', [PanitiaController::class, 'index']);
     Route::get('/bidang-lomba', [CategoryController::class, 'getAll']);
+    Route::get('/lomba', [CompetitionController::class, 'getAll']);
 
     // get detail
     Route::get('/divisi/{id}', [RoleController::class, 'show']);
     Route::get('/informasi/{id}', [InformationController::class, 'show']);
+    Route::get('/lomba/{id}', [CompetitionController::class, 'show']);
 
     // update
     Route::group(['prefix' => 'update'], function() {
         Route::put('/divisi/{id}', [RoleController::class, 'update']);
         Route::put('/informasi/{id}', [InformationController::class, 'update']);
+        Route::post('/lomba/{id}', [CompetitionController::class, 'update']);
     });
 
     // delete
