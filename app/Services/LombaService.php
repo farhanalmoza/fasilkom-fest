@@ -44,7 +44,7 @@ class LombaService
 
     public function uploadImage($files)
     {
-        $path = 'thumbnail_lomba/';
+        $path = 'pictures/thumbnail_lomba/';
         foreach($files as $file) {
             $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
             $image = Image::make($file->getRealPath());
