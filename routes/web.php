@@ -70,6 +70,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::delete('/divisi/{id}', [RoleController::class, 'destroy']);
         Route::delete('/panitia/{id}', [PanitiaController::class, 'destroy']);
         Route::delete('/bidang-lomba/{id}', [CategoryController::class, 'destroy']);
+        Route::delete('/lomba/{id}', [CompetitionController::class, 'destroy']);
     });
 
     // add

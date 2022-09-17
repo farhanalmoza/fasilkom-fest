@@ -99,6 +99,6 @@ class CompetitionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->lomba->delete($id);
     }
 }

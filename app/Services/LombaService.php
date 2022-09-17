@@ -104,4 +104,19 @@ class LombaService
             return response(['message' => 'Gagal mengupdate lomba!'], 500);
         }
     }
+
+    public function delete($id)
+    {
+        $competition = Competition::find($id);
+        if($competition->pict) {
+            Storage::delete('public/'.$competition->pict);
+        }
+        $delete = $competition->delete();
+
+        if($delete) {
+            return response(['message' => 'Lomba berhasil dihapus!']);
+        } else {
+            return response(['message' => 'Gagal menghapus lomba!'], 500);
+        }
+    }
 }

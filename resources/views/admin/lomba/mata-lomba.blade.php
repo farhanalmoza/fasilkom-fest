@@ -35,6 +35,33 @@
 </div>
 @endsection
 
+@section('modal')
+<div class="modal fade" id="hapusModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel1">Hapus Mata Lomba</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Close"
+				></button>
+			</div>
+			<div class="modal-body">
+				Apakah Anda yakin ingin menghapus lomba ini?
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+					Batal
+				</button>
+				<button type="button" class="btn btn-danger submit-hapus">hapus</button>
+			</div>
+		</div>
+	</div>
+</div>
+@endsection
+
 @section('js')
 	<script>
 		$(document).ready(function() {

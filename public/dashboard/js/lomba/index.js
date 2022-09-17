@@ -2,6 +2,7 @@ $(document).ready(function() {
     // Datatable
     addCompetition();
     updateCompetition();
+    deleteCompetiton();
 });
 
 const getLomba = {
@@ -17,6 +18,11 @@ const getLomba = {
 
         const lomba = response
 
+        academic.innerHTML = ``
+        art.innerHTML = ``
+        sport.innerHTML = ``
+        eSport.innerHTML = ``
+
         for (i = lomba.length-1; i >= 0; i--) {
             if(lomba[i].id_category == 1) {
                 academic.innerHTML += `
@@ -31,7 +37,7 @@ const getLomba = {
                                 <a href="${BASE_URL}/admin/edit-lomba/${lomba[i].id}">
                                     <button class="card-link btn btn-primary">Edit</button>
                                 </a>
-                                <button class="card-link btn btn-danger delete" data-id="${lomba[i].id}">Hapus</button>
+                                <button class="btn btn-danger delete" data-id="${lomba[i].id}" data-bs-toggle="modal" data-bs-target="#hapusModal">Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -51,7 +57,7 @@ const getLomba = {
                                 <a href="${BASE_URL}/admin/edit-lomba/${lomba[i].id}">
                                     <button class="card-link btn btn-primary">Edit</button>
                                 </a>
-                                <button class="card-link btn btn-danger delete" data-id="${lomba[i].id}">Hapus</button>
+                                <button class="btn btn-danger delete" data-id="${lomba[i].id}" data-bs-toggle="modal" data-bs-target="#hapusModal">Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -71,7 +77,7 @@ const getLomba = {
                                 <a href="${BASE_URL}/admin/edit-lomba/${lomba[i].id}">
                                     <button class="card-link btn btn-primary">Edit</button>
                                 </a>
-                                <button class="card-link btn btn-danger delete" data-id="${lomba[i].id}">Hapus</button>
+                                <button class="btn btn-danger delete" data-id="${lomba[i].id}" data-bs-toggle="modal" data-bs-target="#hapusModal">Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -91,7 +97,7 @@ const getLomba = {
                                 <a href="${BASE_URL}/admin/edit-lomba/${lomba[i].id}">
                                     <button class="card-link btn btn-primary">Edit</button>
                                 </a>
-                                <button class="card-link btn btn-danger delete" data-id="${lomba[i].id}">Hapus</button>
+                                <button class="btn btn-danger delete" data-id="${lomba[i].id}" data-bs-toggle="modal" data-bs-target="#hapusModal">Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -324,4 +330,20 @@ function updateCompetition() {
             $('#lokasi').removeClass('is-valid')
         },
     }
+}
+
+function deleteCompetiton() {
+    $(document).on('click', '.delete', function(e) {
+        const id = $(this).data('id')
+        const urlDelete = URL_DATA + "/delete/lomba/" + id
+        
+        // submit-hapus diklik
+        $('.submit-hapus').on('click', function(e) {
+            console.log('delete')
+            e.preventDefault()
+            Functions.prototype.deleteData(urlDelete)
+            $('#hapusModal').modal('hide')
+            getLomba.loadData = "/lomba"
+        })
+    })
 }
