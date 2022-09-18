@@ -35,12 +35,8 @@
 										accept="image/png, image/jpeg"
 									/>
 								</label>
-								<button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
-									<i class="bx bx-reset d-block d-sm-none"></i>
-									<span class="d-none d-sm-block">Reset</span>
-								</button>
 
-								<p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+								<p class="text-muted mb-0">Harus JPG, JPEG, atau PNG. Ratio 1:1</p>
 							</div>
 						</div>
 					</div>

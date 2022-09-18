@@ -11,6 +11,7 @@ use App\Http\Controllers\Data\CompetitionController;
 use App\Http\Controllers\Data\InformationController;
 use App\Http\Controllers\Data\PanitiaController;
 use App\Http\Controllers\Data\RoleController;
+use App\Http\Controllers\Data\SpeakerController;
 use App\Http\Controllers\Data\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -34,12 +35,17 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/informasi', [AdminController::class, 'infromasi']);
+
     Route::get('/divisi', [AdminController::class, 'divisi']);
     Route::get('/daftar-panitia', [AdminController::class, 'daftarPanitia']);
+
     Route::get('/bidang-lomba', [AdminController::class, 'bidangLomba']);
     Route::get('/mata-lomba', [AdminController::class, 'mataLomba']);
     Route::get('/tambah-lomba', [AdminController::class, 'tambahLomba']);
     Route::get('/edit-lomba/{id}', [AdminController::class, 'editLomba']);
+
+    Route::get('/tambah-pembicara', [AdminController::class, 'tambahPembicara']);
+    Route::get('/daftar-pembicara', [AdminController::class, 'daftarPembicara']);
 
     Route::get('/pengaturan-akun', [AdminController::class, 'pengaturanAkun']);
     Route::get('/ganti-password', [AdminController::class, 'gantiPassword']);
@@ -52,6 +58,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/panitia', [PanitiaController::class, 'index']);
     Route::get('/bidang-lomba', [CategoryController::class, 'getAll']);
     Route::get('/lomba', [CompetitionController::class, 'getAll']);
+    Route::get('/pembicara', [SpeakerController::class, 'getAll']);
 
     // get detail
     Route::get('/divisi/{id}', [RoleController::class, 'show']);
@@ -78,6 +85,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::post('/divisi', [RoleController::class, 'store']);
         Route::post('/bidang-lomba', [CategoryController::class, 'store']);
         Route::post('/mata-lomba', [CompetitionController::class, 'store']);
+        Route::post('/pembicara', [SpeakerController::class, 'store']);
     });
 
     // pengaturan

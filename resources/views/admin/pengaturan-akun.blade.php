@@ -47,7 +47,7 @@
 								<span class="d-none d-sm-block">Reset</span>
 							</button>
 
-							<p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+							<p class="text-muted mb-0">Harus JPG, JPEG, atau PNG. Ratio 1:1</p>
 						</div>
 					</div>
 				</div>

@@ -1,16 +1,16 @@
 @extends('admin.components.template')
-@section('title', 'Tambah Mata Lomba')
+@section('title', 'Tambah Pembicara')
 
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-	<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Lomba /</span> Tambah Mata Lomba</h4>
+	<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pembicara /</span> Tambah Pembicara</h4>
 
 	<div class="row">
 		<div class="col-md-12">
 			<div class="card mb-4">
-				<h5 class="card-header">Tambah Mata Lomba</h5>
+				<h5 class="card-header">Tambah Pembicara</h5>
 				<!-- Account -->
-				<form id="formTambahLomba">
+				<form id="formTambahPembicara">
 					<div class="card-body">
 						<div class="d-flex align-items-start align-items-sm-center gap-4">
 							<img
@@ -43,41 +43,57 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="mb-3 col-md-6">
-								<label for="name" class="form-label">Nama Lomba</label>
+								<label for="name" class="form-label">Nama Pembicara</label>
 								<input
 									class="form-control"
 									type="text"
 									id="name"
 									name="name"
 									autofocus
-									placeholder="masukkan nama mata lomba"
+									placeholder="masukkan nama pembicara"
 								/>
 							</div>
 							<div class="mb-3 col-md-6">
-								<label for="bidangLomba" class="form-label">Bidang Lomba</label>
-								<select class="form-select" id="bidangLomba" name="bidangLomba" aria-label="Default select example">
-									<option selected="">Pilih bidang lomba</option>
-								</select>
+								<label for="headline" class="form-label">Headline</label>
+								<input
+									class="form-control"
+									type="text"
+									id="headline"
+									name="headline"
+									placeholder="masukkan headline pembicara"
+								/>
 							</div>
 						</div>
 						<div class="row">
-							<div class="mb-3 col-md-6">
-								<label for="tgl_mulai" class="form-label">Tanggal Mulai</label>
-								<input class="form-control" type="date" id="tgl_mulai" name="tgl_mulai">
+							<div class="mb-3 col-md-4">
+								<label for="email" class="form-label">Email</label>
+								<input
+									class="form-control"
+									type="email"
+									id="email"
+									name="email"
+									placeholder="masukkan email pembicara"
+								/>
 							</div>
-							<div class="mb-3 col-md-6">
-								<label for="tgl_selesai" class="form-label">Tanggal Selesai</label>
-								<input class="form-control" type="date" id="tgl_selesai" name="tgl_selesai">
+							<div class="mb-3 col-md-4">
+								<label for="linkedin" class="form-label">Linked In</label>
+								<input
+									class="form-control"
+									type="text"
+									id="linkedin"
+									name="linkedin"
+									placeholder="masukkan link linkedin pembicara"
+								/>
 							</div>
-						</div>
-						<div class="row">
-							<div class="mb-3 col-md-6">
-								<label for="deskripsi" class="form-label">Deskripsi Lomba</label>
-								<textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
-							</div>
-							<div class="mb-3 col-md-6">
-								<label for="lokasi" class="form-label">Lokasi Lomba</label>
-								<textarea class="form-control" id="lokasi" name="lokasi" rows="3"></textarea>
+							<div class="mb-3 col-md-4">
+								<label for="instagram" class="form-label">Instagram</label>
+								<input
+									class="form-control"
+									type="text"
+									id="instagram"
+									name="instagram"
+									placeholder="masukkan link instagram pembicara"
+								/>
 							</div>
 						</div>
 						<div class="mt-2">
@@ -94,11 +110,5 @@
 @endsection
 
 @section('js')
-	<script>
-		$(document).ready(function() {
-			getBidangLomba.loadData = "/bidang-lomba"
-		})
-	</script>
-	<script src="{{ asset('dashboard') }}/js/lomba/bidang-lomba.js"></script>
-	<script src="{{ asset('dashboard') }}/js/lomba/tambah-lomba.js"></script>
+	<script src="{{ asset('dashboard') }}/js/pembicara/index.js"></script>
 @endsection

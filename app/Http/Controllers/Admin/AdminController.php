@@ -29,17 +29,13 @@ class AdminController extends Controller
     public function bidangLomba() { return view('admin.lomba.bidang-lomba'); }
     public function mataLomba() { return view('admin.lomba.mata-lomba'); }
     public function tambahLomba() { return view('admin.lomba.tambah-lomba'); }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function editLomba($id)
-    {
-        return view('admin.lomba.edit-lomba');
-    }
+    public function editLomba() { return view('admin.lomba.edit-lomba'); }
     // end perlombaan
+
+    // pembicara
+    public function tambahPembicara() { return view('admin.pembicara.tambah-pembicara'); }
+    public function daftarPembicara() { return view('admin.pembicara.daftar-pembicara'); }
+    // end pembicara
 
     // pengaturan akun
     public function pengaturanAkun() { return view('admin.pengaturan-akun'); }

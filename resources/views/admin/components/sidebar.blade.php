@@ -61,6 +61,26 @@
 		</ul>
 	</li>
 
+	<li class="menu-item {{ request()->path() == 'admin/tambah-pembicara'
+							|| request()->path() == 'admin/daftar-pembicara' ? 'open' : '' }}">
+		<a href="javascript:void(0);" class="menu-link menu-toggle">
+			<i class="menu-icon tf-icons bx bx-user-voice"></i>
+			<div data-i18n="Pembicara">Pembicara</div>
+		</a>
+		<ul class="menu-sub">
+			<li class="menu-item {{ 'admin/daftar-pembicara' == request()->path() ? 'active' : '' }}">
+				<a href="{{ url('admin/daftar-pembicara') }}" class="menu-link">
+					<div data-i18n="Daftar Pembicara">Daftar Pembicara</div>
+				</a>
+			</li>
+			<li class="menu-item {{ 'admin/tambah-pembicara' == request()->path() ? 'active' : '' }}">
+				<a href="{{ url('admin/tambah-pembicara') }}" class="menu-link">
+					<div data-i18n="Tambah Pembicara">Tambah Pembicara</div>
+				</a>
+			</li>
+		</ul>
+	</li>
+
 	<li class="menu-header small text-uppercase">
 		<span class="menu-header-text">Pages</span>
 	</li>
