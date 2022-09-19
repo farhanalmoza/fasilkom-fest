@@ -1,6 +1,7 @@
 $(document).ready(function() {
     getSpeaker.loadData = "/pembicara"
     addSpeaker()
+    updateSpeaker()
 })
 
 const getSpeaker = {
@@ -11,21 +12,42 @@ const getSpeaker = {
     set successData(response) {
         const container = document.querySelector('#speaker-cards')
 
-        container.innerHTML = "";
-
-        for (let i = 0; i < response.length; i++) {
-            container.innerHTML += `
-            <div class="col-md-6 col-lg-4 mb-3">
-                <div class="card h-100">
-                    <img class="card-img-top" src="${BASE_URL}/storage/${response[i].photo}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">${response[i].speaker_name}</h5>
-                        <h6 class="card-subtitle text-muted">${response[i].headline}</h6>
+        if (container) {
+            container.innerHTML = "";
+            for (let i = 0; i < response.length; i++) {
+                container.innerHTML += `
+                <div class="col-md-6 col-lg-4 mb-3">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="${BASE_URL}/storage/${response[i].photo}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">${response[i].speaker_name}</h5>
+                            <h6 class="card-subtitle text-muted">${response[i].headline}</h6>
+                            <a href="${BASE_URL}/admin/edit-pembicara/${response[i].id_speaker}" class="btn btn-primary mt-3">Edit</a>
+                            <button class="btn btn-danger mt-3 delete" data-id="${response[i].id_speaker}" data-bs-toggle="modal" data-bs-target="#hapusModal">Hapus</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            `;
+                `;
+            }
         }
+    }
+}
+
+const getDetailEdit = {
+    set loadData(data) {
+        const URL = URL_DATA + '/pembicara/' + data
+        Functions.prototype.getRequest(getDetailEdit, URL);
+    },
+    set successData(response) {
+        $('#id').val(response.id_speaker)
+        $('#old_thumb').val(response.photo)
+        $('#name').val(response.speaker_name)
+        $('#headline').val(response.headline)
+        $('#email').val(response.email)
+        $('#linkedin').val(response.linkedin)
+        $('#instagram').val(response.instagram)
+        $('#uploadedPicture').attr('src', BASE_URL+"/storage/"+response.photo)
+        $('#uploadedPicture').attr('hidden', false)
     }
 }
 
@@ -126,5 +148,84 @@ function addSpeaker() {
             toastPlacement = new bootstrap.Toast(toastPlacementExample);
             toastPlacement.show();
         }
+    }
+}
+
+function updateSpeaker() {
+    $("#picture").on("change", function (e) {
+        e.preventDefault();
+
+        if (Functions.prototype.validateFile($(this))) {
+            const data = new FormData()
+            const file = $(this)[0].files
+            Functions.prototype.prevImage(file[0], $('#uploadedPicture'))
+            data.append('picture', file[0])
+        }
+    });
+    $('#formEditPembicara').validate({
+        rules: {
+            picture: { required: true },
+            name: { required: true },
+            headline: { required: true },
+            email: { required: true, email: true },
+            linkedin: { required: true },
+            instagram: { required: true },
+        },
+        errorClass: "is-invalid",
+        validClass: "is-valid",
+        errorElement: "small",
+        errorPlacement: function errorPlacement(error, element) {
+            error.addClass('invalid-feedback');
+            error.insertAfter(element);
+        },
+        // eslint-disable-next-line object-shorthand
+        highlight: function highlight(element) {
+            $(element).addClass('is-invalid').removeClass('is-valid');
+        },
+        // eslint-disable-next-line object-shorthand
+        unhighlight: function unhighlight(element) {
+            $(element).addClass('is-valid').removeClass('is-invalid');
+        },
+        submitHandler: function(form, e) {
+            e.preventDefault()
+            const urlPut = URL_DATA + "/update/pembicara/" + $('#id').val()
+            const formData = new FormData()
+            const data = {
+                gambar: $('#old_thumb').val(),
+                name: $('#name').val(),
+                headline: $('#headline').val(),
+                email: $('#email').val(),
+                linkedin: $('#linkedin').val(),
+                instagram: $('#instagram').val(),
+            }
+            const files = $("#picture")[0].files
+            formData.append('name', data.name)
+            formData.append('headline', data.headline)
+            formData.append('email', data.email)
+            formData.append('linkedin', data.linkedin)
+            formData.append('instagram', data.instagram)
+
+            if (files.length > 0) {
+                for (let i = 0; i < files.length; i++) {
+                    const element = files[i];
+                    formData.append('files[]', element)
+                }
+            } else {
+                formData.append('files', data.gambar)
+            }
+            // console.log($('#old_thumb').val())
+            Functions.prototype.uploadFile(urlPut, formData, 'post', putDataSpeaker)
+        }
+    })
+    const putDataSpeaker = {
+        set successData(response) {
+            $('#uploadedPicture').attr('hidden', true)
+            $('#picture').removeClass('is-valid')
+            $('#name').removeClass('is-valid')
+            $('#headline').removeClass('is-valid')
+            $('#email').removeClass('is-valid')
+            $('#linkedin').removeClass('is-valid')
+            $('#instagram').removeClass('is-valid')
+        },
     }
 }

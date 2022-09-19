@@ -35,6 +35,7 @@ class AdminController extends Controller
     // pembicara
     public function tambahPembicara() { return view('admin.pembicara.tambah-pembicara'); }
     public function daftarPembicara() { return view('admin.pembicara.daftar-pembicara'); }
+    public function editPembicara() { return view('admin.pembicara.edit-pembicara'); }
     // end pembicara
 
     // pengaturan akun

@@ -33,4 +33,27 @@ class SpeakerController extends Controller
 
         return $this->speaker->add($data, $files);
     }
+
+    public function show($id)
+    {
+        return $this->speaker->getById($id);
+    }
+
+    public function update(Request $request, $id)
+    {
+        // variabel
+        $files = $request->file('files');
+        
+        $data = [
+            'name'      => $request->input('name'),
+            'headline'  => $request->input('headline'),
+            'email'     => $request->input('email'),
+            'linkedin'  => $request->input('linkedin'),
+            'instagram' => $request->input('instagram'),
+        ];
+        if (!$files) {
+            $data['photo'] = $request->input('files');
+        }
+        return $this->speaker->update($data, $files, $id);
+    }
 }

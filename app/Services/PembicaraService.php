@@ -52,4 +52,46 @@ class PembicaraService
         $optimizerChain->optimize(Storage::path('public/'.$path . $filename));
         return $path . $filename;
     }
+
+    public function getById($id)
+    {
+        return Speaker::where('id_speaker', $id)->first();
+    }
+
+    public function update($data, $files, $id)
+    {
+        $speaker = Speaker::where('id_speaker', $id)->first();
+        $speaker->speaker_name = $data['name'];
+        $speaker->headline = $data['headline'];
+        $speaker->email = $data['email'];
+        $speaker->linkedin = $data['linkedin'];
+        $speaker->instagram = $data['instagram'];
+        
+        // upload image to storage and get the path to store in database 
+        // delete old picture if exists
+        if($files) {
+            if($speaker->photo) {
+                Storage::delete('public/'.$speaker->photo);
+            }
+            $path = $this->uploadImage($files);
+            $speaker->photo = $path;
+        } else {
+            $speaker->photo = $data['photo'];
+        }
+
+        $update = Speaker::where('id_speaker', $id)->update([
+            'speaker_name' => $speaker->speaker_name,
+            'headline' => $speaker->headline,
+            'email' => $speaker->email,
+            'linkedin' => $speaker->linkedin,
+            'instagram' => $speaker->instagram,
+            'photo' => $speaker->photo
+        ]);
+
+        if($update) {
+            return response(['message' => 'Pembicara berhasil diupdate!']);
+        } else {
+            return response(['message' => 'Gagal mengupdate pembicara!'], 500);
+        }
+    }
 }

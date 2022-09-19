@@ -46,6 +46,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], functi
 
     Route::get('/tambah-pembicara', [AdminController::class, 'tambahPembicara']);
     Route::get('/daftar-pembicara', [AdminController::class, 'daftarPembicara']);
+    Route::get('/edit-pembicara/{id}', [AdminController::class, 'editPembicara']);
 
     Route::get('/pengaturan-akun', [AdminController::class, 'pengaturanAkun']);
     Route::get('/ganti-password', [AdminController::class, 'gantiPassword']);
@@ -64,12 +65,14 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/divisi/{id}', [RoleController::class, 'show']);
     Route::get('/informasi/{id}', [InformationController::class, 'show']);
     Route::get('/lomba/{id}', [CompetitionController::class, 'show']);
+    Route::get('/pembicara/{id}', [SpeakerController::class, 'show']);
 
     // update
     Route::group(['prefix' => 'update'], function() {
         Route::put('/divisi/{id}', [RoleController::class, 'update']);
         Route::put('/informasi/{id}', [InformationController::class, 'update']);
         Route::post('/lomba/{id}', [CompetitionController::class, 'update']);
+        Route::post('/pembicara/{id}', [SpeakerController::class, 'update']);
     });
 
     // delete
