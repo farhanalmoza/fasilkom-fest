@@ -28,6 +28,11 @@ class RoleController extends Controller
         return $this->divisi->getTargetPeserta();
     }
 
+    public function getBySlug($slug)
+    {
+        return $this->divisi->getBySlug($slug);
+    }
+
     public function store(Request $request) {
         $data = [
             'name' => $request->input('name'),

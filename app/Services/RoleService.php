@@ -21,6 +21,8 @@ class RoleService
         return Role::where('parent', 0)->get();
     }
 
+    public function getBySlug($slug) { return Role::where('slug', $slug)->first(); }
+
     public function add($data)
     {
         $role = Role::create($data);

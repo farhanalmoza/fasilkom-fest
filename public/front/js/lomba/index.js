@@ -84,7 +84,7 @@ const getLomba = {
                                 <br>
                                 <li>Location: ${response[i].location}</li>
                             </ul>
-                            <a href="#" class="text">Daftar</a>
+                            <a href="${BASE_URL}/daftar-akun/${response[i].role_name}" class="text">Daftar</a>
                         </div>
                     </div>
                 `;
@@ -102,7 +102,7 @@ const getLomba = {
                                 <li>End: ${end_date_format}</li>
                             </ul>
                             <p class="text">Location: ${response[i].location}</p>
-                            <a href="#" class="text">Daftar</a>
+                            <a href="${BASE_URL}/daftar/${response[i].role_name}" class="text">Daftar</a>
                         </div>
                     </div>
                 `;
@@ -120,7 +120,7 @@ const getLomba = {
                                 <li>End: ${end_date_format}</li>
                             </ul>
                             <p class="text">Location: ${response[i].location}</p>
-                            <a href="#" class="text">Daftar</a>
+                            <a href="${BASE_URL}/daftar/${response[i].role_name}" class="text">Daftar</a>
                         </div>
                     </div>
                 `;
@@ -138,7 +138,7 @@ const getLomba = {
                                 <li>End: ${end_date_format}</li>
                             </ul>
                             <p class="text">Location: ${response[i].location}</p>
-                            <a href="#" class="text">Daftar</a>
+                            <a href="${BASE_URL}/daftar/${response[i].role_name}" class="text">Daftar</a>
                         </div>
                     </div>
                 `;

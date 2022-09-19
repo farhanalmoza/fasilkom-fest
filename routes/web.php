@@ -10,6 +10,7 @@ use App\Http\Controllers\Data\CategoryController;
 use App\Http\Controllers\Data\CompetitionController;
 use App\Http\Controllers\Data\InformationController;
 use App\Http\Controllers\Data\PanitiaController;
+use App\Http\Controllers\Participant\PesertaController;
 use App\Http\Controllers\Data\RoleController;
 use App\Http\Controllers\Data\SpeakerController;
 use App\Http\Controllers\Data\SponsorController;
@@ -75,6 +76,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/lomba/{id}', [CompetitionController::class, 'show']);
     Route::get('/pembicara/{id}', [SpeakerController::class, 'show']);
     Route::get('/sponsor/{id}', [SponsorController::class, 'show']);
+    Route::get('/role-peserta/{slug}', [RoleController::class, 'getBySlug']);
 
     // update
     Route::group(['prefix' => 'update'], function() {
@@ -126,5 +128,8 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 // register panitia
 Route::post('/register-panitia', [PanitiaController::class, 'store']);
+
+Route::get('/daftar-akun/{slug}', [PesertaController::class, 'showRegistrationForm']);
+Route::post('/register/peserta', [PesertaController::class, 'register']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

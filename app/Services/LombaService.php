@@ -15,7 +15,8 @@ class LombaService
     {
         // join category table to get category name
         $lomba = Competition::join('categories', 'competitions.id_category', '=', 'categories.id')
-            ->select('competitions.*', 'categories.name as category_name')
+            ->join('roles', 'competitions.peserta', '=', 'roles.id')
+            ->select('competitions.*', 'categories.name as category_name', 'roles.slug as role_name')
             ->get();
         return $lomba;
     }
