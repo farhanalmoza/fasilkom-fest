@@ -81,6 +81,26 @@
 		</ul>
 	</li>
 
+	<li class="menu-item {{ request()->path() == 'admin/tambah-sponsor'
+							|| request()->path() == 'admin/daftar-sponsor' ? 'open' : '' }}">
+		<a href="javascript:void(0);" class="menu-link menu-toggle">
+			<i class='menu-icon tf-icons bx bx-briefcase-alt'></i>
+			<div data-i18n="Sponsor">Sponsor</div>
+		</a>
+		<ul class="menu-sub">
+			<li class="menu-item {{ 'admin/daftar-sponsor' == request()->path() ? 'active' : '' }}">
+				<a href="{{ url('admin/daftar-sponsor') }}" class="menu-link">
+					<div data-i18n="Daftar Sponsor">Daftar Sponsor</div>
+				</a>
+			</li>
+			<li class="menu-item {{ 'admin/tambah-sponsor' == request()->path() ? 'active' : '' }}">
+				<a href="{{ url('admin/tambah-sponsor') }}" class="menu-link">
+					<div data-i18n="Tambah Sponsor">Tambah Sponsor</div>
+				</a>
+			</li>
+		</ul>
+	</li>
+
 	<li class="menu-header small text-uppercase">
 		<span class="menu-header-text">Pages</span>
 	</li>

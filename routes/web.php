@@ -12,6 +12,7 @@ use App\Http\Controllers\Data\InformationController;
 use App\Http\Controllers\Data\PanitiaController;
 use App\Http\Controllers\Data\RoleController;
 use App\Http\Controllers\Data\SpeakerController;
+use App\Http\Controllers\Data\SponsorController;
 use App\Http\Controllers\Data\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/daftar-pembicara', [AdminController::class, 'daftarPembicara']);
     Route::get('/edit-pembicara/{id}', [AdminController::class, 'editPembicara']);
 
+    Route::get('/tambah-sponsor', [AdminController::class, 'tambahSponsor']);
+    Route::get('/daftar-sponsor', [AdminController::class, 'daftarSponsor']);
+    Route::get('/edit-sponsor/{id}', [AdminController::class, 'editSponsor']);
+
     Route::get('/pengaturan-akun', [AdminController::class, 'pengaturanAkun']);
     Route::get('/ganti-password', [AdminController::class, 'gantiPassword']);
 });
@@ -60,12 +65,14 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/bidang-lomba', [CategoryController::class, 'getAll']);
     Route::get('/lomba', [CompetitionController::class, 'getAll']);
     Route::get('/pembicara', [SpeakerController::class, 'getAll']);
+    Route::get('/sponsor', [SponsorController::class, 'getAll']);
 
     // get detail
     Route::get('/divisi/{id}', [RoleController::class, 'show']);
     Route::get('/informasi/{id}', [InformationController::class, 'show']);
     Route::get('/lomba/{id}', [CompetitionController::class, 'show']);
     Route::get('/pembicara/{id}', [SpeakerController::class, 'show']);
+    Route::get('/sponsor/{id}', [SponsorController::class, 'show']);
 
     // update
     Route::group(['prefix' => 'update'], function() {
@@ -73,6 +80,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::put('/informasi/{id}', [InformationController::class, 'update']);
         Route::post('/lomba/{id}', [CompetitionController::class, 'update']);
         Route::post('/pembicara/{id}', [SpeakerController::class, 'update']);
+        Route::post('/sponsor/{id}', [SponsorController::class, 'update']);
     });
 
     // delete
@@ -82,6 +90,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::delete('/bidang-lomba/{id}', [CategoryController::class, 'destroy']);
         Route::delete('/lomba/{id}', [CompetitionController::class, 'destroy']);
         Route::delete('/pembicara/{id}', [SpeakerController::class, 'destroy']);
+        Route::delete('/sponsor/{id}', [SponsorController::class, 'destroy']);
     });
 
     // add
@@ -90,6 +99,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::post('/bidang-lomba', [CategoryController::class, 'store']);
         Route::post('/mata-lomba', [CompetitionController::class, 'store']);
         Route::post('/pembicara', [SpeakerController::class, 'store']);
+        Route::post('/sponsor', [SponsorController::class, 'store']);
     });
 
     // pengaturan

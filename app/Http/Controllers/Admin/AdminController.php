@@ -38,6 +38,12 @@ class AdminController extends Controller
     public function editPembicara() { return view('admin.pembicara.edit-pembicara'); }
     // end pembicara
 
+    // sponsor
+    public function tambahSponsor() { return view('admin.sponsor.tambah-sponsor'); }
+    public function daftarSponsor() { return view('admin.sponsor.daftar-sponsor'); }
+    public function editSponsor() { return view('admin.sponsor.edit-sponsor'); }
+    // end sponsor
+
     // pengaturan akun
     public function pengaturanAkun() { return view('admin.pengaturan-akun'); }
 
