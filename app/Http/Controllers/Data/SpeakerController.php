@@ -56,4 +56,9 @@ class SpeakerController extends Controller
         }
         return $this->speaker->update($data, $files, $id);
     }
+
+    public function destroy($id)
+    {
+        return $this->speaker->delete($id);
+    }
 }

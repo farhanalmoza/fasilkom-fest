@@ -94,4 +94,18 @@ class PembicaraService
             return response(['message' => 'Gagal mengupdate pembicara!'], 500);
         }
     }
+
+    public function delete($id)
+    {
+        $speaker = Speaker::where('id_speaker', $id)->first();
+        if($speaker->photo) {
+            Storage::delete('public/'.$speaker->photo);
+        }
+        $delete = Speaker::where('id_speaker', $id)->delete();
+        if($delete) {
+            return response(['message' => 'Pembicara berhasil dihapus!']);
+        } else {
+            return response(['message' => 'Gagal menghapus pembicara!'], 500);
+        }
+    }
 }

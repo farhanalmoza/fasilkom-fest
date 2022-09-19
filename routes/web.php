@@ -81,6 +81,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::delete('/panitia/{id}', [PanitiaController::class, 'destroy']);
         Route::delete('/bidang-lomba/{id}', [CategoryController::class, 'destroy']);
         Route::delete('/lomba/{id}', [CompetitionController::class, 'destroy']);
+        Route::delete('/pembicara/{id}', [SpeakerController::class, 'destroy']);
     });
 
     // add

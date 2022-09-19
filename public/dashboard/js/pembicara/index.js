@@ -2,6 +2,7 @@ $(document).ready(function() {
     getSpeaker.loadData = "/pembicara"
     addSpeaker()
     updateSpeaker()
+    deleteSpeaker()
 })
 
 const getSpeaker = {
@@ -228,4 +229,20 @@ function updateSpeaker() {
             $('#instagram').removeClass('is-valid')
         },
     }
+}
+
+function deleteSpeaker() {
+    $(document).on('click', '.delete', function(e) {
+        const id = $(this).data('id')
+        const urlDelete = URL_DATA + "/delete/pembicara/" + id
+        
+        // submit-hapus diklik
+        $('.submit-hapus').on('click', function(e) {
+            console.log('delete')
+            e.preventDefault()
+            Functions.prototype.deleteData(urlDelete)
+            $('#hapusModal').modal('hide')
+            getSpeaker.loadData = "/pembicara"
+        })
+    })
 }
