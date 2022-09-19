@@ -11,6 +11,16 @@ class RoleService
         return Role::all();
     }
 
+    public function getDivPanitia()
+    {
+        return Role::where('parent', 1)->get();
+    }
+
+    public function getTargetPeserta()
+    {
+        return Role::where('parent', 0)->get();
+    }
+
     public function add($data)
     {
         $role = Role::create($data);

@@ -61,6 +61,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], functi
 Route::group(['prefix' => 'data'], function() {
     // get All
     Route::get('/divisi', [RoleController::class, 'getAll']);
+    Route::get('/divisi-panitia', [RoleController::class, 'getDivPanitia']);
+    Route::get('/target-peserta', [RoleController::class, 'getTargetPeserta']);
     Route::get('/panitia', [PanitiaController::class, 'index']);
     Route::get('/bidang-lomba', [CategoryController::class, 'getAll']);
     Route::get('/lomba', [CompetitionController::class, 'getAll']);

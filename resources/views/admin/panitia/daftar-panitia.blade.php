@@ -109,7 +109,7 @@
 	<script>
 		$(document).ready(function() {
 			getPanitia.loadData = "/panitia"
-			getDivisi.loadData = "/divisi"
+			getDivisi.loadData = "/divisi-panitia"
 		})
 	</script>
 	<script src="{{ asset('dashboard') }}/js/panitia/index.js"></script>

@@ -107,6 +107,42 @@ const getLomba = {
     }
 }
 
+const getTargetPeserta = {
+    set loadData(data) {
+        const URL = URL_DATA + data
+        Functions.prototype.getRequest(getTargetPeserta, URL);
+    },
+    set successData(response) {
+        const container = document.getElementById('peserta')
+
+        const peserta = response
+
+        if (container) {    
+            for (i = peserta.length-1; i >= 0; i--) {
+                container.innerHTML += `
+                    <option value="${peserta[i].id}">${peserta[i].name}</option>
+                `;
+            }
+        }
+    },
+    set errorData(err) {
+        const toastPlacementExample = document.querySelector('.toast-placement-ex') 
+        const header = document.querySelector('.toast-header-text')
+        const body = document.querySelector('.toast-body')
+        let toastPlacement;
+
+        if (toastPlacement) {
+            toastDispose(toastPlacement);
+        }
+
+        toastPlacementExample.classList.add('bg-danger');
+        header.innerHTML = `Error`
+        body.innerHTML = err.message
+        toastPlacement = new bootstrap.Toast(toastPlacementExample);
+        toastPlacement.show();
+    },
+}
+
 function addCompetition() {
     $("#picture").on("change", function (e) {
         e.preventDefault();
@@ -123,6 +159,7 @@ function addCompetition() {
         rules: {
             picture: { required: true },
             name: { required: true },
+            peserta: { required: true },
             bidangLomba: { required: true },
             tgl_mulai: { required: true },
             tgl_selesai: { required: true },
@@ -150,6 +187,7 @@ function addCompetition() {
             const formData = new FormData()
             const data = {
                 name: $('#name').val(),
+                peserta: $('#peserta').val(),
                 bidang_lomba_id: $('#bidangLomba').val(),
                 tgl_mulai: $('#tgl_mulai').val(),
                 tgl_selesai: $('#tgl_selesai').val(),
@@ -158,6 +196,7 @@ function addCompetition() {
             }
             const files = $("#picture")[0].files
             formData.append('name', data.name)
+            formData.append('peserta', data.peserta)
             formData.append('id_category', data.bidang_lomba_id)
             formData.append('start_date', data.tgl_mulai)
             formData.append('end_date', data.tgl_selesai)
@@ -186,6 +225,7 @@ function addCompetition() {
                 $('#picture').removeClass('is-valid')
                 $('#name').removeClass('is-valid')
                 $('#bidangLomba').removeClass('is-valid')
+                $('#peserta').removeClass('is-valid')
                 $('#tgl_mulai').removeClass('is-valid')
                 $('#tgl_selesai').removeClass('is-valid')
                 $('#deskripsi').removeClass('is-valid')
@@ -219,8 +259,11 @@ const getDetailEdit = {
     set successData(response) {
         const lomba = response.lomba
         const kategori = response.kategori
+        const rolePeserta = response.rolePeserta
 
         const bidangLomba = document.querySelector('#bidangLomba')
+        const targetPeserta = document.querySelector('#peserta')
+        
         if(bidangLomba) {
             for (i = 0; i < kategori.length; i++) {
                 bidangLomba.innerHTML += `
@@ -228,6 +271,15 @@ const getDetailEdit = {
                 `;
             }
         }
+
+        if(targetPeserta) {
+            for (i = 0; i < rolePeserta.length; i++) {
+                targetPeserta.innerHTML += `
+                    <option value="${rolePeserta[i].id}">${rolePeserta[i].name}</option>
+                `;
+            }
+        }
+
         // change format date
         const date = new Date(lomba.start_date)
         const date2 = new Date(lomba.end_date)
@@ -240,6 +292,7 @@ const getDetailEdit = {
         $('#name').val(lomba.name)
         $('#old_thumb').val(lomba.pict)
         $('#bidangLomba').val(lomba.id_category).change()
+        $('#peserta').val(lomba.peserta).change()
         $('#tgl_mulai').attr('value', dateStart)
         $('#tgl_selesai').attr('value', dateEnd)
         $('#deskripsi').val(lomba.description)
@@ -264,6 +317,7 @@ function updateCompetition() {
         rules: {
             picture: { required: true },
             name: { required: true },
+            peserta: { required: true },
             bidangLomba: { required: true },
             tgl_mulai: { required: true },
             tgl_selesai: { required: true },
@@ -291,6 +345,7 @@ function updateCompetition() {
             const formData = new FormData()
             const data = {
                 name: $('#name').val(),
+                peserta: $('#peserta').val(),
                 gambar: $('#old_thumb').val(),
                 bidang_lomba_id: $('#bidangLomba').val(),
                 tgl_mulai: $('#tgl_mulai').val(),
@@ -300,6 +355,7 @@ function updateCompetition() {
             }
             const files = $("#picture")[0].files
             formData.append('name', data.name)
+            formData.append('peserta', data.peserta)
             formData.append('id_category', data.bidang_lomba_id)
             formData.append('start_date', data.tgl_mulai)
             formData.append('end_date', data.tgl_selesai)
@@ -314,7 +370,6 @@ function updateCompetition() {
             } else {
                 formData.append('files', data.gambar)
             }
-            // console.log($('#old_thumb').val())
             Functions.prototype.uploadFile(urlPut, formData, 'post', putDataCompetition)
         }
     })
@@ -324,6 +379,7 @@ function updateCompetition() {
             $('#picture').removeClass('is-valid')
             $('#name').removeClass('is-valid')
             $('#bidangLomba').removeClass('is-valid')
+            $('#peserta').removeClass('is-valid')
             $('#tgl_mulai').removeClass('is-valid')
             $('#tgl_selesai').removeClass('is-valid')
             $('#deskripsi').removeClass('is-valid')

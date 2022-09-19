@@ -54,10 +54,16 @@
 									autofocus
 								/>
 							</div>
-							<div class="mb-3 col-md-6">
+							<div class="mb-3 col-md-3">
 								<label for="bidangLomba" class="form-label">Bidang Lomba</label>
 								<select class="form-select" id="bidangLomba" name="bidangLomba" aria-label="Default select example">
 									<option selected="">Pilih bidang lomba</option>
+								</select>
+							</div>
+							<div class="mb-3 col-md-3">
+								<label for="peserta" class="form-label">Target Peserta</label>
+								<select class="form-select" id="peserta" name="peserta" aria-label="Default select example">
+									
 								</select>
 							</div>
 						</div>
@@ -82,7 +88,7 @@
 							</div>
 						</div>
 						<div class="mt-2">
-							<button type="submit" class="btn btn-primary me-2">Tambah</button>
+							<button type="submit" class="btn btn-primary me-2">Simpan</button>
 							<button type="button" class="btn btn-outline-secondary" id="batal">Batal</button>
 						</div>
 					</div>

@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Models\Category;
 use App\Models\Competition;
+use App\Models\Role;
 use Spatie\ImageOptimizer\OptimizerChainFactory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -24,6 +25,7 @@ class LombaService
         $competition = new Competition();
         $competition->name = $data['name'];
         $competition->slug = $data['slug'];
+        $competition->peserta = $data['peserta'];
         $competition->description = $data['description'];
         $competition->id_category = $data['id_category'];
         $competition->start_date = $data['start_date'];
@@ -68,9 +70,11 @@ class LombaService
             ->first();
         
         $kategori = Category::all();
+        $rolePeserta = Role::where('parent', 0)->get();
         $data = [
             'lomba' => $lomba,
-            'kategori' => $kategori
+            'kategori' => $kategori,
+            'rolePeserta' => $rolePeserta
         ];
         return $data;
     }
@@ -80,6 +84,7 @@ class LombaService
         $competition = Competition::find($id);
         $competition->name = $data['name'];
         $competition->slug = $data['slug'];
+        $competition->peserta = $data['peserta'];
         $competition->description = $data['description'];
         $competition->id_category = $data['id_category'];
         $competition->start_date = $data['start_date'];

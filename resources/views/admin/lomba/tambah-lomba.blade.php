@@ -53,10 +53,16 @@
 									placeholder="masukkan nama mata lomba"
 								/>
 							</div>
-							<div class="mb-3 col-md-6">
+							<div class="mb-3 col-md-3">
 								<label for="bidangLomba" class="form-label">Bidang Lomba</label>
 								<select class="form-select" id="bidangLomba" name="bidangLomba" aria-label="Default select example">
 									<option selected="">Pilih bidang lomba</option>
+								</select>
+							</div>
+							<div class="mb-3 col-md-3">
+								<label for="peserta" class="form-label">Target Peserta</label>
+								<select class="form-select" id="peserta" name="peserta" aria-label="Default select example">
+									<option selected="">Pilih target peserta</option>
 								</select>
 							</div>
 						</div>
@@ -97,6 +103,7 @@
 	<script>
 		$(document).ready(function() {
 			getBidangLomba.loadData = "/bidang-lomba"
+			getTargetPeserta.loadData = "/target-peserta"
 		})
 	</script>
 	<script src="{{ asset('dashboard') }}/js/lomba/bidang-lomba.js"></script>

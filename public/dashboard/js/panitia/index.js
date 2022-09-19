@@ -68,11 +68,9 @@ const getDivisi = {
 
         if (container) {    
             for (i = divisi.length-1; i >= 0; i--) {
-                if (divisi[i].id !== 1 && divisi[i].id !== 2 && divisi[i].id !== 3 && divisi[i].id !== 4) {
-                    container.innerHTML += `
-                        <option value="${divisi[i].id}">${divisi[i].name}</option>
-                    `;
-                }
+                container.innerHTML += `
+                    <option value="${divisi[i].id}">${divisi[i].name}</option>
+                `;
             }
         }
     },

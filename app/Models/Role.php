@@ -9,6 +9,7 @@ class Role extends Model {
     protected $fillable = [
         'name',
         'slug',
+        'parent',
         'description',
     ];
     protected $hidden = [

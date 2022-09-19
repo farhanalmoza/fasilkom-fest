@@ -38,6 +38,7 @@ class CompetitionController extends Controller
             'name'        => $request->input('name'),
             // slug is lowercase and replace space or slash with dash
             'slug'        => $slug,
+            'peserta'     => $request->input('peserta'),
             'description' => $request->input('description'),
             'start_date'  => $request->input('start_date'),
             'end_date'    => $request->input('end_date'),
@@ -76,6 +77,7 @@ class CompetitionController extends Controller
             'name'        => $request->input('name'),
             // slug is lowercase and replace space and slash with dash
             'slug'        => $slug,
+            'peserta'     => $request->input('peserta'),
             'description' => $request->input('description'),
             'start_date'  => $request->input('start_date'),
             'end_date'    => $request->input('end_date'),

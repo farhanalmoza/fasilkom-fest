@@ -11,6 +11,7 @@ class Competition extends Model {
         'id_category',
         'name',
         'slug',
+        'peserta',
         'pict',
         'description',
         'start_date',

@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('competitions', function (Blueprint $table) {
-            $table->string('slug')->after('name');
+        Schema::table('roles', function (Blueprint $table) {
+            $table->integer('parent')->nullable()->after('slug');
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('competitions', function (Blueprint $table) {
+        Schema::table('roles', function (Blueprint $table) {
             //
         });
     }

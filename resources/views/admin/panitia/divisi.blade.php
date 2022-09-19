@@ -17,6 +17,14 @@
 							<input type="text" class="form-control" id="name" name="name" placeholder="Masukkan nama divisi" />
 						</div>
 						<div class="mb-3">
+							<label for="status" class="form-label">Status</label>
+							<select class="form-select" id="status" name="status" aria-label="Default select example">
+							  <option selected="">Pilih status</option>
+							  <option value="1">Panitia</option>
+							  <option value="0">Peserta</option>
+							</select>
+						</div>
+						<div class="mb-3">
 							<label for="desc" class="form-label">Deskripsi</label>
 							<textarea class="form-control" id="desc" name="desc" rows="2"></textarea>
 						</div>

@@ -85,12 +85,9 @@ const getDetail = {
 function addRole() {
     $('#tambahDivisi').validate({
         rules: {
-            name: {
-                required: true
-            },
-            desc: {
-                required: true
-            },
+            name: { required: true },
+            desc: { required: true },
+            status: { required: true },
         },
         errorClass: "is-invalid",
         validClass: "is-valid",
@@ -114,9 +111,11 @@ function addRole() {
             const data = {
                 name: $('#name').val(),
                 desc: $('#desc').val(),
+                status: $('#status').val(),
             }
             formData.append('name', data.name)
             formData.append('desc', data.desc)
+            formData.append('status', data.status)
             Functions.prototype.postRequest(postRole, urlPost, data)
             getDivisi.loadData = "/divisi"
         }
