@@ -31,10 +31,13 @@ class CompetitionController extends Controller
     public function store(Request $request)
     {
         $files = $request->file('files');
+        $slug = strtolower(preg_replace('/[\W\s\/]+/', '-', $request->input('name')));
 
         $data = [
             'id_category' => $request->input('id_category'),
             'name'        => $request->input('name'),
+            // slug is lowercase and replace space or slash with dash
+            'slug'        => $slug,
             'description' => $request->input('description'),
             'start_date'  => $request->input('start_date'),
             'end_date'    => $request->input('end_date'),
@@ -66,10 +69,13 @@ class CompetitionController extends Controller
     {
         // variabel
         $files = $request->file('files');
+        $slug = strtolower(preg_replace('/[\W\s\/]+/', '-', $request->input('name')));
         
         $data = [
             'id_category' => $request->input('id_category'),
             'name'        => $request->input('name'),
+            // slug is lowercase and replace space and slash with dash
+            'slug'        => $slug,
             'description' => $request->input('description'),
             'start_date'  => $request->input('start_date'),
             'end_date'    => $request->input('end_date'),

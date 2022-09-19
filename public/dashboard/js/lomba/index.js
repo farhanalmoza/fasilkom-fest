@@ -84,7 +84,7 @@ const getLomba = {
                 `;
             }
 
-            if(lomba[i].id_category == 3) {
+            if(lomba[i].id_category == 4) {
                 eSport.innerHTML += `
                     <div class="col-md-6 col-lg-4 mb-2">
                         <div class="card mb-4">
@@ -339,7 +339,6 @@ function deleteCompetiton() {
         
         // submit-hapus diklik
         $('.submit-hapus').on('click', function(e) {
-            console.log('delete')
             e.preventDefault()
             Functions.prototype.deleteData(urlDelete)
             $('#hapusModal').modal('hide')

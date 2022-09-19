@@ -10,6 +10,7 @@ class Competition extends Model {
         'id',
         'id_category',
         'name',
+        'slug',
         'pict',
         'description',
         'start_date',

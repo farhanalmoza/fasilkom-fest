@@ -100,5 +100,5 @@
 		})
 	</script>
 	<script src="{{ asset('dashboard') }}/js/lomba/bidang-lomba.js"></script>
-	<script src="{{ asset('dashboard') }}/js/lomba/tambah-lomba.js"></script>
+	<script src="{{ asset('dashboard') }}/js/lomba/index.js"></script>
 @endsection

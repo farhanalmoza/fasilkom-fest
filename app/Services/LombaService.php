@@ -23,6 +23,7 @@ class LombaService
     {
         $competition = new Competition();
         $competition->name = $data['name'];
+        $competition->slug = $data['slug'];
         $competition->description = $data['description'];
         $competition->id_category = $data['id_category'];
         $competition->start_date = $data['start_date'];
@@ -78,6 +79,7 @@ class LombaService
     {
         $competition = Competition::find($id);
         $competition->name = $data['name'];
+        $competition->slug = $data['slug'];
         $competition->description = $data['description'];
         $competition->id_category = $data['id_category'];
         $competition->start_date = $data['start_date'];
