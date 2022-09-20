@@ -58,6 +58,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/ganti-password', [AdminController::class, 'gantiPassword']);
 });
 
+// peserta cso
+Route::group(['prefix' => 'peserta-cso', 'middleware' => ['auth']], function() {
+    Route::get('/', [PesertaController::class, 'dashboardCso']);
+
+    Route::get('/pengaturan-akun', [PesertaController::class, 'pengaturanAkun']);
+    Route::get('/ganti-password', [PesertaController::class, 'gantiPassword']);
+});
+
 // data
 Route::group(['prefix' => 'data'], function() {
     // get All

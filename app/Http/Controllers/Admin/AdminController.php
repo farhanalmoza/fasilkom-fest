@@ -46,7 +46,6 @@ class AdminController extends Controller
 
     // pengaturan akun
     public function pengaturanAkun() { return view('admin.pengaturan-akun'); }
-
     public function gantiPassword() { return view('admin.ganti-password'); }
     // end pengaturan akun
 

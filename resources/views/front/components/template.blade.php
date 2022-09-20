@@ -151,8 +151,6 @@
         // const ASSET = '{{ asset("dashboard") }}'
         const ASSET_PICT = '{{ asset("storage") }}'
         const URL_DATA = '{{ url("data") }}'
-        const email = '{{ auth()->user()->email }}'
-        const user_id = '{{ auth()->user()->id }}'
     </script>
     <script src="{{ asset('dashboard') }}/js/functions.js"></script>
     @yield('js')

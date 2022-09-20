@@ -53,8 +53,8 @@ class LoginController extends Controller
         if ($this->attemptLogin($request)) {
             if ( auth()->user()->role_id == 1 ) {
                 return redirect('admin');
-            } else {
-                //
+            } else if ( auth()->user()->role_id == 2 ) {
+                return redirect('peserta-cso');
             }
 
             return $this->sendLoginResponse($request);

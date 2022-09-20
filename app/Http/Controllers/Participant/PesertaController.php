@@ -30,4 +30,11 @@ class PesertaController extends Controller
 
         return response(['message' => 'Akun Anda berhasil dibuat!']);
     }
+
+    public function dashboardCso() { return view('participant.peserta-cso.dashboard'); }
+
+    // pengaturan akun
+    public function pengaturanAkun() { return view('participant.peserta-cso.pengaturan-akun'); }
+    public function gantiPassword() { return view('participant.peserta-cso.ganti-password'); }
+    // end pengaturan akun
 }
