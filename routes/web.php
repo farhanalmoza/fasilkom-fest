@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Data\CategoryController;
 use App\Http\Controllers\Data\CompetitionController;
+use App\Http\Controllers\Data\CsoController;
 use App\Http\Controllers\Data\InformationController;
 use App\Http\Controllers\Data\PanitiaController;
 use App\Http\Controllers\Participant\PesertaController;
@@ -61,6 +62,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], functi
 // peserta cso
 Route::group(['prefix' => 'peserta-cso', 'middleware' => ['auth']], function() {
     Route::get('/', [PesertaController::class, 'dashboardCso']);
+    Route::get('/tim', [PesertaController::class, 'detailTimCso']);
 
     Route::get('/pengaturan-akun', [PesertaController::class, 'pengaturanAkun']);
     Route::get('/ganti-password', [PesertaController::class, 'gantiPassword']);
@@ -85,6 +87,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/pembicara/{id}', [SpeakerController::class, 'show']);
     Route::get('/sponsor/{id}', [SponsorController::class, 'show']);
     Route::get('/role-peserta/{slug}', [RoleController::class, 'getBySlug']);
+    Route::get('/tim-cso/{id}', [CsoController::class, 'show']);
 
     // update
     Route::group(['prefix' => 'update'], function() {
@@ -93,6 +96,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::post('/lomba/{id}', [CompetitionController::class, 'update']);
         Route::post('/pembicara/{id}', [SpeakerController::class, 'update']);
         Route::post('/sponsor/{id}', [SponsorController::class, 'update']);
+        Route::post('/detail-tim/{id}', [CsoController::class, 'updateDetailTim']);
     });
 
     // delete

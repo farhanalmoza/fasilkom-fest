@@ -46,6 +46,7 @@ class PesertaController extends Controller
     }
 
     public function dashboardCso() { return view('participant.peserta-cso.dashboard'); }
+    public function detailTimCso() { return view('participant.peserta-cso.detail-tim'); }
 
     // pengaturan akun
     public function pengaturanAkun() { return view('participant.peserta-cso.pengaturan-akun'); }
