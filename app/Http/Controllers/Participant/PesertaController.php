@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Participant;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cso;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -27,6 +28,19 @@ class PesertaController extends Controller
         ]);
 
         event(new Registered($user));
+
+        // get user by email
+        $user = User::where('email', $request->email)->first();
+        // get user id
+        $user_id = $user->id;
+        // get role id
+        $role_id = $user->role_id;
+        // create participant
+        if ($role_id == 2) {
+            Cso::create([
+                'user_id' => $user_id,
+            ]);
+        }
 
         return response(['message' => 'Akun Anda berhasil dibuat!']);
     }

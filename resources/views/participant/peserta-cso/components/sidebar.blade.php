@@ -10,6 +10,12 @@
 	<li class="menu-header small text-uppercase">
 		<span class="menu-header-text">Main</span>
 	</li>
+	<li class="menu-item {{ 'peserta-cso/tim' == request()->path() ? 'active' : '' }}">
+		<a href="{{ url('peserta-cso/tim') }}" class="menu-link">
+			<i class="menu-icon tf-icons bx bxs-user-detail"></i>
+			<div data-i18n="Tim">Tim</div>
+		</a>
+	</li>
 
 	<li class="menu-header small text-uppercase">
 		<span class="menu-header-text">Pages</span>
