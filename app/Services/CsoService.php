@@ -22,6 +22,8 @@ class CsoService
         $cso = Cso::find($id);
         if ($cso) {
             $cso->team_name = $data['teamName'];
+            $cso->sekolah = $data['sekolah'];
+            $cso->no_wa = $data['no_wa'];
             $cso->member_1 = $data['member_1'];
             $cso->member_2 = $data['member_2'];
             $cso->member_3 = $data['member_3'];

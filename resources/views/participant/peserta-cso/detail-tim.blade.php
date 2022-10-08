@@ -25,6 +25,28 @@
 								/>
 							</div>
 							<div class="mb-3 col-md-6">
+								<label for="sekolah" class="form-label">Asal Sekolah</label>
+								<input
+									class="form-control"
+									type="text"
+									id="sekolah"
+									name="sekolah"
+                                    placeholder="masukkan nama sekolah"
+								/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="mb-3 col-md-6">
+								<label for="wa" class="form-label">No WhatsApp Ketua Tim</label>
+								<input
+									class="form-control"
+									type="text"
+									id="wa"
+									name="wa"
+                                    placeholder="masukkan nomor whatsapp ketua tim"
+								/>
+							</div>
+							<div class="mb-3 col-md-6">
 								<label for="buktiBayar" class="form-label">Bukti Pembayaran</label>
 								<input class="form-control" type="file" id="buktiBayar" name="buktiBayar">
 							</div>

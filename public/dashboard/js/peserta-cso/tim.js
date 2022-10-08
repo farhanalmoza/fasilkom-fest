@@ -21,9 +21,13 @@ const getDetailTim = {
             $("#member_1").val(response.member_1);
             $("#member_2").val(response.member_2);
             $('#member_3').val(response.member_3);
+            $('#sekolah').val(response.sekolah);
+            $('#wa').val(response.no_wa);
 
             // disable input
             $("#teamName").attr("disabled", true);
+            $('#sekolah').attr("disabled", true);
+            $('#wa').attr("disabled", true);
             $('#buktiBayar').attr("disabled", true);
             $("#member_1").attr("disabled", true);
             $('#kartuPelajar_1').attr("disabled", true);
@@ -75,6 +79,8 @@ function updateDetailTim() {
     $('#formDetailTim').validate({
         rules: {
             teamName: { required: true },
+            sekolah: { required: true },
+            wa: { required: true, number: true },
             buktiBayar: { required: true },
             member_1: { required: true },
             kartuPelajar_1: { required: true },
@@ -107,6 +113,8 @@ function updateDetailTim() {
                 member_1: $('#member_1').val(),
                 member_2: $('#member_2').val(),
                 member_3: $('#member_3').val(),
+                sekolah: $('#sekolah').val(),
+                wa: $('#wa').val(),
             }
             const buktiBayar = $('#buktiBayar')[0].files
             const kartuPelajar_1 = $('#kartuPelajar_1')[0].files
@@ -116,6 +124,8 @@ function updateDetailTim() {
             formData.append('member_1', data.member_1)
             formData.append('member_2', data.member_2)
             formData.append('member_3', data.member_3)
+            formData.append('sekolah', data.sekolah)
+            formData.append('wa', data.wa)
 
             for (let i = 0; i < buktiBayar.length; i++) {
                 const element = buktiBayar[i];
@@ -140,6 +150,8 @@ function updateDetailTim() {
     const putDataDetailTim = {
         set successData(response) {
             $('#teamName').removeClass('is-valid')
+            $('#sekolah').removeClass('is-valid')
+            $('#wa').removeClass('is-valid')
             $('#buktiBayar').removeClass('is-valid')
             $('#member_1').removeClass('is-valid')
             $('#kartuPelajar_1').removeClass('is-valid')

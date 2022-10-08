@@ -27,6 +27,8 @@ class CsoController extends Controller
             'member_1' => $request->input('member_1'),
             'member_2' => $request->input('member_2'),
             'member_3' => $request->input('member_3'),
+            'sekolah' => $request->input('sekolah'),
+            'no_wa' => $request->input('wa'),
         ];
         
         return $this->cso->updateDetailTim($data, $buktiBayar, $kartuPelajar_1, $kartuPelajar_2, $kartuPelajar_3, $id);

@@ -10,6 +10,8 @@ class Cso extends Model {
         'id',
         'user_id',
         'team_name',
+        'no_wa',
+        'sekolah',
         'member_1',
         'kartu_pelajar_1',
         'member_2',
