@@ -1,4 +1,4 @@
-@extends('participant.peserta-cso.components.template')
+@extends('participant.peserta-uiux.components.template')
 @section('title', 'Ganti Password')
 
 @section('content')

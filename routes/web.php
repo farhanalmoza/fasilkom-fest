@@ -15,6 +15,7 @@ use App\Http\Controllers\Participant\PesertaController;
 use App\Http\Controllers\Data\RoleController;
 use App\Http\Controllers\Data\SpeakerController;
 use App\Http\Controllers\Data\SponsorController;
+use App\Http\Controllers\Data\UiuxController;
 use App\Http\Controllers\Data\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -64,8 +65,15 @@ Route::group(['prefix' => 'peserta-cso', 'middleware' => ['auth']], function() {
     Route::get('/', [PesertaController::class, 'dashboardCso']);
     Route::get('/tim', [PesertaController::class, 'detailTimCso']);
 
-    Route::get('/pengaturan-akun', [PesertaController::class, 'pengaturanAkun']);
-    Route::get('/ganti-password', [PesertaController::class, 'gantiPassword']);
+    Route::get('/ganti-password', [PesertaController::class, 'gantiPasswordCso']);
+});
+
+// peserta UI/UX
+Route::group(['prefix' => 'peserta-uiux', 'middleware' => ['auth']], function() {
+    Route::get('/', [PesertaController::class, 'dashboardUiux']);
+    Route::get('/tim', [PesertaController::class, 'detailTimUiux']);
+
+    Route::get('/ganti-password', [PesertaController::class, 'gantiPasswordUiux']);
 });
 
 // data
@@ -88,6 +96,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/sponsor/{id}', [SponsorController::class, 'show']);
     Route::get('/role-peserta/{slug}', [RoleController::class, 'getBySlug']);
     Route::get('/tim-cso/{id}', [CsoController::class, 'show']);
+    Route::get('/tim-uiux/{id}', [UiuxController::class, 'show']);
 
     // update
     Route::group(['prefix' => 'update'], function() {
@@ -96,7 +105,8 @@ Route::group(['prefix' => 'data'], function() {
         Route::post('/lomba/{id}', [CompetitionController::class, 'update']);
         Route::post('/pembicara/{id}', [SpeakerController::class, 'update']);
         Route::post('/sponsor/{id}', [SponsorController::class, 'update']);
-        Route::post('/detail-tim/{id}', [CsoController::class, 'updateDetailTim']);
+        Route::post('/detail-tim-cso/{id}', [CsoController::class, 'updateDetailTim']);
+        Route::post('/detail-tim-uiux/{id}', [UiuxController::class, 'updateDetailTim']);
     });
 
     // delete

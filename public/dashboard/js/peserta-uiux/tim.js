@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 const getDetailTim = {
     set loadData(data) {
-        const URL = URL_DATA + "/tim-cso/" + data
+        const URL = URL_DATA + "/tim-uiux/" + data
         Functions.prototype.getRequest(getDetailTim, URL);
     },
     set successData(response) {
@@ -20,21 +20,18 @@ const getDetailTim = {
             $("#teamName").val(response.team_name);
             $("#member_1").val(response.member_1);
             $("#member_2").val(response.member_2);
-            $('#member_3').val(response.member_3);
-            $('#sekolah').val(response.sekolah);
+            $('#instansi').val(response.instansi);
             $('#wa').val(response.no_wa);
 
             // disable input
             $("#teamName").attr("disabled", true);
-            $('#sekolah').attr("disabled", true);
+            $('#instansi').attr("disabled", true);
             $('#wa').attr("disabled", true);
             $('#buktiBayar').attr("disabled", true);
             $("#member_1").attr("disabled", true);
-            $('#kartuPelajar_1').attr("disabled", true);
+            $('#identitas_1').attr("disabled", true);
             $("#member_2").attr("disabled", true);
-            $('#kartuPelajar_2').attr("disabled", true);
-            $("#member_3").attr("disabled", true);
-            $('#kartuPelajar_3').attr("disabled", true);
+            $('#identitas_2').attr("disabled", true);
         }
     }
 }
@@ -49,31 +46,22 @@ function updateDetailTim() {
             data.append('buktiBayar', file[0])
         }
     });
-    $("#kartuPelajar_1").on("change", function (e) {
+    $("#identitas_1").on("change", function (e) {
         e.preventDefault();
 
         if (Functions.prototype.validateFile($(this))) {
             const data = new FormData()
             const file = $(this)[0].files
-            data.append('kartuPelajar_1', file[0])
+            data.append('identitas_1', file[0])
         }
     });
-    $("#kartuPelajar_2").on("change", function (e) {
+    $("#identitas_2").on("change", function (e) {
         e.preventDefault();
 
         if (Functions.prototype.validateFile($(this))) {
             const data = new FormData()
             const file = $(this)[0].files
-            data.append('kartuPelajar_2', file[0])
-        }
-    });
-    $("#kartuPelajar_3").on("change", function (e) {
-        e.preventDefault();
-
-        if (Functions.prototype.validateFile($(this))) {
-            const data = new FormData()
-            const file = $(this)[0].files
-            data.append('kartuPelajar_3', file[0])
+            data.append('identitas_2', file[0])
         }
     });
     $('#formDetailTim').validate({
@@ -83,11 +71,9 @@ function updateDetailTim() {
             wa: { required: true, number: true },
             buktiBayar: { required: true },
             member_1: { required: true },
-            kartuPelajar_1: { required: true },
+            identitas_1: { required: true },
             member_2: { required: true },
-            kartuPelajar_2: { required: true },
-            member_3: { required: true },
-            kartuPelajar_3: { required: true },
+            identitas_2: { required: true },
         },
         errorClass: "is-invalid",
         validClass: "is-valid",
@@ -106,42 +92,35 @@ function updateDetailTim() {
         },
         submitHandler: function(form, e) {
             e.preventDefault()
-            const urlPut = URL_DATA + "/update/detail-tim-cso/" + $('#id').val()
+            const urlPut = URL_DATA + "/update/detail-tim-uiux/" + $('#id').val()
             const formData = new FormData()
             const data = {
                 teamName: $('#teamName').val(),
                 member_1: $('#member_1').val(),
                 member_2: $('#member_2').val(),
-                member_3: $('#member_3').val(),
-                sekolah: $('#sekolah').val(),
+                instansi: $('#instansi').val(),
                 wa: $('#wa').val(),
             }
             const buktiBayar = $('#buktiBayar')[0].files
-            const kartuPelajar_1 = $('#kartuPelajar_1')[0].files
-            const kartuPelajar_2 = $('#kartuPelajar_2')[0].files
-            const kartuPelajar_3 = $('#kartuPelajar_3')[0].files
+            const identitas_1 = $('#identitas_1')[0].files
+            const identitas_2 = $('#identitas_2')[0].files
             formData.append('teamName', data.teamName)
             formData.append('member_1', data.member_1)
             formData.append('member_2', data.member_2)
-            formData.append('member_3', data.member_3)
-            formData.append('sekolah', data.sekolah)
+            formData.append('instansi', data.instansi)
             formData.append('wa', data.wa)
 
             for (let i = 0; i < buktiBayar.length; i++) {
                 const element = buktiBayar[i];
                 formData.append('buktiBayar[]', element)
             }
-            for (let i = 0; i < kartuPelajar_1.length; i++) {
-                const element = kartuPelajar_1[i];
-                formData.append('kartuPelajar_1[]', element)
+            for (let i = 0; i < identitas_1.length; i++) {
+                const element = identitas_1[i];
+                formData.append('identitas_1[]', element)
             }
-            for (let i = 0; i < kartuPelajar_2.length; i++) {
-                const element = kartuPelajar_2[i];
-                formData.append('kartuPelajar_2[]', element)
-            }
-            for (let i = 0; i < kartuPelajar_3.length; i++) {
-                const element = kartuPelajar_3[i];
-                formData.append('kartuPelajar_3[]', element)
+            for (let i = 0; i < identitas_2.length; i++) {
+                const element = identitas_2[i];
+                formData.append('identitas_2[]', element)
             }
             
             Functions.prototype.uploadFile(urlPut, formData, 'post', putDataDetailTim)
@@ -150,15 +129,13 @@ function updateDetailTim() {
     const putDataDetailTim = {
         set successData(response) {
             $('#teamName').removeClass('is-valid')
-            $('#sekolah').removeClass('is-valid')
+            $('#instansi').removeClass('is-valid')
             $('#wa').removeClass('is-valid')
             $('#buktiBayar').removeClass('is-valid')
             $('#member_1').removeClass('is-valid')
-            $('#kartuPelajar_1').removeClass('is-valid')
+            $('#identitas_1').removeClass('is-valid')
             $('#member_2').removeClass('is-valid')
-            $('#kartuPelajar_2').removeClass('is-valid')
-            $('#member_3').removeClass('is-valid')
-            $('#kartuPelajar_3').removeClass('is-valid')
+            $('#identitas_2').removeClass('is-valid')
         },
     }
 }

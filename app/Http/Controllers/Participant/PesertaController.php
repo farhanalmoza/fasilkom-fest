@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Participant;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cso;
+use App\Models\Uiux;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -41,15 +42,22 @@ class PesertaController extends Controller
                 'user_id' => $user_id,
             ]);
         }
+        if ($role_id == 3) {
+            Uiux::create([
+                'user_id' => $user_id,
+            ]);
+        }
 
         return response(['message' => 'Akun Anda berhasil dibuat!']);
     }
 
+    // CSO
     public function dashboardCso() { return view('participant.peserta-cso.dashboard'); }
     public function detailTimCso() { return view('participant.peserta-cso.detail-tim'); }
+    public function gantiPasswordCso() { return view('participant.peserta-cso.ganti-password'); }
 
-    // pengaturan akun
-    public function pengaturanAkun() { return view('participant.peserta-cso.pengaturan-akun'); }
-    public function gantiPassword() { return view('participant.peserta-cso.ganti-password'); }
-    // end pengaturan akun
+    // UI/UX
+    public function dashboardUiux() { return view('participant.peserta-uiux.dashboard'); }
+    public function detailTimUiux() { return view('participant.peserta-uiux.detail-tim'); }
+    public function gantiPasswordUiux() { return view('participant.peserta-uiux.ganti-password'); }
 }

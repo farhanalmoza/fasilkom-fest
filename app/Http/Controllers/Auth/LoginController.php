@@ -55,6 +55,8 @@ class LoginController extends Controller
                 return redirect('admin');
             } else if ( auth()->user()->role_id == 2 ) {
                 return redirect('peserta-cso');
+            } elseif ( auth()->user()->role_id == 3 ) {
+                return redirect('peserta-uiux');
             }
 
             return $this->sendLoginResponse($request);
