@@ -14,6 +14,8 @@ class Cso extends Model {
         'kartu_pelajar_1',
         'member_2',
         'kartu_pelajar_2',
+        'member_3',
+        'kartu_pelajar_3',
         'bukti_bayar',
         'verified',
         'try_out',

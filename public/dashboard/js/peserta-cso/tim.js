@@ -20,6 +20,7 @@ const getDetailTim = {
             $("#teamName").val(response.team_name);
             $("#member_1").val(response.member_1);
             $("#member_2").val(response.member_2);
+            $('#member_3').val(response.member_3);
 
             // disable input
             $("#teamName").attr("disabled", true);
@@ -28,6 +29,8 @@ const getDetailTim = {
             $('#kartuPelajar_1').attr("disabled", true);
             $("#member_2").attr("disabled", true);
             $('#kartuPelajar_2').attr("disabled", true);
+            $("#member_3").attr("disabled", true);
+            $('#kartuPelajar_3').attr("disabled", true);
         }
     }
 }
@@ -60,6 +63,15 @@ function updateDetailTim() {
             data.append('kartuPelajar_2', file[0])
         }
     });
+    $("#kartuPelajar_3").on("change", function (e) {
+        e.preventDefault();
+
+        if (Functions.prototype.validateFile($(this))) {
+            const data = new FormData()
+            const file = $(this)[0].files
+            data.append('kartuPelajar_3', file[0])
+        }
+    });
     $('#formDetailTim').validate({
         rules: {
             teamName: { required: true },
@@ -68,6 +80,8 @@ function updateDetailTim() {
             kartuPelajar_1: { required: true },
             member_2: { required: true },
             kartuPelajar_2: { required: true },
+            member_3: { required: true },
+            kartuPelajar_3: { required: true },
         },
         errorClass: "is-invalid",
         validClass: "is-valid",
@@ -92,13 +106,16 @@ function updateDetailTim() {
                 teamName: $('#teamName').val(),
                 member_1: $('#member_1').val(),
                 member_2: $('#member_2').val(),
+                member_3: $('#member_3').val(),
             }
             const buktiBayar = $('#buktiBayar')[0].files
             const kartuPelajar_1 = $('#kartuPelajar_1')[0].files
             const kartuPelajar_2 = $('#kartuPelajar_2')[0].files
+            const kartuPelajar_3 = $('#kartuPelajar_3')[0].files
             formData.append('teamName', data.teamName)
             formData.append('member_1', data.member_1)
             formData.append('member_2', data.member_2)
+            formData.append('member_3', data.member_3)
 
             for (let i = 0; i < buktiBayar.length; i++) {
                 const element = buktiBayar[i];
@@ -112,6 +129,10 @@ function updateDetailTim() {
                 const element = kartuPelajar_2[i];
                 formData.append('kartuPelajar_2[]', element)
             }
+            for (let i = 0; i < kartuPelajar_3.length; i++) {
+                const element = kartuPelajar_3[i];
+                formData.append('kartuPelajar_3[]', element)
+            }
             
             Functions.prototype.uploadFile(urlPut, formData, 'post', putDataDetailTim)
         }
@@ -124,6 +145,8 @@ function updateDetailTim() {
             $('#kartuPelajar_1').removeClass('is-valid')
             $('#member_2').removeClass('is-valid')
             $('#kartuPelajar_2').removeClass('is-valid')
+            $('#member_3').removeClass('is-valid')
+            $('#kartuPelajar_3').removeClass('is-valid')
         },
     }
 }

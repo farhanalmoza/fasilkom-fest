@@ -17,13 +17,14 @@ class CsoService
         return null;
     }
 
-    public function updateDetailTim($data, $buktiBayar, $kartuPelajar_1, $kartuPelajar_2, $id)
+    public function updateDetailTim($data, $buktiBayar, $kartuPelajar_1, $kartuPelajar_2, $kartuPelajar_3, $id)
     {
         $cso = Cso::find($id);
         if ($cso) {
             $cso->team_name = $data['teamName'];
             $cso->member_1 = $data['member_1'];
             $cso->member_2 = $data['member_2'];
+            $cso->member_3 = $data['member_3'];
             $cso->verified = '1';
             if ($buktiBayar) {
                 $path = 'pictures/bukti_bayar/';
@@ -78,6 +79,24 @@ class CsoService
                 $optimizerChain = OptimizerChainFactory::create();
                 $optimizerChain->optimize(Storage::path('public/'.$path . $filename));
                 $cso->kartu_pelajar_2 = $path . $filename;
+            }
+            if ($kartuPelajar_3) {
+                $path = 'pictures/kartu_pelajar/';
+                if($cso->kartu_pelajar_3) {
+                    Storage::delete('public/'.$cso->kartu_pelajar_3);
+                }
+                foreach($kartuPelajar_3 as $file) {
+                    $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
+                    $image = Image::make($file->getRealPath());
+                    $image->resize(300, 300, function($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $image->stream();
+                    Storage::put('public/'.$path . $filename, $image);
+                }
+                $optimizerChain = OptimizerChainFactory::create();
+                $optimizerChain->optimize(Storage::path('public/'.$path . $filename));
+                $cso->kartu_pelajar_3 = $path . $filename;
             }
             $update = $cso->save();
         }

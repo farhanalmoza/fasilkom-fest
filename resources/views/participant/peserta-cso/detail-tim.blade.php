@@ -61,6 +61,22 @@
 								<input class="form-control" type="file" id="kartuPelajar_2" name="kartuPelajar_2">
 							</div>
 						</div>
+						<div class="row">
+							<div class="mb-3 col-md-6">
+								<label for="member_3" class="form-label">Nama Anggota 3</label>
+								<input
+									class="form-control"
+									type="text"
+									id="member_3"
+									name="member_3"
+                                    placeholder="masukkan nama tim"
+								/>
+							</div>
+							<div class="mb-3 col-md-6">
+								<label for="kartuPelajar_3" class="form-label">Kartu Pelajar 3</label>
+								<input class="form-control" type="file" id="kartuPelajar_3" name="kartuPelajar_3">
+							</div>
+						</div>
 						<div class="mt-2" id="tombolSubmit">
 							
 						</div>
