@@ -13,7 +13,7 @@
     <title>@yield('title') - Fasilkom Fest</title>
 
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="{{ asset('front') }}/images/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="{{ asset('front') }}/images/logofav.png" type="image/png">
 
     <!--====== Bootstrap css ======-->
     <link rel="stylesheet" href="{{ asset('front') }}/css/bootstrap.min.css">

@@ -72,6 +72,7 @@ Route::group(['prefix' => 'peserta-cso', 'middleware' => ['auth']], function() {
 Route::group(['prefix' => 'peserta-uiux', 'middleware' => ['auth']], function() {
     Route::get('/', [PesertaController::class, 'dashboardUiux']);
     Route::get('/tim', [PesertaController::class, 'detailTimUiux']);
+    Route::get('/karya', [PesertaController::class, 'karyaUiux']);
 
     Route::get('/ganti-password', [PesertaController::class, 'gantiPasswordUiux']);
 });

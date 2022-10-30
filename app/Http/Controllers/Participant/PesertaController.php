@@ -59,5 +59,6 @@ class PesertaController extends Controller
     // UI/UX
     public function dashboardUiux() { return view('participant.peserta-uiux.dashboard'); }
     public function detailTimUiux() { return view('participant.peserta-uiux.detail-tim'); }
+    public function karyaUiux() { return view('participant.peserta-uiux.karya'); }
     public function gantiPasswordUiux() { return view('participant.peserta-uiux.ganti-password'); }
 }
