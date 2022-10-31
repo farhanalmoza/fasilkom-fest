@@ -17,12 +17,12 @@
             <li class="nav-item">
                 <a class="page-scroll" href="#competition">Competitions</a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="page-scroll" href="#team">Speakers</a>
             </li>
             <li class="nav-item">
                 <a class="page-scroll" href="#pricing">Pricing</a>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a class="page-scroll" href="#contact">Contact</a>
             </li>

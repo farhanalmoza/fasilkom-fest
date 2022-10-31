@@ -18,6 +18,7 @@ class UiuxController extends Controller
     {
         // variabel
         $buktiBayar = $request->file('buktiBayar');
+        $orisinalitas = $request->file('orisinalitas');
         $identitas_1 = $request->file('identitas_1');
         $identitas_2 = $request->file('identitas_2');
         
@@ -29,6 +30,6 @@ class UiuxController extends Controller
             'no_wa' => $request->input('wa'),
         ];
         
-        return $this->uiux->updateDetailTim($data, $buktiBayar, $identitas_1, $identitas_2, $id);
+        return $this->uiux->updateDetailTim($data, $buktiBayar, $orisinalitas, $identitas_1, $identitas_2, $id);
     }
 }

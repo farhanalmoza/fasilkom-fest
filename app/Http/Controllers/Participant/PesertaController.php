@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Participant;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bpc;
 use App\Models\Cso;
 use App\Models\Uiux;
 use App\Models\User;
@@ -44,6 +45,11 @@ class PesertaController extends Controller
         }
         if ($role_id == 3) {
             Uiux::create([
+                'user_id' => $user_id,
+            ]);
+        }
+        if ($role_id == 4) {
+            Bpc::create([
                 'user_id' => $user_id,
             ]);
         }

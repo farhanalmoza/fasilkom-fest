@@ -114,7 +114,7 @@
 
 <!--====== FEATURES PART START ======-->
 
-<section id="features" class="features-area pt-115 pb-130 gray-bg">
+{{-- <section id="features" class="features-area pt-115 pb-130 gray-bg">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -199,13 +199,13 @@
             </div>
         </div> <!-- row -->
     </div> <!-- container -->
-</section>
+</section> --}}
 
 <!--====== FEATURES PART ENDS ======-->
 
 <!--====== TEAM PART START ======-->
 
-<section id="team" class="team-area pt-115 pb-130">
+{{-- <section id="team" class="team-area pt-115 pb-130">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -327,13 +327,13 @@
             </div>
         </div> <!-- row -->
     </div> <!-- container -->
-</section>
+</section> --}}
 
 <!--====== TEAM PART ENDS ======-->
 
 <!--====== PRICING PART START ======-->
 
-<section id="pricing" class="pricing-area pt-115 pb-200 gray-bg">
+{{-- <section id="pricing" class="pricing-area pt-115 pb-200 gray-bg">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -418,7 +418,7 @@
             </div>
         </div> <!-- row -->
     </div> <!-- container -->
-</section>
+</section> --}}
 
 <!--====== PRICING PART ENDS ======-->
 @endsection

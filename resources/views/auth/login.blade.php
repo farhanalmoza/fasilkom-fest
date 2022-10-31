@@ -66,13 +66,6 @@
                 <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
               </div>
             </form>
-
-            <p class="text-center">
-              <span>Belum memiliki akun?</span>
-              <a href="{{ route('register') }}">
-                <span>Buat akun sekarang</span>
-              </a>
-            </p>
           </div>
         </div>
         <!-- /Register -->

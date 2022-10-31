@@ -17,7 +17,7 @@ class UiuxService
         return null;
     }
 
-    public function updateDetailTim($data, $buktiBayar, $identitas_1, $identitas_2, $id)
+    public function updateDetailTim($data, $buktiBayar, $orisinalitas, $identitas_1, $identitas_2, $id)
     {
         $uiux = Uiux::find($id);
         if ($uiux) {
@@ -44,6 +44,24 @@ class UiuxService
                 $optimizerChain = OptimizerChainFactory::create();
                 $optimizerChain->optimize(Storage::path('public/'.$path . $filename));
                 $uiux->bukti_bayar = $path . $filename;
+            }
+            if ($orisinalitas) {
+                $path = 'pictures/orisinalitas/';
+                if($uiux->orisinalitas) {
+                    Storage::delete('public/'.$uiux->orisinalitas);
+                }
+                foreach($orisinalitas as $file) {
+                    $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
+                    $image = Image::make($file->getRealPath());
+                    $image->resize(300, 300, function($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $image->stream();
+                    Storage::put('public/'.$path . $filename, $image);
+                }
+                $optimizerChain = OptimizerChainFactory::create();
+                $optimizerChain->optimize(Storage::path('public/'.$path . $filename));
+                $uiux->orisinalitas = $path . $filename;
             }
             if ($identitas_1) {
                 $path = 'pictures/identitas/';

@@ -27,6 +27,7 @@ const getDetailTim = {
             $("#teamName").attr("disabled", true);
             $('#instansi').attr("disabled", true);
             $('#wa').attr("disabled", true);
+            $('#orisinalitas').attr("disabled", true);
             $('#buktiBayar').attr("disabled", true);
             $("#member_1").attr("disabled", true);
             $('#identitas_1').attr("disabled", true);
@@ -44,6 +45,15 @@ function updateDetailTim() {
             const data = new FormData()
             const file = $(this)[0].files
             data.append('buktiBayar', file[0])
+        }
+    });
+    $("#orisinalitas").on("change", function (e) {
+        e.preventDefault();
+
+        if (Functions.prototype.validateFile($(this))) {
+            const data = new FormData()
+            const file = $(this)[0].files
+            data.append('orisinalitas', file[0])
         }
     });
     $("#identitas_1").on("change", function (e) {
@@ -70,6 +80,7 @@ function updateDetailTim() {
             sekolah: { required: true },
             wa: { required: true, number: true },
             buktiBayar: { required: true },
+            orisinalitas: { required: true },
             member_1: { required: true },
             identitas_1: { required: true },
             member_2: { required: true },
@@ -102,6 +113,7 @@ function updateDetailTim() {
                 wa: $('#wa').val(),
             }
             const buktiBayar = $('#buktiBayar')[0].files
+            const orisinalitas = $('#orisinalitas')[0].files
             const identitas_1 = $('#identitas_1')[0].files
             const identitas_2 = $('#identitas_2')[0].files
             formData.append('teamName', data.teamName)
@@ -113,6 +125,10 @@ function updateDetailTim() {
             for (let i = 0; i < buktiBayar.length; i++) {
                 const element = buktiBayar[i];
                 formData.append('buktiBayar[]', element)
+            }
+            for (let i = 0; i < orisinalitas.length; i++) {
+                const element = orisinalitas[i];
+                formData.append('orisinalitas[]', element)
             }
             for (let i = 0; i < identitas_1.length; i++) {
                 const element = identitas_1[i];
@@ -132,6 +148,7 @@ function updateDetailTim() {
             $('#instansi').removeClass('is-valid')
             $('#wa').removeClass('is-valid')
             $('#buktiBayar').removeClass('is-valid')
+            $('#orisinalitas').removeClass('is-valid')
             $('#member_1').removeClass('is-valid')
             $('#identitas_1').removeClass('is-valid')
             $('#member_2').removeClass('is-valid')

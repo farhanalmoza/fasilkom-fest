@@ -22,22 +22,20 @@
 			<div data-i18n="Pengumpulan Karya">Pengumpulan Karya</div>
 		</a>
 	</li>
+	<li class="menu-item {{ 'peserta-uiux/karya' == request()->path() ? 'active' : '' }}">
+		<a href="{{ url('peserta-uiux/karya') }}" class="menu-link">
+			<i class="menu-icon tf-icons bx bx-task"></i>
+			<div data-i18n="Pengumpulan Karya">Pengumpulan Karya</div>
+		</a>
+	</li>
 
 	<li class="menu-header small text-uppercase">
-		<span class="menu-header-text">Pages</span>
+		<span class="menu-header-text">Pengaturan</span>
 	</li>
-	<li class="menu-item {{ 'peserta-uiux/pengaturan-akun' == request()->path()
-							|| 'peserta-uiux/ganti-password' == request()->path() ? 'open' : '' }}">
-		<a href="javascript:void(0);" class="menu-link menu-toggle">
+	<li class="menu-item {{ 'peserta-uiux/ganti-password' == request()->path() ? 'active' : '' }}">
+		<a href="{{ url('peserta-uiux/ganti-password') }}" class="menu-link">
 			<i class="menu-icon tf-icons bx bx-dock-top"></i>
-			<div data-i18n="Account Settings">Pengaturan Akun</div>
+			<div data-i18n="Account">Ganti Password</div>
 		</a>
-		<ul class="menu-sub">
-			<li class="menu-item {{ 'peserta-uiux/ganti-password' == request()->path() ? 'active' : '' }}">
-				<a href="{{ url('peserta-uiux/ganti-password') }}" class="menu-link">
-					<div data-i18n="Account">Ganti Password</div>
-				</a>
-			</li>
-		</ul>
 	</li>
 </ul>

@@ -37,14 +37,8 @@
 						</div>
 						<div class="row">
 							<div class="mb-3 col-md-6">
-								<label for="wa" class="form-label">No WhatsApp Ketua Tim</label>
-								<input
-									class="form-control"
-									type="text"
-									id="wa"
-									name="wa"
-                                    placeholder="masukkan nomor whatsapp ketua tim"
-								/>
+								<label for="orisinalitas" class="form-label">Surat Orisinalitas</label>
+								<input class="form-control" type="file" id="orisinalitas" name="orisinalitas">
 							</div>
 							<div class="mb-3 col-md-6">
 								<label for="buktiBayar" class="form-label">Bukti Pembayaran</label>
@@ -52,7 +46,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="mb-3 col-md-6">
+							<div class="mb-3 col-md-4">
 								<label for="member_1" class="form-label">Nama Anggota 1</label>
 								<input
 									class="form-control"
@@ -62,13 +56,23 @@
                                     placeholder="masukkan nama tim"
 								/>
 							</div>
-							<div class="mb-3 col-md-6">
+							<div class="mb-3 col-md-4">
 								<label for="identitas_1" class="form-label">Kartu Identitas 1</label>
 								<input class="form-control" type="file" id="identitas_1" name="identitas_1">
 							</div>
+							<div class="mb-3 col-md-4">
+								<label for="wa" class="form-label">No WhatsApp Anggota 1</label>
+								<input
+									class="form-control"
+									type="text"
+									id="wa"
+									name="wa"
+                                    placeholder="masukkan nomor whatsapp anggota 1"
+								/>
+							</div>
 						</div>
 						<div class="row">
-							<div class="mb-3 col-md-6">
+							<div class="mb-3 col-md-4">
 								<label for="member_2" class="form-label">Nama Anggota 2</label>
 								<input
 									class="form-control"
@@ -78,7 +82,7 @@
                                     placeholder="masukkan nama tim"
 								/>
 							</div>
-							<div class="mb-3 col-md-6">
+							<div class="mb-3 col-md-4">
 								<label for="identitas_2" class="form-label">Kartu Identitas 2</label>
 								<input class="form-control" type="file" id="identitas_2" name="identitas_2">
 							</div>
