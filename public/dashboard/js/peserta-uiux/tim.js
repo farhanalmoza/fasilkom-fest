@@ -161,10 +161,20 @@ function updateDetailTim() {
 const getPenyisihan = {
     set loadData(data) {
         const URL = URL_DATA + "/penyisihan/" + data
-        Functions.prototype.getRequest(getDetailTim, URL);
+        Functions.prototype.getRequest(getPenyisihan, URL);
     },
     set successData(response) {
-        
+        // jika ada data
+        if (response) {
+            $('#screen').val(response.screen)
+            $('#proposal').val(response.proposal)
+            // disable form
+            $('#screen').attr("disabled", true);
+            $('#proposal').attr("disabled", true);
+
+            // hilangkan tombol submit
+            $('#btnSubmit').hide()
+        }
     }
 }
 
@@ -191,7 +201,7 @@ function addPenyisihan() {
         },
         submitHandler: function(form, e) {
             e.preventDefault()
-            const urlPost = URL_DATA + "/add/penyisihan"
+            const urlPost = URL_DATA + "/add/penyisihan-uiux"
             const data = {
                 team_id: team_id,
                 screen: $('#screen').val(),

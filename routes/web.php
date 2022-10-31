@@ -100,6 +100,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/role-peserta/{slug}', [RoleController::class, 'getBySlug']);
     Route::get('/tim-cso/{id}', [CsoController::class, 'show']);
     Route::get('/tim-uiux/{id}', [UiuxController::class, 'show']);
+    Route::get('/penyisihan/{team_id}', [KaryaUiuxController::class, 'show']);
 
     // update
     Route::group(['prefix' => 'update'], function() {
@@ -129,7 +130,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::post('/mata-lomba', [CompetitionController::class, 'store']);
         Route::post('/pembicara', [SpeakerController::class, 'store']);
         Route::post('/sponsor', [SponsorController::class, 'store']);
-        Route::post('/penyisihan', [KaryaUiuxController::class, 'store']);
+        Route::post('/penyisihan-uiux', [KaryaUiuxController::class, 'store']);
     });
 
     // pengaturan

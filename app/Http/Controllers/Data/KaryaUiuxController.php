@@ -21,4 +21,9 @@ class KaryaUiuxController extends Controller
 
         return $this->karya->addPenyisihan($data);
     }
+
+    public function show($team_id)
+    {
+        return $this->karya->getPenyisihan($team_id);
+    }
 }

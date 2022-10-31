@@ -36,7 +36,7 @@
 							</div>
 						</div>
 						<div class="mt-2" id="tombolSubmit">
-							<button type="submit" class="btn btn-primary me-2">Simpan</button>
+							<button type="submit" class="btn btn-primary me-2" id="btnSubmit">Unggah</button>
 						</div>
 					</form>
 				</div>
@@ -50,7 +50,7 @@
 @section('js')
 	<script>
 		$(document).ready(function () {
-			// getPenyisihan.loadData = team_id
+			getPenyisihan.loadData = team_id
 		});
 	</script>
 	<script src="{{ asset('dashboard') }}/js/peserta-uiux/tim.js"></script>
