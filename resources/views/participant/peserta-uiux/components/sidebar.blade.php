@@ -16,16 +16,16 @@
 			<div data-i18n="Tim">Tim</div>
 		</a>
 	</li>
-	<li class="menu-item {{ 'peserta-uiux/karya' == request()->path() ? 'active' : '' }}">
-		<a href="{{ url('peserta-uiux/karya') }}" class="menu-link">
-			<i class="menu-icon tf-icons bx bx-task"></i>
-			<div data-i18n="Pengumpulan Karya">Pengumpulan Karya</div>
+	<li class="menu-item {{ 'peserta-uiux/penyisihan' == request()->path() ? 'active' : '' }}">
+		<a href="{{ url('peserta-uiux/penyisihan') }}" class="menu-link">
+			<i class="menu-icon tf-icons bx bx-notepad"></i>
+			<div data-i18n="Penyisihan">Penyisihan</div>
 		</a>
 	</li>
-	<li class="menu-item {{ 'peserta-uiux/karya' == request()->path() ? 'active' : '' }}">
-		<a href="{{ url('peserta-uiux/karya') }}" class="menu-link">
-			<i class="menu-icon tf-icons bx bx-task"></i>
-			<div data-i18n="Pengumpulan Karya">Pengumpulan Karya</div>
+	<li class="menu-item {{ 'peserta-uiux/final' == request()->path() ? 'active' : '' }}">
+		<a href="{{ url('peserta-uiux/final') }}" class="menu-link">
+			<i class="menu-icon tf-icons bx bxs-trophy"></i>
+			<div data-i18n="Final">Final</div>
 		</a>
 	</li>
 

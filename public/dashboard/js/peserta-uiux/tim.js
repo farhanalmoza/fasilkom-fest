@@ -1,5 +1,6 @@
 $(document).ready(function() {
     updateDetailTim();
+    addPenyisihan();
 })
 
 const getDetailTim = {
@@ -153,6 +154,56 @@ function updateDetailTim() {
             $('#identitas_1').removeClass('is-valid')
             $('#member_2').removeClass('is-valid')
             $('#identitas_2').removeClass('is-valid')
+        },
+    }
+}
+
+const getPenyisihan = {
+    set loadData(data) {
+        const URL = URL_DATA + "/penyisihan/" + data
+        Functions.prototype.getRequest(getDetailTim, URL);
+    },
+    set successData(response) {
+        
+    }
+}
+
+function addPenyisihan() {
+    $('#formPenyisihan').validate({
+        rules: {
+            screen: { required: true },
+            proposal: { required: true },
+        },
+        errorClass: "is-invalid",
+        validClass: "is-valid",
+        errorElement: "small",
+        errorPlacement: function errorPlacement(error, element) {
+            error.addClass('invalid-feedback');
+            error.insertAfter(element);
+        },
+        // eslint-disable-next-line object-shorthand
+        highlight: function highlight(element) {
+            $(element).addClass('is-invalid').removeClass('is-valid');
+        },
+        // eslint-disable-next-line object-shorthand
+        unhighlight: function unhighlight(element) {
+            $(element).addClass('is-valid').removeClass('is-invalid');
+        },
+        submitHandler: function(form, e) {
+            e.preventDefault()
+            const urlPost = URL_DATA + "/add/penyisihan"
+            const data = {
+                team_id: team_id,
+                screen: $('#screen').val(),
+                proposal: $('#proposal').val(),
+            }
+            Functions.prototype.postRequest(postPenyisihan, urlPost, data)
+        }
+    })
+    const postPenyisihan = {
+        set successData(response) {
+            $('#screen').removeClass('is-valid')
+            $('#proposal').removeClass('is-valid')
         },
     }
 }

@@ -149,6 +149,8 @@
       const URL_DATA = '{{ url("data") }}'
       const email = '{{ auth()->user()->email }}'
       const user_id = '{{ auth()->user()->id }}'
+      // get team id in table uiux where user_id = user_id
+      const team_id = '{{ $team_id }}'
     </script>
     <script src="{{ asset('dashboard') }}/js/functions.js"></script>
 

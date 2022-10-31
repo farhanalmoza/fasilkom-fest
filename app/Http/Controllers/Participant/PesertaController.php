@@ -65,6 +65,17 @@ class PesertaController extends Controller
     // UI/UX
     public function dashboardUiux() { return view('participant.peserta-uiux.dashboard'); }
     public function detailTimUiux() { return view('participant.peserta-uiux.detail-tim'); }
-    public function karyaUiux() { return view('participant.peserta-uiux.karya'); }
+    public function penyisihanUiux() {
+        $uiux = Uiux::where('user_id', Auth::user()->id)->first();
+        $team_id = $uiux->id;
+        return view('participant.peserta-uiux.penyisihan', compact('team_id'));
+    }
+    public function finalUiux() {
+        $uiux = Uiux::where('user_id', Auth::user()->id)->first();
+        if ($uiux->finalis == 1) {
+            return view('participant.peserta-uiux.final');
+        }
+        return view('participant.peserta-uiux.final');
+    }
     public function gantiPasswordUiux() { return view('participant.peserta-uiux.ganti-password'); }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\Data\CategoryController;
 use App\Http\Controllers\Data\CompetitionController;
 use App\Http\Controllers\Data\CsoController;
 use App\Http\Controllers\Data\InformationController;
+use App\Http\Controllers\Data\KaryaUiuxController;
 use App\Http\Controllers\Data\PanitiaController;
 use App\Http\Controllers\Participant\PesertaController;
 use App\Http\Controllers\Data\RoleController;
@@ -72,7 +73,8 @@ Route::group(['prefix' => 'peserta-cso', 'middleware' => ['auth']], function() {
 Route::group(['prefix' => 'peserta-uiux', 'middleware' => ['auth']], function() {
     Route::get('/', [PesertaController::class, 'dashboardUiux']);
     Route::get('/tim', [PesertaController::class, 'detailTimUiux']);
-    Route::get('/karya', [PesertaController::class, 'karyaUiux']);
+    Route::get('/penyisihan', [PesertaController::class, 'penyisihanUiux']);
+    Route::get('/final', [PesertaController::class, 'finalUiux']);
 
     Route::get('/ganti-password', [PesertaController::class, 'gantiPasswordUiux']);
 });
@@ -127,6 +129,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::post('/mata-lomba', [CompetitionController::class, 'store']);
         Route::post('/pembicara', [SpeakerController::class, 'store']);
         Route::post('/sponsor', [SponsorController::class, 'store']);
+        Route::post('/penyisihan', [KaryaUiuxController::class, 'store']);
     });
 
     // pengaturan

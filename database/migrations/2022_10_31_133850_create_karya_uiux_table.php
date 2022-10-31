@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('karya_uiux', function (Blueprint $table) {
             $table->id();
             $table->foreignId('team_id')->references('id')->on('uiux')->onDelete('cascade');
-            $table->string('super');
-            $table->string('proposal');
-            $table->string('desain');
+            $table->string('screen')->nullable();
+            $table->string('proposal')->nullable();
+            $table->string('demo')->nullable();
+            $table->string('prototype')->nullable();
             $table->timestamps();
         });
     }

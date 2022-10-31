@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class KaryaUiux extends Model {
-    protected $table = 'uiux';
+    protected $table = 'karya_uiux';
     protected $fillable = [
         'id',
         'team_id',
-        'super',
+        'screen',
         'proposal',
-        'desain',
+        'demo',
+        'prototype',
         'created_at',
         'updated_at',
     ];
