@@ -92,4 +92,13 @@ class PesertaController extends Controller
         }
         return redirect('/peserta-bpc');
     }
+    public function finalBpc()
+    {
+        $bpc = Bpc::where('user_id', Auth::user()->id)->first();
+        $team_id = $bpc->id;
+        if ($bpc->finalis == 2) {
+            return view('participant.peserta-bpc.final', compact('team_id'));
+        }
+        return redirect('/peserta-bpc');
+    }
 }

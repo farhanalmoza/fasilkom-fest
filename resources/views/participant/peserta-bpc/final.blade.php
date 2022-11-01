@@ -1,4 +1,4 @@
-@extends('participant.peserta-uiux.components.template')
+@extends('participant.peserta-bpc.components.template')
 @section('title', 'Final')
 
 @section('content')
@@ -15,28 +15,12 @@
 						<input type="hidden" name="id" id="id">
 						<div class="row">
 							<div class="mb-3 col-md-6">
-								<label for="demo" class="form-label">Link Video Demo</label>
-								<input
-									class="form-control"
-									type="text"
-									id="demo"
-									name="demo"
-                                    placeholder="masukkan link google drive video demo"
-								/>
-							</div>
-							<div class="mb-3 col-md-6">
-								<label for="prototype" class="form-label">Link Prototype (figma)</label>
-								<input
-									class="form-control"
-									type="text"
-									id="prototype"
-									name="prototype"
-                                    placeholder="masukkan link google drive prototype"
-								/>
+								<label for="ppt" class="form-label">PPT Presentasi</label>
+								<input class="form-control" type="file" id="ppt" name="ppt">
 							</div>
 						</div>
 						<div class="mt-2" id="tombolSubmit">
-							<button type="submit" class="btn btn-primary me-2" id="btnSubmit">Unggah</button>
+							<button type="submit" class="btn btn-primary me-2" id="submitPPT">Unggah</button>
 						</div>
 					</form>
 				</div>
@@ -52,8 +36,8 @@
 		// get team id in table uiux where user_id = user_id
 		const team_id = '{{ $team_id }}'
 		$(document).ready(function () {
-			getPenyisihan.loadData = team_id
+			getDetailTim.loadData = user_id
 		});
 	</script>
-	<script src="{{ asset('dashboard') }}/js/peserta-uiux/tim.js"></script>
+	<script src="{{ asset('dashboard') }}/js/peserta-bpc/tim.js"></script>
 @endsection

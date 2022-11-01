@@ -42,4 +42,12 @@ class BpcController extends Controller
         
         return $this->bpc->updateTahap2($proposal, $id);
     }
+
+    public function updateFinal(Request $request, $id)
+    {
+        // variabel
+        $ppt = $request->file('ppt');
+        
+        return $this->bpc->updateFinal($ppt, $id);
+    }
 }

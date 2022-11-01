@@ -126,6 +126,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::put('/karya-uiux/{team_id}', [KaryaUiuxController::class, 'update']);
         Route::post('/detail-tim-bpc/{id}', [BpcController::class, 'updateDetailTim']);
         Route::post('/tahap-2-bpc/{team_id}', [BpcController::class, 'updateTahap2']);
+        Route::post('/final-bpc/{team_id}', [BpcController::class, 'updateFinal']);
     });
 
     // delete

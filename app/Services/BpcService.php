@@ -139,9 +139,33 @@ class BpcService
             $update = $bpc->save();
         }
         if($update) {
-            return response(['message' => 'Pendaftaran tim berhasil diunggah!']);
+            return response(['message' => 'Proposal tim berhasil diunggah!']);
         } else {
-            return response(['message' => 'Pendaftaran tim gagal diunggah!'], 500);
+            return response(['message' => 'Proposal tim gagal diunggah!'], 500);
+        }
+    }
+
+    public function updateFinal($ppt, $id)
+    {
+        $bpc = Bpc::find($id);
+        if ($bpc) {
+            if ($ppt) {
+                $path = 'documents/ppt-bpc/';
+                if($bpc->ppt) {
+                    Storage::delete('public/'.$bpc->ppt);
+                }
+                foreach($ppt as $file) {
+                    $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
+                    $file->storeAs('public/'.$path, $filename);
+                }
+                $bpc->ppt = $path . $filename;
+            }
+            $update = $bpc->save();
+        }
+        if($update) {
+            return response(['message' => 'PPT final berhasil diunggah!']);
+        } else {
+            return response(['message' => 'PPT final gagal diunggah!'], 500);
         }
     }
 }

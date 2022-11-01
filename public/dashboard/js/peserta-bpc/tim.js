@@ -1,7 +1,7 @@
 $(document).ready(function() {
     updateDetailTim();
     uploadProposal();
-    addFinalis();
+    uploadPPTFinal();
 })
 
 const getDetailTim = {
@@ -44,6 +44,12 @@ const getDetailTim = {
             $('#proposal').attr('disabled', true)
             // hide button upload
             $('#submitProposal').hide()
+        }
+
+        if (response.ppt) {
+            $('#ppt').attr('disabled', true)
+            // hide button upload
+            $('#submitPPT').hide()
         }
     }
 }
@@ -236,11 +242,22 @@ function uploadProposal() {
     }
 }
 
-function addFinalis() {
+function uploadPPTFinal() {
+    $("#ppt").on("change", function (e) {
+        e.preventDefault();
+
+        if (Functions.prototype.validateFile($(this))) {
+            const data = new FormData()
+            const file = $(this)[0].files
+            data.append('ppt', file[0])
+        }
+    });
     $('#formFinal').validate({
         rules: {
-            demo: { required: true },
-            prototype: { required: true },
+            ppt: {
+                required: true,
+                extension: "pptx"
+            },
         },
         errorClass: "is-invalid",
         validClass: "is-valid",
@@ -259,19 +276,24 @@ function addFinalis() {
         },
         submitHandler: function(form, e) {
             e.preventDefault()
-            const urlPut = URL_DATA + "/update/karya-uiux/" + team_id
+            const urlPut = URL_DATA + "/update/final-bpc/" + team_id
+            const formData = new FormData()
             const data = {
-                demo: $('#demo').val(),
-                prototype: $('#prototype').val(),
+                ppt: $('#ppt').val(),
             }
-            Functions.prototype.putRequest(putKaryaUiux, urlPut, data)
-            getPenyisihan.loadData = team_id
+            const ppt = $('#ppt')[0].files
+            
+            for (let i = 0; i < ppt.length; i++) {
+                const element = ppt[i];
+                formData.append('ppt[]', element)
+            }
+            Functions.prototype.uploadFile(urlPut, formData, 'post', putDataPpt)
+            getDetailTim.loadData = user_id
         }
     })
-    const putKaryaUiux = {
+    const putDataPpt = {
         set successData(response) {
-            $('#demo').removeClass('is-valid')
-            $('#prototype').removeClass('is-valid')
+            $('#ppt').removeClass('is-valid')
         },
     }
 }
