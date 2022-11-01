@@ -80,4 +80,8 @@ class PesertaController extends Controller
         return redirect('/peserta-uiux');
     }
     public function gantiPasswordUiux() { return view('participant.peserta-uiux.ganti-password'); }
+
+    // BPC
+    public function dashboardBpc() { return view('participant.peserta-bpc.dashboard'); }
+    public function detailTimBpc() { return view('participant.peserta-bpc.detail-tim'); }
 }

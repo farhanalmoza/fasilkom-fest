@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 const getDetailTim = {
     set loadData(data) {
-        const URL = URL_DATA + "/tim-uiux/" + data
+        const URL = URL_DATA + "/tim-bpc/" + data
         Functions.prototype.getRequest(getDetailTim, URL);
     },
     set successData(response) {
@@ -22,6 +22,7 @@ const getDetailTim = {
             $("#teamName").val(response.team_name);
             $("#member_1").val(response.member_1);
             $("#member_2").val(response.member_2);
+            $("#member_3").val(response.member_3);
             $('#instansi').val(response.instansi);
             $('#wa').val(response.no_wa);
 
@@ -29,12 +30,14 @@ const getDetailTim = {
             $("#teamName").attr("disabled", true);
             $('#instansi').attr("disabled", true);
             $('#wa').attr("disabled", true);
-            $('#orisinalitas').attr("disabled", true);
+            $('#bmc').attr("disabled", true);
             $('#buktiBayar').attr("disabled", true);
             $("#member_1").attr("disabled", true);
             $('#identitas_1').attr("disabled", true);
             $("#member_2").attr("disabled", true);
             $('#identitas_2').attr("disabled", true);
+            $("#member_3").attr("disabled", true);
+            $('#identitas_3').attr("disabled", true);
         }
     }
 }
@@ -49,13 +52,13 @@ function updateDetailTim() {
             data.append('buktiBayar', file[0])
         }
     });
-    $("#orisinalitas").on("change", function (e) {
+    $("#bmc").on("change", function (e) {
         e.preventDefault();
 
         if (Functions.prototype.validateFile($(this))) {
             const data = new FormData()
             const file = $(this)[0].files
-            data.append('orisinalitas', file[0])
+            data.append('bmc', file[0])
         }
     });
     $("#identitas_1").on("change", function (e) {
@@ -82,11 +85,13 @@ function updateDetailTim() {
             sekolah: { required: true },
             wa: { required: true, number: true },
             buktiBayar: { required: true },
-            orisinalitas: { required: true },
+            bmc: { required: true },
             member_1: { required: true },
             identitas_1: { required: true },
             member_2: { required: true },
             identitas_2: { required: true },
+            member_3: { required: true },
+            identitas_3: { required: true },
         },
         errorClass: "is-invalid",
         validClass: "is-valid",
@@ -105,22 +110,25 @@ function updateDetailTim() {
         },
         submitHandler: function(form, e) {
             e.preventDefault()
-            const urlPut = URL_DATA + "/update/detail-tim-uiux/" + $('#id').val()
+            const urlPut = URL_DATA + "/update/detail-tim-bpc/" + $('#id').val()
             const formData = new FormData()
             const data = {
                 teamName: $('#teamName').val(),
                 member_1: $('#member_1').val(),
                 member_2: $('#member_2').val(),
+                member_3: $('#member_3').val(),
                 instansi: $('#instansi').val(),
                 wa: $('#wa').val(),
             }
             const buktiBayar = $('#buktiBayar')[0].files
-            const orisinalitas = $('#orisinalitas')[0].files
+            const bmc = $('#bmc')[0].files
             const identitas_1 = $('#identitas_1')[0].files
             const identitas_2 = $('#identitas_2')[0].files
+            const identitas_3 = $('#identitas_3')[0].files
             formData.append('teamName', data.teamName)
             formData.append('member_1', data.member_1)
             formData.append('member_2', data.member_2)
+            formData.append('member_3', data.member_3)
             formData.append('instansi', data.instansi)
             formData.append('wa', data.wa)
 
@@ -128,9 +136,9 @@ function updateDetailTim() {
                 const element = buktiBayar[i];
                 formData.append('buktiBayar[]', element)
             }
-            for (let i = 0; i < orisinalitas.length; i++) {
-                const element = orisinalitas[i];
-                formData.append('orisinalitas[]', element)
+            for (let i = 0; i < bmc.length; i++) {
+                const element = bmc[i];
+                formData.append('bmc[]', element)
             }
             for (let i = 0; i < identitas_1.length; i++) {
                 const element = identitas_1[i];
@@ -140,8 +148,13 @@ function updateDetailTim() {
                 const element = identitas_2[i];
                 formData.append('identitas_2[]', element)
             }
+            for (let i = 0; i < identitas_3.length; i++) {
+                const element = identitas_3[i];
+                formData.append('identitas_3[]', element)
+            }
             
             Functions.prototype.uploadFile(urlPut, formData, 'post', putDataDetailTim)
+            getDetailTim.loadData = user_id
         }
     })
     const putDataDetailTim = {
@@ -150,11 +163,13 @@ function updateDetailTim() {
             $('#instansi').removeClass('is-valid')
             $('#wa').removeClass('is-valid')
             $('#buktiBayar').removeClass('is-valid')
-            $('#orisinalitas').removeClass('is-valid')
+            $('#bmc').removeClass('is-valid')
             $('#member_1').removeClass('is-valid')
             $('#identitas_1').removeClass('is-valid')
             $('#member_2').removeClass('is-valid')
             $('#identitas_2').removeClass('is-valid')
+            $('#member_3').removeClass('is-valid')
+            $('#identitas_3').removeClass('is-valid')
         },
     }
 }

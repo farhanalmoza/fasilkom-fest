@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Data\BpcController;
 use App\Http\Controllers\Data\CategoryController;
 use App\Http\Controllers\Data\CompetitionController;
 use App\Http\Controllers\Data\CsoController;
@@ -79,6 +80,14 @@ Route::group(['prefix' => 'peserta-uiux', 'middleware' => ['auth']], function() 
     Route::get('/ganti-password', [PesertaController::class, 'gantiPasswordUiux']);
 });
 
+// peserta BPC
+Route::group(['prefix' => 'peserta-bpc', 'middleware' => ['auth']], function() {
+    Route::get('/', [PesertaController::class, 'dashboardBpc']);
+    Route::get('/tim', [PesertaController::class, 'detailTimBpc']);
+
+    Route::get('/ganti-password', [PesertaController::class, 'gantiPasswordBpc']);
+});
+
 // data
 Route::group(['prefix' => 'data'], function() {
     // get All
@@ -101,6 +110,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/tim-cso/{id}', [CsoController::class, 'show']);
     Route::get('/tim-uiux/{id}', [UiuxController::class, 'show']);
     Route::get('/penyisihan/{team_id}', [KaryaUiuxController::class, 'show']);
+    Route::get('/tim-bpc/{id}', [BpcController::class, 'show']);
 
     // update
     Route::group(['prefix' => 'update'], function() {
@@ -112,6 +122,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::post('/detail-tim-cso/{id}', [CsoController::class, 'updateDetailTim']);
         Route::post('/detail-tim-uiux/{id}', [UiuxController::class, 'updateDetailTim']);
         Route::put('/karya-uiux/{team_id}', [KaryaUiuxController::class, 'update']);
+        Route::post('/detail-tim-bpc/{id}', [BpcController::class, 'updateDetailTim']);
     });
 
     // delete
