@@ -18,4 +18,12 @@ class KaryaUiuxService
         if (!$karya) return response()->json(['message' => 'Karya tidak ditemukan'], 404);
         return $karya;
     }
+
+    function updateKaryaUiux($data, $id)
+    {
+        $karya = KaryaUiux::where('team_id', $id)->first();
+        if (!$karya) return response()->json(['message' => 'Data tim tidak ditemukan'], 404);
+        $karya->update($data);
+        return response()->json(['message' => 'Berhasil mengunggah link'], 200);
+    }
 }

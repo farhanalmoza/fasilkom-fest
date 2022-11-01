@@ -26,4 +26,14 @@ class KaryaUiuxController extends Controller
     {
         return $this->karya->getPenyisihan($team_id);
     }
+
+    public function update(Request $request, $team_id)
+    {
+        $data = [
+            'demo' => $request->input('demo'),
+            'prototype' => $request->input('prototype'),
+        ];
+
+        return $this->karya->updateKaryaUiux($data, $team_id);
+    }
 }

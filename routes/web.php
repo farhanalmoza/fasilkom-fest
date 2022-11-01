@@ -111,6 +111,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::post('/sponsor/{id}', [SponsorController::class, 'update']);
         Route::post('/detail-tim-cso/{id}', [CsoController::class, 'updateDetailTim']);
         Route::post('/detail-tim-uiux/{id}', [UiuxController::class, 'updateDetailTim']);
+        Route::put('/karya-uiux/{team_id}', [KaryaUiuxController::class, 'update']);
     });
 
     // delete

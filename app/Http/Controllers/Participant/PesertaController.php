@@ -72,10 +72,12 @@ class PesertaController extends Controller
     }
     public function finalUiux() {
         $uiux = Uiux::where('user_id', Auth::user()->id)->first();
+        $uiux = Uiux::where('user_id', Auth::user()->id)->first();
+        $team_id = $uiux->id;
         if ($uiux->finalis == 1) {
-            return view('participant.peserta-uiux.final');
+            return view('participant.peserta-uiux.final', compact('team_id'));
         }
-        return view('participant.peserta-uiux.final');
+        return redirect('/peserta-uiux');
     }
     public function gantiPasswordUiux() { return view('participant.peserta-uiux.ganti-password'); }
 }

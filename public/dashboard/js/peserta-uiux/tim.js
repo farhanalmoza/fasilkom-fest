@@ -1,6 +1,7 @@
 $(document).ready(function() {
     updateDetailTim();
     addPenyisihan();
+    addFinalis();
 })
 
 const getDetailTim = {
@@ -165,12 +166,12 @@ const getPenyisihan = {
     },
     set successData(response) {
         // jika ada data
-        if (response) {
-            $('#screen').val(response.screen)
-            $('#proposal').val(response.proposal)
+        if (response.demo && response.prototype) {
+            $('#demo').val(response.demo)
+            $('#prototype').val(response.prototype)
             // disable form
-            $('#screen').attr("disabled", true);
-            $('#proposal').attr("disabled", true);
+            $('#demo').attr("disabled", true);
+            $('#prototype').attr("disabled", true);
 
             // hilangkan tombol submit
             $('#btnSubmit').hide()
@@ -214,6 +215,46 @@ function addPenyisihan() {
         set successData(response) {
             $('#screen').removeClass('is-valid')
             $('#proposal').removeClass('is-valid')
+        },
+    }
+}
+
+function addFinalis() {
+    $('#formFinal').validate({
+        rules: {
+            demo: { required: true },
+            prototype: { required: true },
+        },
+        errorClass: "is-invalid",
+        validClass: "is-valid",
+        errorElement: "small",
+        errorPlacement: function errorPlacement(error, element) {
+            error.addClass('invalid-feedback');
+            error.insertAfter(element);
+        },
+        // eslint-disable-next-line object-shorthand
+        highlight: function highlight(element) {
+            $(element).addClass('is-invalid').removeClass('is-valid');
+        },
+        // eslint-disable-next-line object-shorthand
+        unhighlight: function unhighlight(element) {
+            $(element).addClass('is-valid').removeClass('is-invalid');
+        },
+        submitHandler: function(form, e) {
+            e.preventDefault()
+            const urlPut = URL_DATA + "/update/karya-uiux/" + team_id
+            const data = {
+                demo: $('#demo').val(),
+                prototype: $('#prototype').val(),
+            }
+            Functions.prototype.putRequest(putKaryaUiux, urlPut, data)
+            getPenyisihan.loadData = team_id
+        }
+    })
+    const putKaryaUiux = {
+        set successData(response) {
+            $('#demo').removeClass('is-valid')
+            $('#prototype').removeClass('is-valid')
         },
     }
 }
