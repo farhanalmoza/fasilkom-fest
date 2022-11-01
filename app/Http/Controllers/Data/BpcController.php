@@ -34,4 +34,12 @@ class BpcController extends Controller
         
         return $this->bpc->updateDetailTim($data, $buktiBayar, $bmc, $identitas_1, $identitas_2, $identitas_3, $id);
     }
+
+    public function updateTahap2(Request $request, $id)
+    {
+        // variabel
+        $proposal = $request->file('proposal');
+        
+        return $this->bpc->updateTahap2($proposal, $id);
+    }
 }

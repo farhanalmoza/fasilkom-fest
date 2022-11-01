@@ -84,6 +84,8 @@ Route::group(['prefix' => 'peserta-uiux', 'middleware' => ['auth']], function() 
 Route::group(['prefix' => 'peserta-bpc', 'middleware' => ['auth']], function() {
     Route::get('/', [PesertaController::class, 'dashboardBpc']);
     Route::get('/tim', [PesertaController::class, 'detailTimBpc']);
+    Route::get('/tahap-2', [PesertaController::class, 'tahap2Bpc']);
+    Route::get('/final', [PesertaController::class, 'finalBpc']);
 
     Route::get('/ganti-password', [PesertaController::class, 'gantiPasswordBpc']);
 });
@@ -123,6 +125,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::post('/detail-tim-uiux/{id}', [UiuxController::class, 'updateDetailTim']);
         Route::put('/karya-uiux/{team_id}', [KaryaUiuxController::class, 'update']);
         Route::post('/detail-tim-bpc/{id}', [BpcController::class, 'updateDetailTim']);
+        Route::post('/tahap-2-bpc/{team_id}', [BpcController::class, 'updateTahap2']);
     });
 
     // delete

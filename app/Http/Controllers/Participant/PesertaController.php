@@ -84,4 +84,12 @@ class PesertaController extends Controller
     // BPC
     public function dashboardBpc() { return view('participant.peserta-bpc.dashboard'); }
     public function detailTimBpc() { return view('participant.peserta-bpc.detail-tim'); }
+    public function tahap2Bpc() {
+        $bpc = Bpc::where('user_id', Auth::user()->id)->first();
+        $team_id = $bpc->id;
+        if ($bpc->finalis != 0) {
+            return view('participant.peserta-bpc.tahap2', compact('team_id'));
+        }
+        return redirect('/peserta-bpc');
+    }
 }

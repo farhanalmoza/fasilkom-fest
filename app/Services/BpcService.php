@@ -120,4 +120,28 @@ class BpcService
             return response(['message' => 'Pendaftaran tim gagal diunggah!'], 500);
         }
     }
+
+    public function updateTahap2($proposal, $id)
+    {
+        $bpc = Bpc::find($id);
+        if ($bpc) {
+            if ($proposal) {
+                $path = 'documents/proposal-bpc/';
+                if($bpc->proposal) {
+                    Storage::delete('public/'.$bpc->proposal);
+                }
+                foreach($proposal as $file) {
+                    $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
+                    $file->storeAs('public/'.$path, $filename);
+                }
+                $bpc->proposal = $path . $filename;
+            }
+            $update = $bpc->save();
+        }
+        if($update) {
+            return response(['message' => 'Pendaftaran tim berhasil diunggah!']);
+        } else {
+            return response(['message' => 'Pendaftaran tim gagal diunggah!'], 500);
+        }
+    }
 }

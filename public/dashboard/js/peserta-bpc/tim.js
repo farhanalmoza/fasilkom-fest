@@ -1,6 +1,6 @@
 $(document).ready(function() {
     updateDetailTim();
-    addPenyisihan();
+    uploadProposal();
     addFinalis();
 })
 
@@ -38,6 +38,12 @@ const getDetailTim = {
             $('#identitas_2').attr("disabled", true);
             $("#member_3").attr("disabled", true);
             $('#identitas_3').attr("disabled", true);
+        }
+
+        if (response.proposal) {
+            $('#proposal').attr('disabled', true)
+            // hide button upload
+            $('#submitProposal').hide()
         }
     }
 }
@@ -174,42 +180,22 @@ function updateDetailTim() {
     }
 }
 
-const getPenyisihan = {
-    set loadData(data) {
-        const URL = URL_DATA + "/penyisihan/" + data
-        Functions.prototype.getRequest(getPenyisihan, URL);
-    },
-    set successData(response) {
-        // jika ada data
-        if (response) {
-            $('#screen').val(response.screen)
-            $('#proposal').val(response.proposal)
-            // disable form
-            $('#screen').attr("disabled", true);
-            $('#proposal').attr("disabled", true);
+function uploadProposal() {
+    $("#porposal").on("change", function (e) {
+        e.preventDefault();
 
-            // hilangkan tombol submit
-            $('#btnSubmit').hide()
+        if (Functions.prototype.validateFile($(this))) {
+            const data = new FormData()
+            const file = $(this)[0].files
+            data.append('porposal', file[0])
         }
-
-        if (response.demo && response.prototype) {
-            $('#demo').val(response.demo)
-            $('#prototype').val(response.prototype)
-            // disable form
-            $('#demo').attr("disabled", true);
-            $('#prototype').attr("disabled", true);
-
-            // hilangkan tombol submit
-            $('#btnSubmit').hide()
-        }
-    }
-}
-
-function addPenyisihan() {
-    $('#formPenyisihan').validate({
+    });
+    $('#formTahap2').validate({
         rules: {
-            screen: { required: true },
-            proposal: { required: true },
+            proposal: {
+                required: true,
+                extension: "pdf"
+            },
         },
         errorClass: "is-invalid",
         validClass: "is-valid",
@@ -228,18 +214,23 @@ function addPenyisihan() {
         },
         submitHandler: function(form, e) {
             e.preventDefault()
-            const urlPost = URL_DATA + "/add/penyisihan-uiux"
+            const urlPut = URL_DATA + "/update/tahap-2-bpc/" + team_id
+            const formData = new FormData()
             const data = {
-                team_id: team_id,
-                screen: $('#screen').val(),
                 proposal: $('#proposal').val(),
             }
-            Functions.prototype.postRequest(postPenyisihan, urlPost, data)
+            const proposal = $('#proposal')[0].files
+            
+            for (let i = 0; i < proposal.length; i++) {
+                const element = proposal[i];
+                formData.append('proposal[]', element)
+            }
+            Functions.prototype.uploadFile(urlPut, formData, 'post', putDataProposal)
+            getDetailTim.loadData = user_id
         }
     })
-    const postPenyisihan = {
+    const putDataProposal = {
         set successData(response) {
-            $('#screen').removeClass('is-valid')
             $('#proposal').removeClass('is-valid')
         },
     }
