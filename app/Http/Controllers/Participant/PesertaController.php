@@ -106,7 +106,25 @@ class PesertaController extends Controller
     public function pendaftaranMl() { return view('participant.pendaftaran.ml'); }
     public function pendaftaranPes() { return view('participant.pendaftaran.pes'); }
     public function pendaftaranPubg() { return view('participant.pendaftaran.pubg'); }
-    public function pendaftaranFutsal() { return view('participant.pendaftaran.futsal'); }
-    public function pendaftaranBasketPutri() { return view('participant.pendaftaran.basket-putri'); }
-    public function pendaftaranBasketPutra() { return view('participant.pendaftaran.basket-putra'); }
+    public function pendaftaranFutsal() {
+        $data = [
+            'title' => 'Futsal',
+            'category' => '1',
+        ];
+        return view('participant.pendaftaran.sport', compact('data'));
+    }
+    public function pendaftaranBasketPutri() {
+        $data = [
+            'title' => 'Basket Putri',
+            'category' => '3',
+        ];
+        return view('participant.pendaftaran.sport', compact('data'));
+    }
+    public function pendaftaranBasketPutra() {
+        $data = [
+            'title' => 'Basket Putra',
+            'category' => '2',
+        ];
+        return view('participant.pendaftaran.sport', compact('data'));
+    }
 }

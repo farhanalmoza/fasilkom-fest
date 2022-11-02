@@ -1,5 +1,5 @@
 @extends('participant.pendaftaran.components.template')
-@section('title', 'Futsal')
+@section('title', $data['title'])
 
 @section('css')
     <style>
@@ -98,7 +98,7 @@
 
 @section('js')
     <script>
-        const category = '1'
+        const category = '{{ $data["category"] }}'
     </script>
     <script src="{{asset('front')}}/js/pendaftaran/sport.js"></script>
 @endsection
