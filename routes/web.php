@@ -20,6 +20,7 @@ use App\Http\Controllers\Participant\PesertaController;
 use App\Http\Controllers\Data\RoleController;
 use App\Http\Controllers\Data\SpeakerController;
 use App\Http\Controllers\Data\SponsorController;
+use App\Http\Controllers\Data\SportController;
 use App\Http\Controllers\Data\UiuxController;
 use App\Http\Controllers\Data\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -98,6 +99,10 @@ Route::group(['prefix' => 'daftar', 'middleware' => ['guest']], function() {
     Route::get('/peserta-mobile-legend', [PesertaController::class, 'pendaftaranMl']);
     Route::get('/peserta-pes', [PesertaController::class, 'pendaftaranPes']);
     Route::get('/peserta-pubg-mobile', [PesertaController::class, 'pendaftaranPubg']);
+
+    Route::get('/peserta-futsal', [PesertaController::class, 'pendaftaranFutsal']);
+    Route::get('/peserta-basket-putri', [PesertaController::class, 'pendaftaranBasketPutri']);
+    Route::get('/peserta-basket-putra', [PesertaController::class, 'pendaftaranBasketPutra']);
 });
 
 // data
@@ -160,6 +165,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::post('/ml', [MlController::class, 'store']);
         Route::post('/pes', [PesController::class, 'store']);
         Route::post('/pubg', [PubgController::class, 'store']);
+        Route::post('/sport', [SportController::class, 'store']);
     });
 
     // pengaturan

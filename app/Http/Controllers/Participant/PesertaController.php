@@ -106,4 +106,7 @@ class PesertaController extends Controller
     public function pendaftaranMl() { return view('participant.pendaftaran.ml'); }
     public function pendaftaranPes() { return view('participant.pendaftaran.pes'); }
     public function pendaftaranPubg() { return view('participant.pendaftaran.pubg'); }
+    public function pendaftaranFutsal() { return view('participant.pendaftaran.futsal'); }
+    public function pendaftaranBasketPutri() { return view('participant.pendaftaran.basket-putri'); }
+    public function pendaftaranBasketPutra() { return view('participant.pendaftaran.basket-putra'); }
 }
