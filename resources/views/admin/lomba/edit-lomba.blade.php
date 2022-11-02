@@ -87,6 +87,12 @@
 								<textarea class="form-control" id="lokasi" name="lokasi" rows="3"></textarea>
 							</div>
 						</div>
+						<div class="row">
+							<div class="mb-3 col-md-6">
+								<label for="group_wa" class="form-label">Link group WA</label>
+								<input class="form-control" type="text" id="group_wa" name="grou_wa"/>
+							</div>
+						</div>
 						<div class="mt-2">
 							<button type="submit" class="btn btn-primary me-2">Simpan</button>
 							<button type="button" class="btn btn-outline-secondary" id="batal">Batal</button>

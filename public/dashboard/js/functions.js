@@ -87,6 +87,25 @@ class Functions
         });
     }
 
+    pendaftaranLomba(url = null, data = null, method = null, process = null) {
+        $.ajax({
+            type: method,
+            url: url,
+            processData: false,
+            contentType: false,
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: data,
+            beforeSend: function() {
+            },
+            success: function (response) {
+                process.successData = response
+            },
+            error: function(err) {
+                process.errorData = err
+            }
+        });
+    }
+
     readURL(inputs = []) {
         if(inputs.length > 0) {
             for (let i = 0; i < inputs.length; i++) {

@@ -591,7 +591,7 @@ p {
 
 /*===== Header =====*/
 .header-content-area {
-  height: 600px;
+  height: 750px;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
   position: relative;
@@ -1321,12 +1321,10 @@ p {
     visibility: hidden;
     margin-top: 15px;
   }
-  .single-form input[type="file"]::before {
-    content: 'Bukti Pembayaran';    
-  }
   .single-form input,
   .single-form input[type="file"],
-  .single-form textarea {
+  .single-form textarea,
+  .single-form select {
     width: 100%;
     height: 65px;
     border: 1px solid #e6e6e6;

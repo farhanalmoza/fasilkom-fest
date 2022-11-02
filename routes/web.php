@@ -12,6 +12,7 @@ use App\Http\Controllers\Data\CompetitionController;
 use App\Http\Controllers\Data\CsoController;
 use App\Http\Controllers\Data\InformationController;
 use App\Http\Controllers\Data\KaryaUiuxController;
+use App\Http\Controllers\Data\MlController;
 use App\Http\Controllers\Data\PanitiaController;
 use App\Http\Controllers\Participant\PesertaController;
 use App\Http\Controllers\Data\RoleController;
@@ -90,6 +91,13 @@ Route::group(['prefix' => 'peserta-bpc', 'middleware' => ['auth']], function() {
     Route::get('/ganti-password', [PesertaController::class, 'gantiPasswordBpc']);
 });
 
+// view pendaftaran peserta selain akademik
+Route::group(['prefix' => 'daftar', 'middleware' => ['guest']], function() {
+    Route::get('/peserta-mobile-legend', [PesertaController::class, 'pendaftaranMl']);
+    Route::get('/peserta-pes', [PesertaController::class, 'pendaftaranPes']);
+    Route::get('/peserta-pubg-mobile', [PesertaController::class, 'pendaftaranPubg']);
+});
+
 // data
 Route::group(['prefix' => 'data'], function() {
     // get All
@@ -147,6 +155,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::post('/pembicara', [SpeakerController::class, 'store']);
         Route::post('/sponsor', [SponsorController::class, 'store']);
         Route::post('/penyisihan-uiux', [KaryaUiuxController::class, 'store']);
+        Route::post('/ml', [MlController::class, 'store']);
     });
 
     // pengaturan

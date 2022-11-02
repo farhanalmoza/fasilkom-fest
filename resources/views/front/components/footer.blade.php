@@ -1,6 +1,6 @@
 <!--====== CLIENT PART START ======-->
 
-<div id="client" class="client-area pt-115 pb-130">
+{{-- <div id="client" class="client-area pt-115 pb-130">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -38,7 +38,7 @@
             </div>
         </div> <!-- row -->
     </div> <!-- container -->
-</div>
+</div> --}}
 
 <!--====== CLIENT PART ENDS ======-->
 

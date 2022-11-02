@@ -32,6 +32,7 @@ class LombaService
         $competition->start_date = $data['start_date'];
         $competition->end_date = $data['end_date'];
         $competition->location = $data['location'];
+        $competition->group_wa = $data['group_wa'];
         
         // upload image to storage and get the path to store in database 
         $path = $this->uploadImage($files);
@@ -91,6 +92,7 @@ class LombaService
         $competition->start_date = $data['start_date'];
         $competition->end_date = $data['end_date'];
         $competition->location = $data['location'];
+        $competition->group_wa = $data['group_wa'];
         
         // upload image to storage and get the path to store in database 
         // delete old picture if exists

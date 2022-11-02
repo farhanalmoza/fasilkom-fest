@@ -17,6 +17,7 @@ class Competition extends Model {
         'start_date',
         'end_date',
         'location',
+        'group_wa',
         'created_at',
         'updated_at',
     ];

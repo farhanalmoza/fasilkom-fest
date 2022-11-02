@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="{{ url('/') }}">
         <img src="{{ asset('front') }}/images/logo.png" alt="Logo">
     </a>
 
@@ -12,19 +12,19 @@
     <div class="collapse navbar-collapse sub-menu-bar" id="navbarTwo">
         <ul class="navbar-nav m-auto">
             <li class="nav-item active">
-                <a class="page-scroll" href="#home">Home</a>
+                <a class="page-scroll" href="{{url('/')}}#home">Home</a>
             </li>
             <li class="nav-item">
-                <a class="page-scroll" href="#competition">Competitions</a>
+                <a class="page-scroll" href="{{url('/')}}#competition">Competitions</a>
             </li>
             {{-- <li class="nav-item">
-                <a class="page-scroll" href="#team">Speakers</a>
+                <a class="page-scroll" href="{{url('/')}}#team">Speakers</a>
             </li>
             <li class="nav-item">
-                <a class="page-scroll" href="#pricing">Pricing</a>
+                <a class="page-scroll" href="{{url('/')}}#pricing">Pricing</a>
             </li> --}}
             <li class="nav-item">
-                <a class="page-scroll" href="#contact">Contact</a>
+                <a class="page-scroll" href="{{url('/')}}#contact">Contact</a>
             </li>
         </ul>
     </div>

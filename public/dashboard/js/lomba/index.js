@@ -165,6 +165,7 @@ function addCompetition() {
             tgl_selesai: { required: true },
             deskripsi: { required: true },
             lokasi: { required: true },
+            group_wa: { required: true },
         },
         errorClass: "is-invalid",
         validClass: "is-valid",
@@ -193,6 +194,7 @@ function addCompetition() {
                 tgl_selesai: $('#tgl_selesai').val(),
                 deskripsi: $('#deskripsi').val(),
                 lokasi: $('#lokasi').val(),
+                group_wa: $('#group_wa').val(),
             }
             const files = $("#picture")[0].files
             formData.append('name', data.name)
@@ -202,6 +204,7 @@ function addCompetition() {
             formData.append('end_date', data.tgl_selesai)
             formData.append('description', data.deskripsi)
             formData.append('location', data.lokasi)
+            formData.append('group_wa', data.group_wa)
             for (let i = 0; i < files.length; i++) {
                 const element = files[i];
                 formData.append('files[]', element)
@@ -230,6 +233,7 @@ function addCompetition() {
                 $('#tgl_selesai').removeClass('is-valid')
                 $('#deskripsi').removeClass('is-valid')
                 $('#lokasi').removeClass('is-valid')
+                $('#group_wa').removeClass('is-valid')
             }
         },
         set errorData(err) {
@@ -323,6 +327,7 @@ function updateCompetition() {
             tgl_selesai: { required: true },
             deskripsi: { required: true },
             lokasi: { required: true },
+            group_wa: { required: true },
         },
         errorClass: "is-invalid",
         validClass: "is-valid",
@@ -352,6 +357,7 @@ function updateCompetition() {
                 tgl_selesai: $('#tgl_selesai').val(),
                 deskripsi: $('#deskripsi').val(),
                 lokasi: $('#lokasi').val(),
+                group_wa: $('#group_wa').val(),
             }
             const files = $("#picture")[0].files
             formData.append('name', data.name)
@@ -361,6 +367,7 @@ function updateCompetition() {
             formData.append('end_date', data.tgl_selesai)
             formData.append('description', data.deskripsi)
             formData.append('location', data.lokasi)
+            formData.append('group_wa', data.group_wa)
 
             if (files.length > 0) {
                 for (let i = 0; i < files.length; i++) {
@@ -384,6 +391,7 @@ function updateCompetition() {
             $('#tgl_selesai').removeClass('is-valid')
             $('#deskripsi').removeClass('is-valid')
             $('#lokasi').removeClass('is-valid')
+            $('#group_wa').removeClass('is-valid')
         },
     }
 }

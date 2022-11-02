@@ -43,6 +43,7 @@ class CompetitionController extends Controller
             'start_date'  => $request->input('start_date'),
             'end_date'    => $request->input('end_date'),
             'location'    => $request->input('location'),
+            'group_wa'    => $request->input('group_wa'),
         ];
 
         return $this->lomba->add($data, $files);
@@ -82,6 +83,7 @@ class CompetitionController extends Controller
             'start_date'  => $request->input('start_date'),
             'end_date'    => $request->input('end_date'),
             'location'    => $request->input('location'),
+            'group_wa'    => $request->input('group_wa'),
         ];
         if (!$files) {
             $data['pict'] = $request->input('files');

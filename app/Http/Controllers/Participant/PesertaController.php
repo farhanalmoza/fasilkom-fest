@@ -101,4 +101,9 @@ class PesertaController extends Controller
         }
         return redirect('/peserta-bpc');
     }
+
+    // form pendaftaran lomba non-akademik
+    public function pendaftaranMl() { return view('participant.pendaftaran.ml'); }
+    public function pendaftaranPes() { return view('participant.pendaftaran.pes'); }
+    public function pendaftaranPubg() { return view('participant.pendaftaran.pubg'); }
 }
