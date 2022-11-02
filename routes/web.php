@@ -14,6 +14,7 @@ use App\Http\Controllers\Data\InformationController;
 use App\Http\Controllers\Data\KaryaUiuxController;
 use App\Http\Controllers\Data\MlController;
 use App\Http\Controllers\Data\PanitiaController;
+use App\Http\Controllers\Data\PubgController;
 use App\Http\Controllers\Participant\PesertaController;
 use App\Http\Controllers\Data\RoleController;
 use App\Http\Controllers\Data\SpeakerController;
@@ -156,6 +157,8 @@ Route::group(['prefix' => 'data'], function() {
         Route::post('/sponsor', [SponsorController::class, 'store']);
         Route::post('/penyisihan-uiux', [KaryaUiuxController::class, 'store']);
         Route::post('/ml', [MlController::class, 'store']);
+        Route::post('/pes', [PesController::class, 'store']);
+        Route::post('/pubg', [PubgController::class, 'store']);
     });
 
     // pengaturan

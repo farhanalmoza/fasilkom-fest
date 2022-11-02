@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="contact-form pt-20">
-                    <form id="contact-form" action="{{asset('front')}}/contact.php" method="post">
+                    <form id="daftarPubg">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="single-form">
@@ -37,11 +37,11 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="single-form">
-                                    <select name="department" id="department">
+                                    <select name="major" id="major">
                                         <option value="">Major</option>
-                                        <option value="informatika">Informatika</option>
-                                        <option value="sistem informasi">Information System</option>
-                                        <option value="sains data">Data Science</option>
+                                        <option value="1">Informatika</option>
+                                        <option value="2">Information System</option>
+                                        <option value="3">Data Science</option>
                                     </select>
                                 </div>
                             </div>
@@ -88,4 +88,8 @@
         </div> <!-- row -->
     </div> <!-- container -->
 </section>
+@endsection
+
+@section('js')
+    <script src="{{asset('front')}}/js/pendaftaran/pubg.js"></script>
 @endsection
