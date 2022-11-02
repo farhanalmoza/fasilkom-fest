@@ -14,6 +14,7 @@ use App\Http\Controllers\Data\InformationController;
 use App\Http\Controllers\Data\KaryaUiuxController;
 use App\Http\Controllers\Data\MlController;
 use App\Http\Controllers\Data\PanitiaController;
+use App\Http\Controllers\Data\PesController;
 use App\Http\Controllers\Data\PubgController;
 use App\Http\Controllers\Participant\PesertaController;
 use App\Http\Controllers\Data\RoleController;
