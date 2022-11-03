@@ -57,4 +57,16 @@ class MlService
             return response()->json(['status' => 'error', 'message' => 'Data gagal disimpan'], 500);
         }
     }
+
+    public function getAll()
+    {
+        $ml = Ml::all();
+        return $ml;
+    }
+
+    public function get($id)
+    {
+        $ml = Ml::where('id', $id)->first();
+        return $ml;
+    }
 }
