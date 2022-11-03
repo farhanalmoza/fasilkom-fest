@@ -19,6 +19,7 @@ use App\Http\Controllers\Data\PhotographyController;
 use App\Http\Controllers\Data\PubgController;
 use App\Http\Controllers\Participant\PesertaController;
 use App\Http\Controllers\Data\RoleController;
+use App\Http\Controllers\Data\SoloCoverController;
 use App\Http\Controllers\Data\SpeakerController;
 use App\Http\Controllers\Data\SponsorController;
 use App\Http\Controllers\Data\SportController;
@@ -118,6 +119,7 @@ Route::group(['prefix' => 'daftar', 'middleware' => ['guest']], function() {
 
     Route::get('/peserta-fotografi', [PesertaController::class, 'pendaftaranFotografi']);
     Route::get('/peserta-videografi', [PesertaController::class, 'pendaftaranVideografi']);
+    Route::get('/peserta-solo-cover', [PesertaController::class, 'pendaftaranSoloCover']);
 });
 
 // data
@@ -183,6 +185,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::post('/sport', [SportController::class, 'store']);
         Route::post('/fotografi', [PhotographyController::class, 'store']);
         Route::post('/videografi', [VideographyController::class, 'store']);
+        Route::post('/solo-cover', [SoloCoverController::class, 'store']);
     });
 
     // pengaturan

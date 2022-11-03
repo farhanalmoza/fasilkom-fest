@@ -120,4 +120,5 @@ class PesertaController extends Controller
     }
     public function pendaftaranFotografi() { return view('participant.pendaftaran.fotografi'); }
     public function pendaftaranVideografi() { return view('participant.pendaftaran.videografi'); }
+    public function pendaftaranSoloCover() { return view('participant.pendaftaran.solo-cover'); }
 }
