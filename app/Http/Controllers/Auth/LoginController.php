@@ -59,6 +59,18 @@ class LoginController extends Controller
                 return redirect('peserta-uiux');
             } elseif ( auth()->user()->role_id == 4 ) {
                 return redirect('peserta-bpc');
+            } elseif ( auth()->user()->role_id == 27) {
+                return redirect('panitia-sport');
+            } elseif ( auth()->user()->role_id == 26) {
+                return redirect('panitia-esport');
+            } elseif ( auth()->user()->role_id == 28) {
+                return redirect('panitia-art');
+            } elseif ( auth()->user()->role_id == 24) {
+                return redirect('panitia-bpc');
+            } elseif ( auth()->user()->role_id == 11) {
+                return redirect('panitia-cso');
+            } elseif ( auth()->user()->role_id == 25) {
+                return redirect('panitia-uiux');
             }
 
             return $this->sendLoginResponse($request);

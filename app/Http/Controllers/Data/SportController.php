@@ -14,4 +14,9 @@ class SportController extends Controller
     public function store(Request $request) {
         return $this->sport->store($request);
     }
+
+    public function index()
+    {
+        return view('committee.sport.index');
+    }
 }

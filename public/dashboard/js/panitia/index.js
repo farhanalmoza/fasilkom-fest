@@ -21,7 +21,7 @@ const getPanitia = {
                 <tr>
                     <td><strong>${panitia[i].name}</strong></td>
                     <td>${panitia[i].email}</td>
-                    <td><span class="badge bg-label-primary me-1">${panitia[0].role_name}</span></td>
+                    <td><span class="badge bg-label-primary me-1">${panitia[i].role_name}</span></td>
                     <td>
                         <button type="button" class="btn btn-sm btn-danger delete" data-bs-toggle="modal" data-bs-target="#hapusModal" data-bs-id="${panitia[i].id}">Hapus</button>
                     </td>

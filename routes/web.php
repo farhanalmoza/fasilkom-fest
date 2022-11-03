@@ -68,6 +68,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/ganti-password', [AdminController::class, 'gantiPassword']);
 });
 
+// view panitia cso
+// view panitia bpc
+// view panitia uiux
+// view panitia sport
+Route::group(['prefix' => 'panitia-sport', 'middleware' => ['auth']], function() {
+    Route::get('/', [SportController::class, 'index'])->name('sport.dashboard');
+});
+// view panitia esport
+// view panitia art
+
 // peserta cso
 Route::group(['prefix' => 'peserta-cso', 'middleware' => ['auth']], function() {
     Route::get('/', [PesertaController::class, 'dashboardCso']);
