@@ -10,22 +10,22 @@
 	<li class="menu-header small text-uppercase">
 		<span class="menu-header-text">Main</span>
 	</li>
-	<li class="menu-item {{ 'panitia-sport/pes' == request()->path() ? 'active' : '' }}">
-		<a href="{{ url('panitia-sport/pes') }}" class="menu-link">
+	<li class="menu-item {{ 'panitia-sport/futsal' == request()->path() ? 'active' : '' }}">
+		<a href="{{ url('panitia-sport/futsal') }}" class="menu-link">
 			<i class="menu-icon tf-icons bx bxs-user-detail"></i>
-			<div data-i18n="PES">PES</div>
+			<div data-i18n="Futsal">Futsal</div>
 		</a>
 	</li>
-	<li class="menu-item {{ 'panitia-sport/ml' == request()->path() ? 'active' : '' }}">
-		<a href="{{ url('panitia-sport/ml') }}" class="menu-link">
+	<li class="menu-item {{ 'panitia-sport/basket-putra' == request()->path() ? 'active' : '' }}">
+		<a href="{{ url('panitia-sport/basket-putra') }}" class="menu-link">
 			<i class="menu-icon tf-icons bx bxs-user-detail"></i>
-			<div data-i18n="Mobile Legend">Mobile Legend</div>
+			<div data-i18n="Basket-Putra">Basket Putra</div>
 		</a>
 	</li>
-	<li class="menu-item {{ 'panitia-sport/pubg' == request()->path() ? 'active' : '' }}">
-		<a href="{{ url('panitia-sport/pubg') }}" class="menu-link">
+	<li class="menu-item {{ 'panitia-sport/basket-putri' == request()->path() ? 'active' : '' }}">
+		<a href="{{ url('panitia-sport/basket-putri') }}" class="menu-link">
 			<i class="menu-icon tf-icons bx bxs-user-detail"></i>
-			<div data-i18n="PUBG-Mobile">PUBG Mobile</div>
+			<div data-i18n="Basket-Putri">Basket Putri</div>
 		</a>
 	</li>
 

@@ -75,6 +75,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], functi
 // view panitia sport
 Route::group(['prefix' => 'panitia-sport', 'middleware' => ['auth']], function() {
     Route::get('/', [SportController::class, 'index'])->name('sport.dashboard');
+    Route::get('/futsal', [SportController::class, 'pesertaFutsal']);
+    Route::get('/basket-putra', [SportController::class, 'pesertaBasketPutra']);
+    Route::get('/basket-putri', [SportController::class, 'pesertaBasketPutri']);
+
+    Route::get('/ganti-password', [SportController::class, 'gantiPassword']);
 });
 // view panitia esport
 // view panitia art
@@ -133,6 +138,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/lomba', [CompetitionController::class, 'getAll']);
     Route::get('/pembicara', [SpeakerController::class, 'getAll']);
     Route::get('/sponsor', [SponsorController::class, 'getAll']);
+    Route::get('/sport/{category_id}', [SportController::class, 'getAll']);
 
     // get detail
     Route::get('/divisi/{id}', [RoleController::class, 'show']);

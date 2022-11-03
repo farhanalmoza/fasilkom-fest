@@ -77,4 +77,10 @@ class SportService
             return response()->json(['status' => 'error', 'message' => 'Data gagal disimpan'], 500);
         }
     }
+
+    public function getAll($category_id)
+    {
+        $sports = Sport::where('category', $category_id)->get();
+        return $sports;
+    }
 }
