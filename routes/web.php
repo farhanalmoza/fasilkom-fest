@@ -15,6 +15,7 @@ use App\Http\Controllers\Data\KaryaUiuxController;
 use App\Http\Controllers\Data\MlController;
 use App\Http\Controllers\Data\PanitiaController;
 use App\Http\Controllers\Data\PesController;
+use App\Http\Controllers\Data\PhotographyController;
 use App\Http\Controllers\Data\PubgController;
 use App\Http\Controllers\Participant\PesertaController;
 use App\Http\Controllers\Data\RoleController;
@@ -103,6 +104,8 @@ Route::group(['prefix' => 'daftar', 'middleware' => ['guest']], function() {
     Route::get('/peserta-futsal', [PesertaController::class, 'pendaftaranFutsal']);
     Route::get('/peserta-basket-putri', [PesertaController::class, 'pendaftaranBasketPutri']);
     Route::get('/peserta-basket-putra', [PesertaController::class, 'pendaftaranBasketPutra']);
+
+    Route::get('/peserta-fotografi', [PesertaController::class, 'pendaftaranFotografi']);
 });
 
 // data
@@ -166,6 +169,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::post('/pes', [PesController::class, 'store']);
         Route::post('/pubg', [PubgController::class, 'store']);
         Route::post('/sport', [SportController::class, 'store']);
+        Route::post('/fotografi', [PhotographyController::class, 'store']);
     });
 
     // pengaturan
