@@ -64,4 +64,16 @@ class PesService
             return response()->json(['status' => 'error', 'message' => 'Data gagal disimpan'], 500);
         }
     }
+
+    public function getAll()
+    {
+        $pes = Pes::all();
+        return $pes;
+    }
+
+    public function get($id)
+    {
+        $pes = Pes::where('id', $id)->first();
+        return $pes;
+    }
 }

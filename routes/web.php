@@ -88,6 +88,7 @@ Route::group(['prefix' => 'panitia-esport', 'middleware' => ['auth']], function(
     Route::get('/', [MlController::class, 'index'])->name('esport.dashboard');
     Route::get('/mobile-legend', [MlController::class, 'pesertaMobileLegend']);
     Route::get('/pubg', [PubgController::class, 'pesertaPubg']);
+    Route::get('/pes', [PesController::class, 'pesertaPes']);
 
     Route::get('/mobile-legend/{id}', [MlController::class, 'detailMobileLegend']);
     Route::get('/pubg-mobile/{id}', [PubgController::class, 'detailPubg']);
@@ -154,6 +155,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/sport/{category_id}', [SportController::class, 'getAll']);
     Route::get('/mobile-legend', [MlController::class, 'getAll']);
     Route::get('/pubg-mobile', [PubgController::class, 'getAll']);
+    Route::get('/pes', [PesController::class, 'getAll']);
 
     // get detail
     Route::get('/divisi/{id}', [RoleController::class, 'show']);
@@ -169,6 +171,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/detail-sport/{id}', [SportController::class, 'show']);
     Route::get('/detail-ml/{id}', [MlController::class, 'show']);
     Route::get('/detail-pubg/{id}', [PubgController::class, 'show']);
+    Route::get('/detail-pes/{id}', [PesController::class, 'show']);
 
     // update
     Route::group(['prefix' => 'update'], function() {

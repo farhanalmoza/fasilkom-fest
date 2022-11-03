@@ -204,3 +204,68 @@ const getDetailPubg = {
         });
     },
 }
+
+
+const getPes = {
+    set loadData(data) {
+        const URL = URL_DATA + data
+        Functions.prototype.getRequest(getPes, URL);
+    },
+    set successData(response) {
+        const container = document.getElementById('tb-pes')
+
+        const pes = response
+
+        if (container) {
+            container.innerHTML = '';
+    
+            for (i = pes.length-1; i >= 0; i--) {
+                if (pes[i].major == '1') {
+                    var major = 'Informatic'
+                } else if (pes[i].major == '2') {
+                    var major = 'Information System'
+                } else if (pes[i].major == '3') {
+                    var major = 'Data Science'
+                }
+                container.innerHTML += `
+                <tr>
+                    <td><strong>${pes[i].name}</strong></td>
+                    <td>${pes[i].npm}</td>
+                    <td>${pes[i].email}</td>
+                    <td>${pes[i].no_wa}</td>
+                    <td>${major}</td>
+                    <td>
+                        <a href="${BASE_URL}/storage/${pes[i].ktm}" target="_blank" class="btn btn-primary btn-sm">KTM</a>
+                    </td>
+                    <td>
+                        <a href="${BASE_URL}/storage/${pes[i].bukti_bayar}" target="_blank" class="btn btn-primary btn-sm">Payment</a>
+                    </td>
+                </tr>
+                `;
+            }
+        }
+
+        if (container.innerHTML == '') {
+            container.innerHTML += `
+                <tr>
+                    <td>Belum ada data yang ditambahkan</td>
+                </tr>
+            `;
+        }
+    },
+    set errorData(err) {
+        var content = {};
+        content.title = "Error";
+        content.message = err.responseJSON.message;
+        content.icon = "fa fa-times";
+        $.notify(content, {
+            type: "danger",
+            placement: {
+                from: "top",
+                align: "right",
+            },
+            time: 1000,
+            delay: 10000,
+        });
+    },
+}
