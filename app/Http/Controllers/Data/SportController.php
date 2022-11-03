@@ -15,8 +15,10 @@ class SportController extends Controller
         return $this->sport->store($request);
     }
     public function getAll($category_id) { return $this->sport->getAll($category_id); }
+    public function show($id) { return $this->sport->get($id); }
 
     public function index() { return view('committee.sport.index'); }
+    public function detail($id) { return view('committee.sport.detail', ['id' => $id]); }
 
     public function pesertaFutsal() { return view('committee.sport.peserta-futsal'); }
     public function pesertaBasketPutra() { return view('committee.sport.peserta-basket-putra'); }

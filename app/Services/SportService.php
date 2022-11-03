@@ -83,4 +83,10 @@ class SportService
         $sports = Sport::where('category', $category_id)->get();
         return $sports;
     }
+
+    public function get($id)
+    {
+        $sport = Sport::where('id', $id)->first();
+        return $sport;
+    }
 }

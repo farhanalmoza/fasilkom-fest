@@ -22,15 +22,7 @@ const getSport = {
                     <td>${sport[i].email}</td>
                     <td>${sport[i].no_wa}</td>
                     <td>
-                        <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                            </div>
-                        </div>
+                        <a href="${BASE_URL}/panitia-sport/detail/${sport[i].id}" target="_blank" class="btn btn-primary btn-sm">Detail</a>
                     </td>
                 </tr>
                 `;
@@ -44,6 +36,47 @@ const getSport = {
                 </tr>
             `;
         }
+    },
+    set errorData(err) {
+        var content = {};
+        content.title = "Error";
+        content.message = err.responseJSON.message;
+        content.icon = "fa fa-times";
+        $.notify(content, {
+            type: "danger",
+            placement: {
+                from: "top",
+                align: "right",
+            },
+            time: 1000,
+            delay: 10000,
+        });
+    },
+}
+
+const getDetail = {
+    set loadData(data) {
+        const URL = URL_DATA + "/detail-sport/" + data
+        Functions.prototype.getRequest(getDetail, URL);
+    },
+    set successData(response) {
+        if (response.category == '1') {
+            var category = 'Futsal';
+        } else if (response.category == '2') {
+            var category = 'Basket Putra';
+        } else if (response.category == '3') {
+            var category = 'Basket Putri';
+        }
+
+        $('#team_name').val(response.team_name)
+        $('#category').val(category)
+        $('#captain').val(response.leader)
+        $('#npm').val(response.npm)
+        $('#email').val(response.email)
+        $('#no_wa').val(response.no_wa)
+        // download ktm with rename file
+        $('#ktm').attr('href', BASE_URL + '/storage/' + response.ktm)
+        $('#formulir').attr('href', BASE_URL + '/storage/' + response.formulir)
     },
     set errorData(err) {
         var content = {};

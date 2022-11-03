@@ -78,6 +78,7 @@ Route::group(['prefix' => 'panitia-sport', 'middleware' => ['auth']], function()
     Route::get('/futsal', [SportController::class, 'pesertaFutsal']);
     Route::get('/basket-putra', [SportController::class, 'pesertaBasketPutra']);
     Route::get('/basket-putri', [SportController::class, 'pesertaBasketPutri']);
+    Route::get('/detail/{id}', [SportController::class, 'detail']);
 
     Route::get('/ganti-password', [SportController::class, 'gantiPassword']);
 });
@@ -151,6 +152,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/tim-uiux/{id}', [UiuxController::class, 'show']);
     Route::get('/penyisihan/{team_id}', [KaryaUiuxController::class, 'show']);
     Route::get('/tim-bpc/{id}', [BpcController::class, 'show']);
+    Route::get('/detail-sport/{id}', [SportController::class, 'show']);
 
     // update
     Route::group(['prefix' => 'update'], function() {
