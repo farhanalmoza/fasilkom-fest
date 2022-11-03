@@ -448,7 +448,7 @@
                 var monthNames = [ "January", "February", "March", "April", "May", "June",
                                 "July", "August", "September", "October", "November", "December" ];
                 var getMonth = date.getMonth()
-                getMonth = monthNames[getMonth-1]
+                getMonth = monthNames[getMonth]
                 var getYear = date.getFullYear()
                 $('#sub-title').html(getDate + ", " + getMonth + " " + getYear + " in " + response.venue)
 

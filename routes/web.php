@@ -24,6 +24,7 @@ use App\Http\Controllers\Data\SponsorController;
 use App\Http\Controllers\Data\SportController;
 use App\Http\Controllers\Data\UiuxController;
 use App\Http\Controllers\Data\UserController;
+use App\Http\Controllers\Data\VideographyController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -106,6 +107,7 @@ Route::group(['prefix' => 'daftar', 'middleware' => ['guest']], function() {
     Route::get('/peserta-basket-putra', [PesertaController::class, 'pendaftaranBasketPutra']);
 
     Route::get('/peserta-fotografi', [PesertaController::class, 'pendaftaranFotografi']);
+    Route::get('/peserta-videografi', [PesertaController::class, 'pendaftaranVideografi']);
 });
 
 // data
@@ -170,6 +172,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::post('/pubg', [PubgController::class, 'store']);
         Route::post('/sport', [SportController::class, 'store']);
         Route::post('/fotografi', [PhotographyController::class, 'store']);
+        Route::post('/videografi', [VideographyController::class, 'store']);
     });
 
     // pengaturan

@@ -119,4 +119,5 @@ class PesertaController extends Controller
         return view('participant.pendaftaran.sport', compact('data'));
     }
     public function pendaftaranFotografi() { return view('participant.pendaftaran.fotografi'); }
+    public function pendaftaranVideografi() { return view('participant.pendaftaran.videografi'); }
 }
