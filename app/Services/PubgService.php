@@ -50,4 +50,16 @@ class PubgService
             return response()->json(['status' => 'error', 'message' => 'Data gagal disimpan'], 500);
         }
     }
+
+    public function getAll()
+    {
+        $pubg = Pubg::all();
+        return $pubg;
+    }
+
+    public function get($id)
+    {
+        $pubg = Pubg::where('id', $id)->first();
+        return $pubg;
+    }
 }

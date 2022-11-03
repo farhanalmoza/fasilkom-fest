@@ -87,8 +87,10 @@ Route::group(['prefix' => 'panitia-sport', 'middleware' => ['auth']], function()
 Route::group(['prefix' => 'panitia-esport', 'middleware' => ['auth']], function() {
     Route::get('/', [MlController::class, 'index'])->name('esport.dashboard');
     Route::get('/mobile-legend', [MlController::class, 'pesertaMobileLegend']);
+    Route::get('/pubg', [PubgController::class, 'pesertaPubg']);
 
     Route::get('/mobile-legend/{id}', [MlController::class, 'detailMobileLegend']);
+    Route::get('/pubg-mobile/{id}', [PubgController::class, 'detailPubg']);
     
     Route::get('/ganti-password', [MlController::class, 'gantiPassword']);
 });
@@ -151,6 +153,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/sponsor', [SponsorController::class, 'getAll']);
     Route::get('/sport/{category_id}', [SportController::class, 'getAll']);
     Route::get('/mobile-legend', [MlController::class, 'getAll']);
+    Route::get('/pubg-mobile', [PubgController::class, 'getAll']);
 
     // get detail
     Route::get('/divisi/{id}', [RoleController::class, 'show']);
@@ -165,6 +168,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/tim-bpc/{id}', [BpcController::class, 'show']);
     Route::get('/detail-sport/{id}', [SportController::class, 'show']);
     Route::get('/detail-ml/{id}', [MlController::class, 'show']);
+    Route::get('/detail-pubg/{id}', [PubgController::class, 'show']);
 
     // update
     Route::group(['prefix' => 'update'], function() {
