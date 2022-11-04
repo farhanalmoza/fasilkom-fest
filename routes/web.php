@@ -208,6 +208,7 @@ Route::group(['prefix' => 'data'], function() {
         Route::post('/detail-tim-bpc/{id}', [BpcController::class, 'updateDetailTim']);
         Route::post('/tahap-2-bpc/{team_id}', [BpcController::class, 'updateTahap2']);
         Route::post('/final-bpc/{team_id}', [BpcController::class, 'updateFinal']);
+        Route::put('/lolos-bpc/{team_id}', [BpcController::class, 'lolosFinal']);
     });
 
     // delete

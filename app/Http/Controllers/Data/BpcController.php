@@ -50,10 +50,13 @@ class BpcController extends Controller
         
         return $this->bpc->updateFinal($ppt, $id);
     }
+
+    public function lolosFinal(Request $request, $id) { return $this->bpc->lolosFinal($request, $id); }
     public function getAll() { return $this->bpc->getAll(); }
     
     public function index() { return view('committee.bpc.index'); }
     public function pendaftar() { return view('committee.bpc.pendaftar'); }
     public function detailPendaftar($id) { return view('committee.bpc.detail-pendaftar', ['id' => $id]); }
+    public function tahap2() { return view('committee.bpc.tahap-2'); }
     public function gantiPassword() { return view('committee.bpc.ganti-password'); }
 }

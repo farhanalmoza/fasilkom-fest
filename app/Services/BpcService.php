@@ -12,7 +12,10 @@ class BpcService
     // get detail by user_id
     public function getDetail($user_id)
     {
-        $bpc = Bpc::where('user_id', $user_id)->first();
+        $bpc = Bpc::join('users', 'users.id', '=', 'bpc.user_id')
+            ->select('bpc.*', 'users.email')
+            ->where('bpc.user_id', $user_id)
+            ->first();
         if ($bpc) { return $bpc; }
         return null;
     }
@@ -170,9 +173,25 @@ class BpcService
         }
     }
 
+    public function lolosFinal($request, $id) {
+        $bpc = Bpc::find($id);
+        if ($bpc) {
+            $bpc->finalis = $request->finalis;
+            $update = $bpc->save();
+        }
+        if($update) {
+            return response(['message' => 'Tim berhasil lolos tahap final!']);
+        } else {
+            return response(['message' => 'Tim gagal lolos tahap final!'], 500);
+        }
+    }
+
     public function getAll()
     {
-        $bpc = Bpc::all();
+        // join users table where id = user_id
+        $bpc = Bpc::join('users', 'bpc.user_id', '=', 'users.id')
+            ->select('bpc.*', 'users.email')
+            ->get();
         return $bpc;
     }
 }

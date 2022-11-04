@@ -15,6 +15,7 @@
 							<tr>
 								<th>Team</th>
 								<th>Agency</th>
+								<th>Email</th>
 								<th>WhatsApp</th>
 								<th>BMC</th>
 								<th>Actions</th>

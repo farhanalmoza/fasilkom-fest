@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    lolosTim()
+})
+
 const getPendaftar = {
     set loadData(data) {
         const URL = URL_DATA + data
@@ -14,12 +18,75 @@ const getPendaftar = {
                 <tr>
                     <td><strong>${response[i].team_name}</strong></td>
                     <td>${response[i].instansi}</td>
+                    <td>${response[i].email}</td>
                     <td>${response[i].no_wa}</td>
                     <td>
                         <a href="${BASE_URL}/storage/${response[i].bmc}" target="_blank" class="btn btn-primary btn-sm">BMC</a>
                     </td>
                     <td>
                         <a href="${BASE_URL}/panitia-bpc/detail-pendaftar/${response[i].user_id}" target="_blank" class="btn btn-primary btn-sm">Detail</a>
+                    </td>
+                </tr>
+                `;
+            }
+        }
+
+        if (container.innerHTML == '') {
+            container.innerHTML += `
+                <tr>
+                    <td>Belum ada data yang ditambahkan</td>
+                </tr>
+            `;
+        }
+    },
+    set errorData(err) {
+        var content = {};
+        content.title = "Error";
+        content.message = err.responseJSON.message;
+        content.icon = "fa fa-times";
+        $.notify(content, {
+            type: "danger",
+            placement: {
+                from: "top",
+                align: "right",
+            },
+            time: 1000,
+            delay: 10000,
+        });
+    },
+}
+
+const getTahap2 = {
+    set loadData(data) {
+        const URL = URL_DATA + data
+        Functions.prototype.getRequest(getTahap2, URL);
+    },
+    set successData(response) {
+        const container = document.getElementById('tb-tahap2')
+
+        if (container) {
+            container.innerHTML = '';
+    
+            for (i = response.length-1; i >= 0; i--) {
+                if (response[i].finalis == '2') {
+                    var finalis = '<span class="badge bg-label-success me-1">Lolos</span>'
+                } else {
+                    var finalis = '<span class="badge bg-label-danger me-1">Belum Lolos</span>'
+                }
+                container.innerHTML += `
+                <tr>
+                    <td><strong>${response[i].team_name}</strong></td>
+                    <td>${response[i].instansi}</td>
+                    <td>
+                        <a href="${BASE_URL}/storage/${response[i].proposal}" target="_blank" class="btn btn-primary btn-sm">Proposal</a>
+                    </td>
+                    <td>
+                        <a href="${BASE_URL}/panitia-bpc/detail-pendaftar/${response[i].bukti_bayar}" target="_blank" class="btn btn-primary btn-sm">Payment</a>
+                    </td>
+                    <td>${finalis}</td>
+                    <td>
+                        <a href="${BASE_URL}/panitia-bpc/detail-pendaftar/${response[i].user_id}" target="_blank" class="btn btn-primary btn-sm">Detail</a>
+                        <button class="btn btn-success btn-sm lolos" data-id="${response[i].id}" data-bs-toggle="modal" data-bs-target="#lolosModal">Lolos</button>
                     </td>
                 </tr>
                 `;
@@ -84,4 +151,26 @@ const getDetail = {
             delay: 10000,
         });
     },
+}
+
+function lolosTim() {
+    $(document).on('click', '.lolos', function(e) {
+        const id = $(this).data('id')
+        const urlPut = URL_DATA + "/update/lolos-bpc/" + id
+        
+        // submit-hapus diklik
+        $('.submit-lolos').on('click', function(e) {
+            e.preventDefault()
+            const data = {
+                finalis: '2'
+            }
+            Functions.prototype.putRequest(putDataRole, urlPut, data)
+            $('#lolosModal').modal('hide')
+            getTahap2.loadData = "/pendaftar-bpc";
+        })
+    })
+    const putDataRole = {
+        set successData(response) {
+        },
+    }
 }

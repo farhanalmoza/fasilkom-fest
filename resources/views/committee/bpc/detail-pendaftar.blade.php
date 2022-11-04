@@ -17,15 +17,19 @@
 					  <div class="col-sm-4">
 							<input type="text" readonly="" class="form-control-plaintext" id="team_name">
 					  </div>
+						<label class="col-sm-2 col-form-label" for="basic-default-name">Agency</label>
+						<div class="col-sm-4">
+							<input type="text" readonly="" class="form-control-plaintext" id="agency">
+						</div>
+					</div>
+					<div class="row mb-3">
 						<label class="col-sm-2 col-form-label" for="basic-default-name">WhatsApp</label>
 						<div class="col-sm-4">
 							<input type="text" readonly="" class="form-control-plaintext" id="no_wa">
 						</div>
-					</div>
-					<div class="row mb-3">
-						<label class="col-sm-2 col-form-label" for="basic-default-name">Agency</label>
+						<label class="col-sm-2 col-form-label" for="basic-default-name">Email</label>
 						<div class="col-sm-4">
-							<input type="text" readonly="" class="form-control-plaintext" id="agency">
+							<input type="text" readonly="" class="form-control-plaintext" id="email">
 						</div>
 					</div>
 					<div class="row mb-3">
