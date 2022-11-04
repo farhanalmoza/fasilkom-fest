@@ -71,6 +71,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], functi
 
 // view panitia cso
 // view panitia bpc
+Route::group(['prefix' => 'panitia-bpc', 'middleware' => ['auth']], function() {
+    Route::get('/', [BpcController::class, 'index'])->name('bpc.dashboard');
+    Route::get('/pendaftar', [BpcController::class, 'pendaftar']);
+    Route::get('/detail-pendaftar/{id}', [BpcController::class, 'detailPendaftar']);
+    Route::get('/tahap-2', [BpcController::class, 'tahap2']);
+    Route::get('/final', [BpcController::class, 'final']);
+
+    Route::get('/ganti-password', [BpcController::class, 'gantiPassword']);
+});
 // view panitia uiux
 // view panitia sport
 Route::group(['prefix' => 'panitia-sport', 'middleware' => ['auth']], function() {
@@ -103,7 +112,7 @@ Route::group(['prefix' => 'panitia-art', 'middleware' => ['auth']], function() {
     Route::get('/videography', [VideographyController::class, 'peserta']);
     Route::get('/solo-cover', [SoloCoverController::class, 'peserta']);
     
-    Route::get('/ganti-password', [MlController::class, 'gantiPassword']);
+    Route::get('/ganti-password', [SoloCoverController::class, 'gantiPassword']);
 });
 
 // peserta cso
@@ -167,6 +176,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/photography', [PhotographyController::class, 'getAll']);
     Route::get('/videography', [VideographyController::class, 'getAll']);
     Route::get('/solo-cover', [SoloCoverController::class, 'getAll']);
+    Route::get('/pendaftar-bpc', [BpcController::class, 'getAll']);
 
     // get detail
     Route::get('/divisi/{id}', [RoleController::class, 'show']);
@@ -183,6 +193,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/detail-ml/{id}', [MlController::class, 'show']);
     Route::get('/detail-pubg/{id}', [PubgController::class, 'show']);
     Route::get('/detail-pes/{id}', [PesController::class, 'show']);
+    Route::get('/detail-bpc/{id}', [BpcController::class, 'show']);
 
     // update
     Route::group(['prefix' => 'update'], function() {

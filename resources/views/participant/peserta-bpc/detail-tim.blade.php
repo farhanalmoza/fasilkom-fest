@@ -46,15 +46,9 @@
                                     placeholder="masukkan nomor whatsapp ketua"
 								/>
 							</div>
-						</div>
-						<div class="row">
 							<div class="mb-3 col-md-6">
 								<label for="bmc" class="form-label">BMC</label>
 								<input class="form-control" type="file" id="bmc" name="bmc">
-							</div>
-							<div class="mb-3 col-md-6">
-								<label for="buktiBayar" class="form-label">Bukti Pembayaran</label>
-								<input class="form-control" type="file" id="buktiBayar" name="buktiBayar">
 							</div>
 						</div>
 						<div class="row">

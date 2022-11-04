@@ -18,6 +18,10 @@
 								<label for="proposal" class="form-label">Proposal</label>
 								<input class="form-control" type="file" id="proposal" name="proposal">
 							</div>
+							<div class="mb-3 col-md-6">
+								<label for="buktiBayar" class="form-label">Bukti Pembayaran</label>
+								<input class="form-control" type="file" id="buktiBayar" name="buktiBayar">
+							</div>
 						</div>
 						<div class="mt-2" id="tombolSubmit">
 							<button type="submit" class="btn btn-primary me-2" id="submitProposal">Unggah</button>

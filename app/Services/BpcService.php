@@ -17,7 +17,7 @@ class BpcService
         return null;
     }
 
-    public function updateDetailTim($data, $buktiBayar, $bmc, $identitas_1, $identitas_2, $identitas_3, $id)
+    public function updateDetailTim($data, $bmc, $identitas_1, $identitas_2, $identitas_3, $id)
     {
         $bpc = Bpc::find($id);
         if ($bpc) {
@@ -28,24 +28,6 @@ class BpcService
             $bpc->member_2 = $data['member_2'];
             $bpc->member_3 = $data['member_3'];
             $bpc->verified = '1';
-            if ($buktiBayar) {
-                $path = 'pictures/bukti_bayar/';
-                if($bpc->bukti_bayar) {
-                    Storage::delete('public/'.$bpc->bukti_bayar);
-                }
-                foreach($buktiBayar as $file) {
-                    $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
-                    $image = Image::make($file->getRealPath());
-                    $image->resize(300, 300, function($constraint) {
-                        $constraint->aspectRatio();
-                    });
-                    $image->stream();
-                    Storage::put('public/'.$path . $filename, $image);
-                }
-                $optimizerChain = OptimizerChainFactory::create();
-                $optimizerChain->optimize(Storage::path('public/'.$path . $filename));
-                $bpc->bukti_bayar = $path . $filename;
-            }
             // upload pdf bmc
             if ($bmc) {
                 $path = 'documents/bmc/';
@@ -121,7 +103,7 @@ class BpcService
         }
     }
 
-    public function updateTahap2($proposal, $id)
+    public function updateTahap2($proposal, $buktiBayar, $id)
     {
         $bpc = Bpc::find($id);
         if ($bpc) {
@@ -135,6 +117,25 @@ class BpcService
                     $file->storeAs('public/'.$path, $filename);
                 }
                 $bpc->proposal = $path . $filename;
+            }
+            
+            if ($buktiBayar) {
+                $path = 'pictures/bukti_bayar/';
+                if($bpc->bukti_bayar) {
+                    Storage::delete('public/'.$bpc->bukti_bayar);
+                }
+                foreach($buktiBayar as $file) {
+                    $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
+                    $image = Image::make($file->getRealPath());
+                    $image->resize(300, 300, function($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $image->stream();
+                    Storage::put('public/'.$path . $filename, $image);
+                }
+                $optimizerChain = OptimizerChainFactory::create();
+                $optimizerChain->optimize(Storage::path('public/'.$path . $filename));
+                $bpc->bukti_bayar = $path . $filename;
             }
             $update = $bpc->save();
         }
@@ -167,5 +168,11 @@ class BpcService
         } else {
             return response(['message' => 'PPT final gagal diunggah!'], 500);
         }
+    }
+
+    public function getAll()
+    {
+        $bpc = Bpc::all();
+        return $bpc;
     }
 }

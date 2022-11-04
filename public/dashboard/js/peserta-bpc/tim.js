@@ -55,15 +55,6 @@ const getDetailTim = {
 }
 
 function updateDetailTim() {
-    $("#buktiBayar").on("change", function (e) {
-        e.preventDefault();
-
-        if (Functions.prototype.validateFile($(this))) {
-            const data = new FormData()
-            const file = $(this)[0].files
-            data.append('buktiBayar', file[0])
-        }
-    });
     $("#bmc").on("change", function (e) {
         e.preventDefault();
 
@@ -96,7 +87,6 @@ function updateDetailTim() {
             teamName: { required: true },
             sekolah: { required: true },
             wa: { required: true, number: true },
-            buktiBayar: { required: true },
             bmc: { required: true },
             member_1: { required: true },
             identitas_1: { required: true },
@@ -132,7 +122,6 @@ function updateDetailTim() {
                 instansi: $('#instansi').val(),
                 wa: $('#wa').val(),
             }
-            const buktiBayar = $('#buktiBayar')[0].files
             const bmc = $('#bmc')[0].files
             const identitas_1 = $('#identitas_1')[0].files
             const identitas_2 = $('#identitas_2')[0].files
@@ -144,10 +133,7 @@ function updateDetailTim() {
             formData.append('instansi', data.instansi)
             formData.append('wa', data.wa)
 
-            for (let i = 0; i < buktiBayar.length; i++) {
-                const element = buktiBayar[i];
-                formData.append('buktiBayar[]', element)
-            }
+            
             for (let i = 0; i < bmc.length; i++) {
                 const element = bmc[i];
                 formData.append('bmc[]', element)
@@ -174,7 +160,6 @@ function updateDetailTim() {
             $('#teamName').removeClass('is-valid')
             $('#instansi').removeClass('is-valid')
             $('#wa').removeClass('is-valid')
-            $('#buktiBayar').removeClass('is-valid')
             $('#bmc').removeClass('is-valid')
             $('#member_1').removeClass('is-valid')
             $('#identitas_1').removeClass('is-valid')
@@ -187,6 +172,15 @@ function updateDetailTim() {
 }
 
 function uploadProposal() {
+    $("#buktiBayar").on("change", function (e) {
+        e.preventDefault();
+
+        if (Functions.prototype.validateFile($(this))) {
+            const data = new FormData()
+            const file = $(this)[0].files
+            data.append('buktiBayar', file[0])
+        }
+    });
     $("#porposal").on("change", function (e) {
         e.preventDefault();
 
@@ -202,6 +196,7 @@ function uploadProposal() {
                 required: true,
                 extension: "pdf"
             },
+            buktiBayar: { required: true },
         },
         errorClass: "is-invalid",
         validClass: "is-valid",
@@ -225,8 +220,13 @@ function uploadProposal() {
             const data = {
                 proposal: $('#proposal').val(),
             }
+            const buktiBayar = $('#buktiBayar')[0].files
             const proposal = $('#proposal')[0].files
             
+            for (let i = 0; i < buktiBayar.length; i++) {
+                const element = buktiBayar[i];
+                formData.append('buktiBayar[]', element)
+            }
             for (let i = 0; i < proposal.length; i++) {
                 const element = proposal[i];
                 formData.append('proposal[]', element)
@@ -238,6 +238,7 @@ function uploadProposal() {
     const putDataProposal = {
         set successData(response) {
             $('#proposal').removeClass('is-valid')
+            $('#buktiBayar').removeClass('is-valid')
         },
     }
 }

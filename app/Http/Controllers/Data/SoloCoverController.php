@@ -17,4 +17,5 @@ class SoloCoverController extends Controller
     public function getAll() { return $this->cover->getAll(); }
 
     public function peserta() { return view('committee.art.peserta-solo-cover'); }
+    public function gantiPassword() { return view('committee.art.ganti-password'); }
 }

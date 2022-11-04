@@ -17,7 +17,6 @@ class BpcController extends Controller
     public function updateDetailTim(Request $request, $id)
     {
         // variabel
-        $buktiBayar = $request->file('buktiBayar');
         $bmc = $request->file('bmc');
         $identitas_1 = $request->file('identitas_1');
         $identitas_2 = $request->file('identitas_2');
@@ -32,15 +31,16 @@ class BpcController extends Controller
             'no_wa' => $request->input('wa'),
         ];
         
-        return $this->bpc->updateDetailTim($data, $buktiBayar, $bmc, $identitas_1, $identitas_2, $identitas_3, $id);
+        return $this->bpc->updateDetailTim($data, $bmc, $identitas_1, $identitas_2, $identitas_3, $id);
     }
 
     public function updateTahap2(Request $request, $id)
     {
         // variabel
+        $buktiBayar = $request->file('buktiBayar');
         $proposal = $request->file('proposal');
         
-        return $this->bpc->updateTahap2($proposal, $id);
+        return $this->bpc->updateTahap2($proposal, $buktiBayar, $id);
     }
 
     public function updateFinal(Request $request, $id)
@@ -50,4 +50,10 @@ class BpcController extends Controller
         
         return $this->bpc->updateFinal($ppt, $id);
     }
+    public function getAll() { return $this->bpc->getAll(); }
+    
+    public function index() { return view('committee.bpc.index'); }
+    public function pendaftar() { return view('committee.bpc.pendaftar'); }
+    public function detailPendaftar($id) { return view('committee.bpc.detail-pendaftar', ['id' => $id]); }
+    public function gantiPassword() { return view('committee.bpc.ganti-password'); }
 }
