@@ -14,4 +14,7 @@ class VideographyController extends Controller
     public function store(Request $request) {
         return $this->videography->store($request);
     }
+    public function getAll() { return $this->videography->getAll(); }
+
+    public function peserta() { return view('committee.art.peserta-videografi'); }
 }

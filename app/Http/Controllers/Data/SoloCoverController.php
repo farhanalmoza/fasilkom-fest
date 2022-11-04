@@ -14,4 +14,7 @@ class SoloCoverController extends Controller
     public function store(Request $request) {
         return $this->cover->store($request);
     }
+    public function getAll() { return $this->cover->getAll(); }
+
+    public function peserta() { return view('committee.art.peserta-solo-cover'); }
 }

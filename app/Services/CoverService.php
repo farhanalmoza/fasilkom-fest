@@ -47,4 +47,10 @@ class CoverService
             return response()->json(['status' => 'error', 'message' => 'Data gagal disimpan'], 500);
         }
     }
+
+    public function getAll()
+    {
+        $cover = Cover::all();
+        return $cover;
+    }
 }

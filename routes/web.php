@@ -100,6 +100,8 @@ Route::group(['prefix' => 'panitia-esport', 'middleware' => ['auth']], function(
 Route::group(['prefix' => 'panitia-art', 'middleware' => ['auth']], function() {
     Route::get('/', [PhotographyController::class, 'index'])->name('art.dashboard');
     Route::get('/photography', [PhotographyController::class, 'peserta']);
+    Route::get('/videography', [VideographyController::class, 'peserta']);
+    Route::get('/solo-cover', [SoloCoverController::class, 'peserta']);
     
     Route::get('/ganti-password', [MlController::class, 'gantiPassword']);
 });
@@ -163,6 +165,8 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/pubg-mobile', [PubgController::class, 'getAll']);
     Route::get('/pes', [PesController::class, 'getAll']);
     Route::get('/photography', [PhotographyController::class, 'getAll']);
+    Route::get('/videography', [VideographyController::class, 'getAll']);
+    Route::get('/solo-cover', [SoloCoverController::class, 'getAll']);
 
     // get detail
     Route::get('/divisi/{id}', [RoleController::class, 'show']);

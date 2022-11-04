@@ -16,8 +16,8 @@
 			<div data-i18n="Photography">Photography</div>
 		</a>
 	</li>
-	<li class="menu-item {{ 'panitia-art/Videography' == request()->path() ? 'active' : '' }}">
-		<a href="{{ url('panitia-art/Videography') }}" class="menu-link">
+	<li class="menu-item {{ 'panitia-art/videography' == request()->path() ? 'active' : '' }}">
+		<a href="{{ url('panitia-art/videography') }}" class="menu-link">
 			<i class="menu-icon tf-icons bx bxs-user-detail"></i>
 			<div data-i18n="Videography">Videography</div>
 		</a>
