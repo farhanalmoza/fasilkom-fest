@@ -14,4 +14,9 @@ class PhotographyController extends Controller
     public function store(Request $request) {
         return $this->photography->store($request);
     }
+    public function getAll() { return $this->photography->getAll(); }
+
+    public function index() { return view('committee.art.index'); }
+    public function peserta() { return view('committee.art.peserta-fotografi'); }
+    public function gantiPassword() { return view('committee.art.ganti-password'); }
 }

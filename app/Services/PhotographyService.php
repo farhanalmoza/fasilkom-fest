@@ -48,4 +48,10 @@ class PhotographyService
             return response()->json(['status' => 'error', 'message' => 'Data gagal disimpan'], 500);
         }
     }
+
+    public function getAll()
+    {
+        $photography = Photography::all();
+        return $photography;
+    }
 }

@@ -97,6 +97,12 @@ Route::group(['prefix' => 'panitia-esport', 'middleware' => ['auth']], function(
 });
 
 // view panitia art
+Route::group(['prefix' => 'panitia-art', 'middleware' => ['auth']], function() {
+    Route::get('/', [PhotographyController::class, 'index'])->name('art.dashboard');
+    Route::get('/photography', [PhotographyController::class, 'peserta']);
+    
+    Route::get('/ganti-password', [MlController::class, 'gantiPassword']);
+});
 
 // peserta cso
 Route::group(['prefix' => 'peserta-cso', 'middleware' => ['auth']], function() {
@@ -156,6 +162,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/mobile-legend', [MlController::class, 'getAll']);
     Route::get('/pubg-mobile', [PubgController::class, 'getAll']);
     Route::get('/pes', [PesController::class, 'getAll']);
+    Route::get('/photography', [PhotographyController::class, 'getAll']);
 
     // get detail
     Route::get('/divisi/{id}', [RoleController::class, 'show']);
