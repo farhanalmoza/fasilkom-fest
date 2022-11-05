@@ -59,7 +59,7 @@
 									type="text"
 									id="member_1"
 									name="member_1"
-                                    placeholder="masukkan nama tim"
+                                    placeholder="masukkan nama anggota 1"
 								/>
 							</div>
 							<div class="mb-3 col-md-6">
@@ -75,7 +75,7 @@
 									type="text"
 									id="member_2"
 									name="member_2"
-                                    placeholder="masukkan nama tim"
+                                    placeholder="masukkan nama anggota 2"
 								/>
 							</div>
 							<div class="mb-3 col-md-6">
@@ -91,7 +91,7 @@
 									type="text"
 									id="member_3"
 									name="member_3"
-                                    placeholder="masukkan nama tim"
+                                    placeholder="masukkan nama anggota 3"
 								/>
 							</div>
 							<div class="mb-3 col-md-6">

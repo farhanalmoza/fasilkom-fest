@@ -16,18 +16,22 @@
 			<div data-i18n="Tim">Tim</div>
 		</a>
 	</li>
+	@if (Carbon\Carbon::now()->greaterThanOrEqualTo(Carbon\Carbon::create(2023, 1, 3)))
 	<li class="menu-item {{ 'peserta-bpc/tahap-2' == request()->path() ? 'active' : '' }}">
 		<a href="{{ url('peserta-bpc/tahap-2') }}" class="menu-link">
 			<i class="menu-icon tf-icons bx bx-notepad"></i>
 			<div data-i18n="Tahap-2">Tahap 2</div>
 		</a>
 	</li>
+	@endif
+	@if ($final == '2')
 	<li class="menu-item {{ 'peserta-bpc/final' == request()->path() ? 'active' : '' }}">
 		<a href="{{ url('peserta-bpc/final') }}" class="menu-link">
 			<i class="menu-icon tf-icons bx bxs-trophy"></i>
 			<div data-i18n="Final">Final</div>
 		</a>
 	</li>
+	@endif
 
 	<li class="menu-header small text-uppercase">
 		<span class="menu-header-text">Pengaturan</span>

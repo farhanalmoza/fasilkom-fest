@@ -30,7 +30,7 @@
 
 <!--====== COUNTER PART START ======-->
 
-<section id="counter" class="counter-area pt-80 pb-130">
+{{-- <section id="counter" class="counter-area pt-80 pb-130">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-sm-6">
@@ -79,7 +79,7 @@
             </div>
         </div> <!-- row -->
     </div> <!-- container -->
-</section>
+</section> --}}
 
 <!--====== COUNTER PART ENDS ======-->
 

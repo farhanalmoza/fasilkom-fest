@@ -22,6 +22,9 @@ const getSport = {
                     <td>${sport[i].email}</td>
                     <td>${sport[i].no_wa}</td>
                     <td>
+                        <a href="${BASE_URL}/storage/${sport[i].bukti_bayar}" target="_blank" class="btn btn-primary btn-sm">Payment</a>
+                    </td>
+                    <td>
                         <a href="${BASE_URL}/panitia-sport/detail/${sport[i].id}" target="_blank" class="btn btn-primary btn-sm">Detail</a>
                     </td>
                 </tr>

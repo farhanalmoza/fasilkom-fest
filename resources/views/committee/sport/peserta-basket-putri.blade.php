@@ -17,6 +17,7 @@
 								<th>Captain</th>
 								<th>Email</th>
 								<th>WhatsApp</th>
+								<th>Payment</th>
 								<th>Actions</th>
 							</tr>
 						</thead>

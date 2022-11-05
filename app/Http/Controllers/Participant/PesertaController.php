@@ -82,13 +82,24 @@ class PesertaController extends Controller
     public function gantiPasswordUiux() { return view('participant.peserta-uiux.ganti-password'); }
 
     // BPC
-    public function dashboardBpc() { return view('participant.peserta-bpc.dashboard'); }
-    public function detailTimBpc() { return view('participant.peserta-bpc.detail-tim'); }
+    public function dashboardBpc() {
+        $bpc = Bpc::where('user_id', Auth::user()->id)->first();
+        $team_id = $bpc->id;
+        $final = $bpc->finalis;
+        return view('participant.peserta-bpc.dashboard', compact('team_id', 'final'));
+    }
+    public function detailTimBpc() {
+        $bpc = Bpc::where('user_id', Auth::user()->id)->first();
+        $team_id = $bpc->id;
+        $final = $bpc->finalis;
+        return view('participant.peserta-bpc.detail-tim', compact('team_id', 'final'));
+    }
     public function tahap2Bpc() {
         $bpc = Bpc::where('user_id', Auth::user()->id)->first();
         $team_id = $bpc->id;
+        $final = $bpc->finalis;
         if ($bpc->finalis != 0) {
-            return view('participant.peserta-bpc.tahap2', compact('team_id'));
+            return view('participant.peserta-bpc.tahap2', compact('team_id', 'final'));
         }
         return redirect('/peserta-bpc');
     }
@@ -96,10 +107,17 @@ class PesertaController extends Controller
     {
         $bpc = Bpc::where('user_id', Auth::user()->id)->first();
         $team_id = $bpc->id;
+        $final = $bpc->finalis;
         if ($bpc->finalis == 2) {
-            return view('participant.peserta-bpc.final', compact('team_id'));
+            return view('participant.peserta-bpc.final', compact('team_id', 'final'));
         }
         return redirect('/peserta-bpc');
+    }
+    public function gantiPasswordBpc() { 
+        $bpc = Bpc::where('user_id', Auth::user()->id)->first();
+        $team_id = $bpc->id;
+        $final = $bpc->finalis;
+        return view('participant.peserta-bpc.ganti-password', compact('team_id', 'final'));
     }
 
     // form pendaftaran lomba non-akademik

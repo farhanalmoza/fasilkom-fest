@@ -93,10 +93,10 @@ function pendaftaranSport() {
             formData.append('noWa', data.noWa)
             formData.append('teamName', data.teamName)
             formData.append('major', data.major)
-            Functions.prototype.pendaftaranLomba(urlPost, formData, 'post', putDataMl)
+            Functions.prototype.pendaftaranLomba(urlPost, formData, 'post', putDataSport)
         }
     })
-    const putDataMl = {
+    const putDataSport = {
         set successData(response) {
             $('#daftarSport').trigger('reset')
             $('#daftarSport').find('.is-valid').removeClass('is-valid')
