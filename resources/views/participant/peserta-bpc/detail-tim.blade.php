@@ -53,7 +53,7 @@
 						</div>
 						<div class="row">
 							<div class="mb-3 col-md-6">
-								<label for="member_1" class="form-label">Nama Anggota 1</label>
+								<label for="member_1" class="form-label">Nama Ketua</label>
 								<input
 									class="form-control"
 									type="text"
@@ -63,13 +63,13 @@
 								/>
 							</div>
 							<div class="mb-3 col-md-6">
-								<label for="identitas_1" class="form-label">Kartu Identitas 1</label>
+								<label for="identitas_1" class="form-label">Kartu Ketua</label>
 								<input class="form-control" type="file" id="identitas_1" name="identitas_1">
 							</div>
 						</div>
 						<div class="row">
 							<div class="mb-3 col-md-6">
-								<label for="member_2" class="form-label">Nama Anggota 2</label>
+								<label for="member_2" class="form-label">Nama Anggota 1</label>
 								<input
 									class="form-control"
 									type="text"
@@ -79,13 +79,13 @@
 								/>
 							</div>
 							<div class="mb-3 col-md-6">
-								<label for="identitas_2" class="form-label">Kartu Identitas 2</label>
+								<label for="identitas_2" class="form-label">Kartu Identitas 1</label>
 								<input class="form-control" type="file" id="identitas_2" name="identitas_2">
 							</div>
 						</div>
 						<div class="row">
 							<div class="mb-3 col-md-6">
-								<label for="member_3" class="form-label">Nama Anggota 3</label>
+								<label for="member_3" class="form-label">Nama Anggota 2</label>
 								<input
 									class="form-control"
 									type="text"
@@ -95,7 +95,7 @@
 								/>
 							</div>
 							<div class="mb-3 col-md-6">
-								<label for="identitas_3" class="form-label">Kartu Identitas 3</label>
+								<label for="identitas_3" class="form-label">Kartu Identitas 2</label>
 								<input class="form-control" type="file" id="identitas_3" name="identitas_3">
 							</div>
 						</div>

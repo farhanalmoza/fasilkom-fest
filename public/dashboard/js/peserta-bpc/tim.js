@@ -82,18 +82,25 @@ function updateDetailTim() {
             data.append('identitas_2', file[0])
         }
     });
+    $("#identitas_3").on("change", function (e) {
+        e.preventDefault();
+
+        if (Functions.prototype.validateFile($(this))) {
+            const data = new FormData()
+            const file = $(this)[0].files
+            data.append('identitas_3', file[0])
+        }
+    });
     $('#formDetailTim').validate({
         rules: {
             teamName: { required: true },
             sekolah: { required: true },
             wa: { required: true, number: true },
-            bmc: { required: true },
+            bmc: { required: true, extension: "pdf" },
             member_1: { required: true },
             identitas_1: { required: true },
             member_2: { required: true },
             identitas_2: { required: true },
-            member_3: { required: true },
-            identitas_3: { required: true },
         },
         errorClass: "is-invalid",
         validClass: "is-valid",
