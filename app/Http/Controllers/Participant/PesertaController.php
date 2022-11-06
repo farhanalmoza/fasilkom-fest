@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Participant;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bpc;
+use App\Models\Competition;
 use App\Models\Cso;
 use App\Models\Uiux;
 use App\Models\User;
@@ -63,23 +64,39 @@ class PesertaController extends Controller
     public function gantiPasswordCso() { return view('participant.peserta-cso.ganti-password'); }
 
     // UI/UX
-    public function dashboardUiux() { return view('participant.peserta-uiux.dashboard'); }
-    public function detailTimUiux() { return view('participant.peserta-uiux.detail-tim'); }
+    public function dashboardUiux() {
+        $uiux = Uiux::where('user_id', Auth::user()->id)->first();
+        $final = $uiux->finalis;
+        $group = Competition::where('id', '8')->first();
+        $group = $group->group_wa;
+        return view('participant.peserta-uiux.dashboard', compact('group', 'final'));
+    }
+    public function detailTimUiux() { 
+        $uiux = Uiux::where('user_id', Auth::user()->id)->first();
+        $final = $uiux->finalis;
+        return view('participant.peserta-uiux.detail-tim', compact('final'));
+    }
     public function penyisihanUiux() {
         $uiux = Uiux::where('user_id', Auth::user()->id)->first();
         $team_id = $uiux->id;
-        return view('participant.peserta-uiux.penyisihan', compact('team_id'));
+        $final = $uiux->finalis;
+        return view('participant.peserta-uiux.penyisihan', compact('team_id', 'final'));
     }
     public function finalUiux() {
         $uiux = Uiux::where('user_id', Auth::user()->id)->first();
         $uiux = Uiux::where('user_id', Auth::user()->id)->first();
         $team_id = $uiux->id;
+        $final = $uiux->finalis;
         if ($uiux->finalis == 1) {
-            return view('participant.peserta-uiux.final', compact('team_id'));
+            return view('participant.peserta-uiux.final', compact('team_id', 'final'));
         }
         return redirect('/peserta-uiux');
     }
-    public function gantiPasswordUiux() { return view('participant.peserta-uiux.ganti-password'); }
+    public function gantiPasswordUiux() {
+        $uiux = Uiux::where('user_id', Auth::user()->id)->first();
+        $final = $uiux->finalis;
+        return view('participant.peserta-uiux.ganti-password', compact('final'));
+    }
 
     // BPC
     public function dashboardBpc() {
