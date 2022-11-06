@@ -12,6 +12,15 @@ function pendaftaranVideografi() {
             data.append('buktiBayar', file[0])
         }
     });
+    $("#identity").on("change", function (e) {
+        e.preventDefault();
+
+        if (Functions.prototype.validateFile($(this))) {
+            const data = new FormData()
+            const file = $(this)[0].files
+            data.append('identity', file[0])
+        }
+    });
     $('#daftarVideografi').validate({
         rules: {
             participation: { required: true },
@@ -21,6 +30,7 @@ function pendaftaranVideografi() {
             agency: { required: true },
             occupation: { required: true },
             buktiBayar: { required: true, extension: "jpg|jpeg|png" },
+            identity: { required: true, extension: "jpg|jpeg|png" },
         },
         errorClass: "is-invalid",
         validClass: "is-valid",
@@ -50,10 +60,15 @@ function pendaftaranVideografi() {
                 occupation: $('#occupation').val(),
             }
             const buktiBayar = $('#buktiBayar')[0].files
+            const identity = $('#identity')[0].files
             
             for (let i = 0; i < buktiBayar.length; i++) {
                 const element = buktiBayar[i];
                 formData.append('buktiBayar[]', element)
+            }
+            for (let i = 0; i < identity.length; i++) {
+                const element = identity[i];
+                formData.append('identity[]', element)
             }
             formData.append('participation', data.participation)
             formData.append('name', data.name)

@@ -6,6 +6,9 @@
         #buktiBayar::before {
             content: 'Bukti Pembayaran';  
         }
+        #identity::before {
+            content: 'Foto KTM/Kartu Pelajar';
+        }
     </style>
 @endsection
 
@@ -58,6 +61,12 @@
                                         <option value="2">College Student</option>
                                     </select>
                                 </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="single-form">
+                                    <input type="file" id="identity" name="identity" title="ll">
+                                    <i class="lni-add-file"></i>
+                                </div> <!-- single form -->
                             </div>
                             <div class="col-md-6">
                                 <div class="single-form">
