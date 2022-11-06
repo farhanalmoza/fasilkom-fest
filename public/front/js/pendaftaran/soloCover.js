@@ -12,6 +12,15 @@ function pendaftaranSoloCover() {
             data.append('buktiBayar', file[0])
         }
     });
+    $("#identity").on("change", function (e) {
+        e.preventDefault();
+
+        if (Functions.prototype.validateFile($(this))) {
+            const data = new FormData()
+            const file = $(this)[0].files
+            data.append('identity', file[0])
+        }
+    });
     $('#daftarSoloCover').validate({
         rules: {
             name: {required:true},
@@ -20,6 +29,7 @@ function pendaftaranSoloCover() {
             agency: { required: true },
             occupation: { required: true },
             buktiBayar: { required: true, extension: "jpg|jpeg|png" },
+            identity: { required: true, extension: "jpg|jpeg|png" },
         },
         errorClass: "is-invalid",
         validClass: "is-valid",
@@ -48,10 +58,15 @@ function pendaftaranSoloCover() {
                 occupation: $('#occupation').val(),
             }
             const buktiBayar = $('#buktiBayar')[0].files
+            const identity = $('#identity')[0].files
             
             for (let i = 0; i < buktiBayar.length; i++) {
                 const element = buktiBayar[i];
                 formData.append('buktiBayar[]', element)
+            }
+            for (let i = 0; i < identity.length; i++) {
+                const element = identity[i];
+                formData.append('identity[]', element)
             }
             formData.append('name', data.name)
             formData.append('email', data.email)
@@ -74,7 +89,7 @@ function pendaftaranSoloCover() {
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <div class="alert gray-bg alert-dismissible fade show" role="alert">
-                                Pendaftaran berhasil, silakan bergabung dengan grup Whatsapp <a href="${response.message}" target="_blank">Peserta Videografi Fasilkom Fest 2022</a> untuk mendapatkan informasi terbaru.
+                                Pendaftaran berhasil, silakan bergabung dengan grup Whatsapp <a href="${response.message}" target="_blank">Peserta Solo Cover Fasilkom Fest 2022</a> untuk mendapatkan informasi terbaru.
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>

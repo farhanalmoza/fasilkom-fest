@@ -12,6 +12,7 @@ class Cover extends Model {
         'no_wa',
         'agency',
         'occupation',
+        'identity',
         'bukti_bayar',
     ];
     protected $hidden = [
