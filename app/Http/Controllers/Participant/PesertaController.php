@@ -59,7 +59,11 @@ class PesertaController extends Controller
     }
 
     // CSO
-    public function dashboardCso() { return view('participant.peserta-cso.dashboard'); }
+    public function dashboardCso() {
+        $group = Competition::where('id', '7')->first();
+        $group = $group->group_wa;
+        return view('participant.peserta-cso.dashboard', compact('group'));
+    }
     public function detailTimCso() { return view('participant.peserta-cso.detail-tim'); }
     public function gantiPasswordCso() { return view('participant.peserta-cso.ganti-password'); }
 
@@ -103,7 +107,9 @@ class PesertaController extends Controller
         $bpc = Bpc::where('user_id', Auth::user()->id)->first();
         $team_id = $bpc->id;
         $final = $bpc->finalis;
-        return view('participant.peserta-bpc.dashboard', compact('team_id', 'final'));
+        $group = Competition::where('id', '9')->first();
+        $group = $group->group_wa;
+        return view('participant.peserta-bpc.dashboard', compact('team_id', 'final', 'group'));
     }
     public function detailTimBpc() {
         $bpc = Bpc::where('user_id', Auth::user()->id)->first();
