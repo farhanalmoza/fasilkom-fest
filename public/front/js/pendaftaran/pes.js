@@ -21,6 +21,15 @@ function pendaftaranPes() {
             data.append('ktm', file[0])
         }
     });
+    $("#formulir").on("change", function (e) {
+        e.preventDefault();
+
+        if (Functions.prototype.validateFile($(this))) {
+            const data = new FormData()
+            const file = $(this)[0].files
+            data.append('formulir', file[0])
+        }
+    });
     $('#daftarPes').validate({
         rules: {
             name: { required: true, },
@@ -29,6 +38,7 @@ function pendaftaranPes() {
             npm: { required: true, number: true, },
             noWa: { required: true, number: true, },
             ktm: { required: true, extension: "jpg|jpeg|png" },
+            formulir: { required: true, extension: "pdf" },
             buktiBayar: { required: true, extension: "jpg|jpeg|png" },
         },
         errorClass: "is-invalid",
@@ -59,6 +69,7 @@ function pendaftaranPes() {
             }
             const buktiBayar = $('#buktiBayar')[0].files
             const ktm = $('#ktm')[0].files
+            const formulir = $('#formulir')[0].files
             
             for (let i = 0; i < buktiBayar.length; i++) {
                 const element = buktiBayar[i];
@@ -67,6 +78,10 @@ function pendaftaranPes() {
             for (let i = 0; i < ktm.length; i++) {
                 const element = ktm[i];
                 formData.append('ktm[]', element)
+            }
+            for (let i = 0; i < formulir.length; i++) {
+                const element = formulir[i];
+                formData.append('formulir[]', element)
             }
             formData.append('name', data.name)
             formData.append('major', data.major)

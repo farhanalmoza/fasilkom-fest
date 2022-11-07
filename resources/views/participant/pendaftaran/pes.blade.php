@@ -9,6 +9,9 @@
         #ktm::before {
             content: 'Foto KTM';
         }
+        #formulir::before {
+            content: 'Formulir Pendaftaran';
+        }
     </style>
 @endsection
 
@@ -57,6 +60,12 @@
                             <div class="col-md-6">
                                 <div class="single-form">
                                     <input type="file" id="ktm" name="ktm" title="ll">
+                                    <i class="lni-add-file"></i>
+                                </div> <!-- single form -->
+                            </div>
+                            <div class="col-md-6">
+                                <div class="single-form">
+                                    <input type="file" id="formulir" name="formulir" title="ll">
                                     <i class="lni-add-file"></i>
                                 </div> <!-- single form -->
                             </div>

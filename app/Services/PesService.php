@@ -25,6 +25,9 @@ class PesService
         $ktm = $request->file('ktm');
         $pathKtm = 'documents/ktm/';
 
+        $formulir = $request->file('formulir');
+        $pathFormulir = 'documents/formulir/';
+
         if ($buktiBayar) {
             foreach ($buktiBayar as $file) {
                 $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
@@ -52,6 +55,13 @@ class PesService
             $optimizerChain = OptimizerChainFactory::create();
             $optimizerChain->optimize(Storage::path('public/' . $pathKtm . $filename));
             $pes->ktm = $pathKtm . $filename;
+        }
+        if ($formulir) {
+            foreach ($formulir as $file) {
+                $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('public/' . $pathFormulir, $filename);
+            }
+            $pes->formulir = $pathFormulir . $filename;
         }
 
         $create = $pes->save();
