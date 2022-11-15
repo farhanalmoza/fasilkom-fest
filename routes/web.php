@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], functi
 });
 
 // view panitia cso
+
 // view panitia bpc
 Route::group(['prefix' => 'panitia-bpc', 'middleware' => ['auth']], function() {
     Route::get('/', [BpcController::class, 'index'])->name('bpc.dashboard');
@@ -81,6 +82,16 @@ Route::group(['prefix' => 'panitia-bpc', 'middleware' => ['auth']], function() {
     Route::get('/ganti-password', [BpcController::class, 'gantiPassword']);
 });
 // view panitia uiux
+Route::group(['prefix' => 'panitia-uiux', 'middleware' => ['auth']], function() {
+    Route::get('/', [UiuxController::class, 'index'])->name('uiux.dashboard');
+    Route::get('/pendaftar', [UiuxController::class, 'pendaftar']);
+    Route::get('/detail-pendaftar/{id}', [UiuxController::class, 'detailPendaftar']);
+    Route::get('/tahap-2', [UiuxController::class, 'tahap2']);
+    Route::get('/final', [UiuxController::class, 'final']);
+
+    Route::get('/ganti-password', [UiuxController::class, 'gantiPassword']);
+});
+
 // view panitia sport
 Route::group(['prefix' => 'panitia-sport', 'middleware' => ['auth']], function() {
     Route::get('/', [SportController::class, 'index'])->name('sport.dashboard');
@@ -177,6 +188,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/videography', [VideographyController::class, 'getAll']);
     Route::get('/solo-cover', [SoloCoverController::class, 'getAll']);
     Route::get('/pendaftar-bpc', [BpcController::class, 'getAll']);
+    Route::get('/pendaftar-uiux', [UiuxController::class, 'getAll']);
 
     // get detail
     Route::get('/divisi/{id}', [RoleController::class, 'show']);

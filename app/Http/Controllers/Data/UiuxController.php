@@ -32,4 +32,32 @@ class UiuxController extends Controller
         
         return $this->uiux->updateDetailTim($data, $buktiBayar, $orisinalitas, $identitas_1, $identitas_2, $id);
     }
+
+    public function updateTahap2(Request $request, $id)
+    {
+        // variabel
+        $buktiBayar = $request->file('buktiBayar');
+        $proposal = $request->file('proposal');
+        
+        return $this->uiux->updateTahap2($proposal, $buktiBayar, $id);
+    }
+
+    public function updateFinal(Request $request, $id)
+    {
+        // variabel
+        $ppt = $request->file('orisinalitas');
+        
+        return $this->uiux->updateFinal($ppt, $id);
+    }
+
+    public function lolosFinal(Request $request, $id) { return $this->uiux->lolosFinal($request, $id); }
+    public function getAll() { return $this->uiux->getAll(); }
+    
+    public function index() { return view('committee.uiux.index'); }
+    public function pendaftar() { return view('committee.uiux.pendaftar'); }
+    public function detailPendaftar($id) { return view('committee.uiux.detail-pendaftar', ['id' => $id]); }
+    public function tahap2() { return view('committee.uiux.tahap-2'); }
+    public function final() { return view('committee.uiux.final'); }
+    public function gantiPassword() { return view('committee.uiux.ganti-password'); }
+
 }

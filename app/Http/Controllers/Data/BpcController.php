@@ -58,5 +58,6 @@ class BpcController extends Controller
     public function pendaftar() { return view('committee.bpc.pendaftar'); }
     public function detailPendaftar($id) { return view('committee.bpc.detail-pendaftar', ['id' => $id]); }
     public function tahap2() { return view('committee.bpc.tahap-2'); }
+    public function final() { return view('committee.bpc.final'); }
     public function gantiPassword() { return view('committee.bpc.ganti-password'); }
 }

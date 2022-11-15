@@ -18,13 +18,12 @@ const getPendaftar = {
                 <tr>
                     <td><strong>${response[i].team_name}</strong></td>
                     <td>${response[i].instansi}</td>
-                    <td>${response[i].email}</td>
                     <td>${response[i].no_wa}</td>
                     <td>
-                        <a href="${BASE_URL}/storage/${response[i].bmc}" target="_blank" class="btn btn-primary btn-sm">BMC</a>
+                        <a href="${BASE_URL}/storage/${response[i].orisinalitas}" target="_blank" class="btn btn-primary btn-sm">Orisinalitas</a>
                     </td>
                     <td>
-                        <a href="${BASE_URL}/panitia-bpc/detail-pendaftar/${response[i].user_id}" target="_blank" class="btn btn-primary btn-sm">Detail</a>
+                        <a href="${BASE_URL}/panitia-uiux/detail-pendaftar/${response[i].user_id}" target="_blank" class="btn btn-primary btn-sm">Detail</a>
                     </td>
                 </tr>
                 `;
@@ -78,14 +77,14 @@ const getTahap2 = {
                     <td><strong>${response[i].team_name}</strong></td>
                     <td>${response[i].instansi}</td>
                     <td>
-                        <a href="${BASE_URL}/storage/${response[i].proposal}" target="_blank" class="btn btn-primary btn-sm">Proposal</a>
+                        <a href="${BASE_URL}/storage/${response[i].orisinalitas}" target="_blank" class="btn btn-primary btn-sm">Proposal</a>
                     </td>
                     <td>
-                        <a href="${BASE_URL}/panitia-bpc/detail-pendaftar/${response[i].bukti_bayar}" target="_blank" class="btn btn-primary btn-sm">Payment</a>
+                        <a href="${BASE_URL}/panitia-uiux/detail-pendaftar/${response[i].bukti_bayar}" target="_blank" class="btn btn-primary btn-sm">Payment</a>
                     </td>
                     <td>${finalis}</td>
                     <td>
-                        <a href="${BASE_URL}/panitia-bpc/detail-pendaftar/${response[i].user_id}" target="_blank" class="btn btn-primary btn-sm">Detail</a>
+                        <a href="${BASE_URL}/panitia-uiux/detail-pendaftar/${response[i].user_id}" target="_blank" class="btn btn-primary btn-sm">Detail</a>
                         <button class="btn btn-success btn-sm lolos" data-id="${response[i].id}" data-bs-toggle="modal" data-bs-target="#lolosModal">Lolos</button>
                     </td>
                 </tr>
@@ -136,13 +135,13 @@ const getFinal = {
                     <td><strong>${response[i].team_name}</strong></td>
                     <td>${response[i].instansi}</td>
                     <td>
-                        <a href="${BASE_URL}/storage/${response[i].ppt}" target="_blank" class="btn btn-primary btn-sm">PPT</a>
+                        <a href="${BASE_URL}/storage/${response[i].orisinalitas}" target="_blank" class="btn btn-primary btn-sm">PPT</a>
                     </td>
                     <td>
-                        <a href="${BASE_URL}/panitia-bpc/detail-pendaftar/${response[i].bukti_bayar}" target="_blank" class="btn btn-primary btn-sm">Payment</a>
+                        <a href="${BASE_URL}/panitia-uiux/detail-pendaftar/${response[i].bukti_bayar}" target="_blank" class="btn btn-primary btn-sm">Payment</a>
                     </td>
                     <td>
-                        <a href="${BASE_URL}/panitia-bpc/detail-pendaftar/${response[i].user_id}" target="_blank" class="btn btn-primary btn-sm">Detail</a>
+                        <a href="${BASE_URL}/panitia-uiux/detail-pendaftar/${response[i].user_id}" target="_blank" class="btn btn-primary btn-sm">Detail</a>
                     </td>
                 </tr>
                 `;
@@ -177,7 +176,7 @@ const getFinal = {
 
 const getDetail = {
     set loadData(data) {
-        const URL = URL_DATA + "/detail-bpc/" + data
+        const URL = URL_DATA + "/detail-uiux/" + data
         Functions.prototype.getRequest(getDetail, URL);
     },
     set successData(response) {
@@ -187,11 +186,9 @@ const getDetail = {
         $('#agency').val(response.instansi)
         $('#member_1').val(response.member_1)
         $('#member_2').val(response.member_2)
-        $('#member_3').val(response.member_3)
         
         $('#identitas_1').attr('href', BASE_URL + '/storage/' + response.identitas_1)
         $('#identitas_2').attr('href', BASE_URL + '/storage/' + response.identitas_2)
-        $('#identitas_3').attr('href', BASE_URL + '/storage/' + response.identitas_3)
     },
     set errorData(err) {
         var content = {};
@@ -213,7 +210,7 @@ const getDetail = {
 function lolosTim() {
     $(document).on('click', '.lolos', function(e) {
         const id = $(this).data('id')
-        const urlPut = URL_DATA + "/update/lolos-bpc/" + id
+        const urlPut = URL_DATA + "/update/lolos-uiux/" + id
         
         // submit-hapus diklik
         $('.submit-lolos').on('click', function(e) {
@@ -223,7 +220,7 @@ function lolosTim() {
             }
             Functions.prototype.putRequest(putDataRole, urlPut, data)
             $('#lolosModal').modal('hide')
-            getTahap2.loadData = "/pendaftar-bpc";
+            getTahap2.loadData = "/pendaftar-uiux";
         })
     })
     const putDataRole = {

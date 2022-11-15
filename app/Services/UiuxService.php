@@ -12,8 +12,11 @@ class UiuxService
     // get detail by user_id
     public function getDetail($user_id)
     {
-        $cso = Uiux::where('user_id', $user_id)->first();
-        if ($cso) { return $cso; }
+        $uiux = Uiux::join('users', 'users.id', '=', 'uiux.user_id')
+            ->select('uiux.*', 'users.email')
+            ->where('uiux.user_id', $user_id)
+            ->first();
+        if ($uiux) { return $uiux; }
         return null;
     }
 
@@ -106,5 +109,94 @@ class UiuxService
         } else {
             return response(['message' => 'Pendaftaran tim gagal diunggah!'], 500);
         }
+    }
+
+    public function updateTahap2($proposal, $buktiBayar, $id)
+    {
+        $uiux = Uiux::find($id);
+        if ($uiux) {
+            if ($proposal) {
+                $path = 'documents/proposal-uiux/';
+                if($uiux->proposal) {
+                    Storage::delete('public/'.$uiux->proposal);
+                }
+                foreach($proposal as $file) {
+                    $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
+                    $file->storeAs('public/'.$path, $filename);
+                }
+                $uiux->proposal = $path . $filename;
+            }
+            
+            if ($buktiBayar) {
+                $path = 'pictures/bukti_bayar/';
+                if($uiux->bukti_bayar) {
+                    Storage::delete('public/'.$uiux->bukti_bayar);
+                }
+                foreach($buktiBayar as $file) {
+                    $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
+                    $image = Image::make($file->getRealPath());
+                    $image->resize(300, 300, function($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $image->stream();
+                    Storage::put('public/'.$path . $filename, $image);
+                }
+                $optimizerChain = OptimizerChainFactory::create();
+                $optimizerChain->optimize(Storage::path('public/'.$path . $filename));
+                $uiux->bukti_bayar = $path . $filename;
+            }
+            $update = $uiux->save();
+        }
+        if($update) {
+            return response(['message' => 'Proposal tim berhasil diunggah!']);
+        } else {
+            return response(['message' => 'Proposal tim gagal diunggah!'], 500);
+        }
+    }
+
+    public function updateFinal($ppt, $id)
+    {
+        $uiux = Uiux::find($id);
+        if ($uiux) {
+            if ($ppt) {
+                $path = 'documents/ppt-uiux/';
+                if($uiux->ppt) {
+                    Storage::delete('public/'.$uiux->ppt);
+                }
+                foreach($ppt as $file) {
+                    $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
+                    $file->storeAs('public/'.$path, $filename);
+                }
+                $uiux->ppt = $path . $filename;
+            }
+            $update = $uiux->save();
+        }
+        if($update) {
+            return response(['message' => 'PPT final berhasil diunggah!']);
+        } else {
+            return response(['message' => 'PPT final gagal diunggah!'], 500);
+        }
+    }
+
+    public function lolosFinal($request, $id) {
+        $uiux = Uiux::find($id);
+        if ($uiux) {
+            $uiux->finalis = $request->finalis;
+            $update = $uiux->save();
+        }
+        if($update) {
+            return response(['message' => 'Tim berhasil lolos tahap final!']);
+        } else {
+            return response(['message' => 'Tim gagal lolos tahap final!'], 500);
+        }
+    }
+
+    public function getAll()
+    {
+        // join users table where id = user_id
+        $uiux = Uiux::join('users', 'uiux.user_id', '=', 'users.id')
+            ->select('uiux.*', 'users.email')
+            ->get();
+        return $uiux;
     }
 }
