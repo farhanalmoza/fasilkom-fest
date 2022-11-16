@@ -108,4 +108,93 @@ class CsoService
             return response(['message' => 'Pendaftaran tim gagal diunggah!'], 500);
         }
     }
+
+    public function updateTahap2($proposal, $buktiBayar, $id)
+    {
+        $cso = Cso::find($id);
+        if ($cso) {
+            if ($proposal) {
+                $path = 'documents/proposal-cso/';
+                if($cso->proposal) {
+                    Storage::delete('public/'.$cso->proposal);
+                }
+                foreach($proposal as $file) {
+                    $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
+                    $file->storeAs('public/'.$path, $filename);
+                }
+                $cso->proposal = $path . $filename;
+            }
+            
+            if ($buktiBayar) {
+                $path = 'pictures/bukti_bayar/';
+                if($cso->bukti_bayar) {
+                    Storage::delete('public/'.$cso->bukti_bayar);
+                }
+                foreach($buktiBayar as $file) {
+                    $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
+                    $image = Image::make($file->getRealPath());
+                    $image->resize(300, 300, function($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $image->stream();
+                    Storage::put('public/'.$path . $filename, $image);
+                }
+                $optimizerChain = OptimizerChainFactory::create();
+                $optimizerChain->optimize(Storage::path('public/'.$path . $filename));
+                $cso->bukti_bayar = $path . $filename;
+            }
+            $update = $cso->save();
+        }
+        if($update) {
+            return response(['message' => 'Proposal tim berhasil diunggah!']);
+        } else {
+            return response(['message' => 'Proposal tim gagal diunggah!'], 500);
+        }
+    }
+
+    public function updateFinal($ppt, $id)
+    {
+        $cso = Cso::find($id);
+        if ($cso) {
+            if ($ppt) {
+                $path = 'documents/ppt-cso/';
+                if($cso->ppt) {
+                    Storage::delete('public/'.$cso->ppt);
+                }
+                foreach($ppt as $file) {
+                    $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
+                    $file->storeAs('public/'.$path, $filename);
+                }
+                $cso->ppt = $path . $filename;
+            }
+            $update = $cso->save();
+        }
+        if($update) {
+            return response(['message' => 'PPT final berhasil diunggah!']);
+        } else {
+            return response(['message' => 'PPT final gagal diunggah!'], 500);
+        }
+    }
+
+    public function lolosFinal($request, $id) {
+        $cso = Cso::find($id);
+        if ($cso) {
+            $cso->finalis = $request->finalis;
+            $update = $cso->save();
+        }
+        if($update) {
+            return response(['message' => 'Tim berhasil lolos tahap final!']);
+        } else {
+            return response(['message' => 'Tim gagal lolos tahap final!'], 500);
+        }
+    }
+
+    public function getAll()
+    {
+        // join users table where id = user_id
+        $cso = Cso::join('users', 'cso.user_id', '=', 'users.id')
+            ->select('cso.*', 'users.email')
+            ->get();
+        return $cso;
+    }
 }

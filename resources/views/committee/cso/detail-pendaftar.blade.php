@@ -1,4 +1,4 @@
-@extends('committee.uiux.components.template')
+@extends('committee.cso.components.template')
 @section('title', 'Team Detail')
 
 @section('content')
@@ -17,7 +17,7 @@
 					  <div class="col-sm-4">
 							<input type="text" readonly="" class="form-control-plaintext" id="team_name">
 					  </div>
-						<label class="col-sm-2 col-form-label" for="basic-default-name">Agency</label>
+						<label class="col-sm-2 col-form-label" for="basic-default-name">Sekolah</label>
 						<div class="col-sm-4">
 							<input type="text" readonly="" class="form-control-plaintext" id="agency">
 						</div>
@@ -50,6 +50,15 @@
 							<a target="_blank" class="btn btn-primary btn-sm" id="identitas_2">Identitas</a>
 						</div>
 					</div>
+					<div class="row mb-3">
+						<label class="col-sm-2 col-form-label" for="basic-default-name">Member 3</label>
+						<div class="col-sm-4">
+							<input type="text" readonly="" class="form-control-plaintext" id="member_3">
+						</div>
+						<div class="col-sm-4">
+							<a target="_blank" class="btn btn-primary btn-sm" id="identitas_3">Identitas</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -64,5 +73,5 @@
 			getDetail.loadData = id
 		})
 	</script>
-	<script src="{{asset('dashboard')}}/js/panitia-uiux/index.js"></script>
+	<script src="{{asset('dashboard')}}/js/panitia-cso/index.js"></script>
 @endsection

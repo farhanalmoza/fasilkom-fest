@@ -70,6 +70,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], functi
 });
 
 // view panitia cso
+Route::group(['prefix' => 'panitia-cso', 'middleware' => ['auth']], function() {
+    Route::get('/', [CsoController::class, 'index'])->name('cso.dashboard');
+    Route::get('/pendaftar', [CsoController::class, 'pendaftar']);
+    Route::get('/detail-pendaftar/{id}', [CsoController::class, 'detailPendaftar']);
+    Route::get('/tahap-2', [CsoController::class, 'tahap2']);
+    Route::get('/final', [CsoController::class, 'final']);
+
+    Route::get('/ganti-password', [BpcController::class, 'gantiPassword']);
+});
 
 // view panitia bpc
 Route::group(['prefix' => 'panitia-bpc', 'middleware' => ['auth']], function() {
@@ -189,6 +198,7 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/solo-cover', [SoloCoverController::class, 'getAll']);
     Route::get('/pendaftar-bpc', [BpcController::class, 'getAll']);
     Route::get('/pendaftar-uiux', [UiuxController::class, 'getAll']);
+    Route::get('/pendaftar-cso', [CsoController::class, 'getAll']);
 
     // get detail
     Route::get('/divisi/{id}', [RoleController::class, 'show']);
@@ -206,6 +216,8 @@ Route::group(['prefix' => 'data'], function() {
     Route::get('/detail-pubg/{id}', [PubgController::class, 'show']);
     Route::get('/detail-pes/{id}', [PesController::class, 'show']);
     Route::get('/detail-bpc/{id}', [BpcController::class, 'show']);
+    Route::get('/detail-uiux/{id}', [UiuxController::class, 'show']);
+    Route::get('/detail-cso/{id}', [CsoController::class, 'show']);
 
     // update
     Route::group(['prefix' => 'update'], function() {
