@@ -238,6 +238,9 @@ const getPes = {
                         <a href="${BASE_URL}/storage/${pes[i].ktm}" target="_blank" class="btn btn-primary btn-sm">KTM</a>
                     </td>
                     <td>
+                        <a href="${BASE_URL}/storage/${pes[i].formulir}" download class="btn btn-primary btn-sm">Formulir</a>
+                    </td>
+                    <td>
                         <a href="${BASE_URL}/storage/${pes[i].bukti_bayar}" target="_blank" class="btn btn-primary btn-sm">Payment</a>
                     </td>
                 </tr>

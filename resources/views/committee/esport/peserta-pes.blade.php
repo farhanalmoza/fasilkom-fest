@@ -19,6 +19,7 @@
 								<th>WhatsApp</th>
 								<th>Major</th>
 								<th>KTM</th>
+								<th>Formulir</th>
 								<th>Payment</th>
 							</tr>
 						</thead>
