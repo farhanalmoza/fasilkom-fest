@@ -18,6 +18,7 @@
 								<th>WhatsApp</th>
 								<th>Agency</th>
 								<th>Occupation</th>
+								<th>Identity</th>
 								<th>Payment</th>
 							</tr>
 						</thead>

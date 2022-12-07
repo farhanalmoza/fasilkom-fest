@@ -149,6 +149,9 @@ const getSoloCover = {
                     <td>${response[i].agency}</td>
                     <td>${occupation}</td>
                     <td>
+                        <a href="${BASE_URL}/storage/${response[i].identity}" target="_blank" class="btn btn-primary btn-sm">Identity</a>
+                    </td>
+                    <td>
                         <a href="${BASE_URL}/storage/${response[i].bukti_bayar}" target="_blank" class="btn btn-primary btn-sm">Payment</a>
                     </td>
                 </tr>
