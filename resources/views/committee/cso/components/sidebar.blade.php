@@ -30,6 +30,16 @@
 	</li>
 
 	<li class="menu-header small text-uppercase">
+		<span class="menu-header-text">Quiz</span>
+	</li>
+	<li class="menu-item {{ 'panitia-cso/quiz' == request()->path() ? 'active' : '' }}">
+		<a href="{{ url('panitia-cso/quiz') }}" class="menu-link">
+			<i class="menu-icon tf-icons bx bx-book-content"></i>
+			<div data-i18n="Quiz">Quiz</div>
+		</a>
+	</li>
+
+	<li class="menu-header small text-uppercase">
 		<span class="menu-header-text">Pengaturan</span>
 	</li>
 	<li class="menu-item {{ 'panitia-cso/ganti-password' == request()->path() ? 'active' : '' }}">

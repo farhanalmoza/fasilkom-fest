@@ -16,6 +16,12 @@
 			<div data-i18n="Tim">Tim</div>
 		</a>
 	</li>
+	<li class="menu-item {{ 'peserta-cso/quiz' == request()->path() ? 'active' : '' }}">
+		<a href="{{ url('peserta-cso/quiz') }}" class="menu-link">
+			<i class="menu-icon tf-icons bx bxs-book-content"></i>
+			<div data-i18n="Quiz">Quiz</div>
+		</a>
+	</li>
 
 	<li class="menu-header small text-uppercase">
 		<span class="menu-header-text">Pages</span>

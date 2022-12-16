@@ -2,7 +2,6 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <div data-countdown="" id="cuntdown"></div>
                 
                 <div class="header-content text-center">
                     <h2 class="header-title">Fasilkom Fest</h2>

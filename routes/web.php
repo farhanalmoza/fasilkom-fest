@@ -166,7 +166,7 @@ Route::group(['prefix' => 'peserta-bpc', 'middleware' => ['auth']], function() {
 // view pendaftaran peserta selain akademik
 Route::group(['prefix' => 'daftar', 'middleware' => ['guest']], function() {
     Route::get('/peserta-mobile-legend', [PesertaController::class, 'pendaftaranMl']);
-    Route::get('/peserta-pes', [PesertaController::class, 'pendaftaranPes']);
+    Route::get('/peserta-pes', [PesertaController::class, 'closeReg']);
     Route::get('/peserta-pubg-mobile', [PesertaController::class, 'pendaftaranPubg']);
 
     Route::get('/peserta-futsal', [PesertaController::class, 'pendaftaranFutsal']);
