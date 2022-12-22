@@ -188,9 +188,9 @@ const getDetail = {
         $('#member_2').val(response.member_2)
         $('#member_3').val(response.member_3)
         
-        $('#identitas_1').attr('href', BASE_URL + '/storage/' + response.identitas_1)
-        $('#identitas_2').attr('href', BASE_URL + '/storage/' + response.identitas_2)
-        $('#identitas_3').attr('href', BASE_URL + '/storage/' + response.identitas_3)
+        $('#identitas_1').attr('href', BASE_URL + '/storage/' + response.kartu_pelajar_1)
+        $('#identitas_2').attr('href', BASE_URL + '/storage/' + response.kartu_pelajar_2)
+        $('#identitas_3').attr('href', BASE_URL + '/storage/' + response.kartu_pelajar_3)
     },
     set errorData(err) {
         var content = {};

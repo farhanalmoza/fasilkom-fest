@@ -80,7 +80,7 @@ const getTahap2 = {
                     <td><strong>${response[i].team_name}</strong></td>
                     <td>${response[i].instansi}</td>
                     <td>
-                        <a href="${BASE_URL}/storage/${response[i].orisinalitas}" target="_blank" class="btn btn-primary btn-sm">Proposal</a>
+                        <a href="${BASE_URL}/storage/${response[i].proposal}" target="_blank" class="btn btn-primary btn-sm">Proposal</a>
                     </td>
                     <td>
                         <a href="${BASE_URL}/panitia-uiux/detail-pendaftar/${response[i].bukti_bayar}" target="_blank" class="btn btn-primary btn-sm">Payment</a>

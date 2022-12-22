@@ -13,7 +13,8 @@ class UiuxService
     public function getDetail($user_id)
     {
         $uiux = Uiux::join('users', 'users.id', '=', 'uiux.user_id')
-            ->select('uiux.*', 'users.email')
+            ->join('karya_uiux', 'karya_uiux.team_id', '=', 'uiux.id')
+            ->select('uiux.*', 'users.email', 'karya_uiux.proposal')
             ->where('uiux.user_id', $user_id)
             ->first();
         if ($uiux) { return $uiux; }
